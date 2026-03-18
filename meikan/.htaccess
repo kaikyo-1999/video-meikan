@@ -1,0 +1,26 @@
+RewriteEngine On
+RewriteBase /
+
+# セキュリティヘッダー
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set X-Content-Type-Options "nosniff"
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+
+# HTTPS強制
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# セキュリティ: src/, config/, batch/, logs/ へのアクセス遮断
+RewriteRule ^(src|config|batch|logs|cache|sql)/ - [F,L]
+RewriteRule ^\.env - [F,L]
+
+# 静的ファイルはそのまま配信
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# すべてのリクエストを index.php へ
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]

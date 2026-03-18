@@ -1,0 +1,3320 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "4e9nb",
+      "x": 2300,
+      "y": 0,
+      "name": "女優ページ - PC",
+      "width": 1200,
+      "fill": "$bg-page",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "487iC",
+          "type": "ref",
+          "ref": "HqYLH",
+          "width": "fill_container",
+          "name": "actHeader",
+          "x": 0,
+          "y": 0,
+          "descendants": {
+            "Yd0fY": {
+              "x": 32,
+              "y": 17
+            },
+            "CHWNe": {
+              "width": "fit_content",
+              "height": "fit_content",
+              "x": 1005,
+              "y": 19.5
+            },
+            "m5M35": {
+              "x": 79
+            }
+          }
+        },
+        {
+          "id": "cOfir",
+          "type": "ref",
+          "ref": "DENFr",
+          "width": "fill_container",
+          "name": "actBc",
+          "x": 0,
+          "y": 60,
+          "descendants": {
+            "jYmVk": {
+              "x": 32,
+              "y": 11.5
+            },
+            "HOpsu": {
+              "enabled": true,
+              "x": 65,
+              "y": 11.5
+            },
+            "Vt14Q": {
+              "content": "瀬戸環奈",
+              "enabled": true,
+              "x": 81,
+              "y": 10.5
+            },
+            "SgF2Y": {
+              "enabled": false
+            },
+            "4Hspq": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "type": "frame",
+          "id": "O1y1I",
+          "name": "actContent",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 28,
+          "padding": [
+            24,
+            32
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "oBr96",
+              "name": "profile",
+              "width": "fill_container",
+              "fill": "$bg-card",
+              "cornerRadius": 12,
+              "stroke": {
+                "thickness": 1,
+                "fill": "$border-subtle"
+              },
+              "gap": 24,
+              "padding": 24,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "8sl7a",
+                  "name": "profImg",
+                  "clip": true,
+                  "width": 120,
+                  "height": 160,
+                  "fill": "$bg-elevated",
+                  "cornerRadius": 8
+                },
+                {
+                  "type": "frame",
+                  "id": "zvEdW",
+                  "name": "profInfo",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oUo5X",
+                      "name": "profName",
+                      "fill": "$text-primary",
+                      "content": "瀬戸環奈",
+                      "fontFamily": "DM Sans",
+                      "fontSize": 24,
+                      "fontWeight": "700",
+                      "letterSpacing": -0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "wFFrS",
+                      "name": "profCount",
+                      "fill": "$text-secondary",
+                      "content": "作品数：120本",
+                      "fontFamily": "DM Sans",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "D1keh",
+              "name": "sectionTitle",
+              "fill": "$text-primary",
+              "content": "ジャンル別作品",
+              "fontFamily": "DM Sans",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "yXDlg",
+              "name": "genreRow1",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "id": "WIWxN",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g1",
+                  "x": 0,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "NTR",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "12作品",
+                      "x": 20,
+                      "y": 43
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 67
+                    }
+                  }
+                },
+                {
+                  "id": "zTL4O",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g2",
+                  "x": 288,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "人妻・主婦",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "8作品",
+                      "x": 20,
+                      "y": 45
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 69
+                    }
+                  }
+                },
+                {
+                  "id": "SdCai",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g3",
+                  "x": 576,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "巨乳",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "15作品",
+                      "x": 20,
+                      "y": 45
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 69
+                    }
+                  }
+                },
+                {
+                  "id": "4Vh3X",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g4",
+                  "x": 864,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "中出し",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "22作品",
+                      "x": 20,
+                      "y": 45
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 69
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Rt5RA",
+              "name": "genreRow2",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "id": "2jo0f",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g5",
+                  "x": 0,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "痴漢",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "6作品",
+                      "x": 20,
+                      "y": 45
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 69
+                    }
+                  }
+                },
+                {
+                  "id": "8svaB",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g6",
+                  "x": 288,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "痴女",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "9作品",
+                      "x": 20,
+                      "y": 45
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 69
+                    }
+                  }
+                },
+                {
+                  "id": "1ARoA",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g7",
+                  "x": 576,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "女教師",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "5作品",
+                      "x": 20,
+                      "y": 45
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 69
+                    }
+                  }
+                },
+                {
+                  "id": "m7oRb",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g8",
+                  "x": 864,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "OL",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "7作品",
+                      "x": 20,
+                      "y": 43
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 67
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "MeLWX",
+              "name": "genreRow3",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "id": "oKsYf",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g9",
+                  "x": 0,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "姉・妹",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "4作品",
+                      "x": 20,
+                      "y": 45
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 69
+                    }
+                  }
+                },
+                {
+                  "id": "RPGEB",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g10",
+                  "x": 288,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "看護婦・ナース",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "3作品",
+                      "x": 20,
+                      "y": 45
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 69
+                    }
+                  }
+                },
+                {
+                  "id": "Szbt1",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g11",
+                  "x": 576,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "コスプレ",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "10作品",
+                      "x": 20,
+                      "y": 45
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 69
+                    }
+                  }
+                },
+                {
+                  "id": "ZPNtv",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g12",
+                  "x": 864,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "3P・4P",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "6作品",
+                      "x": 20,
+                      "y": 46
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 70
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "TyOBg",
+              "name": "adBanner",
+              "width": "fill_container",
+              "height": 90,
+              "fill": "$bg-card",
+              "cornerRadius": 8,
+              "stroke": {
+                "thickness": 1,
+                "fill": "$border-subtle"
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qhFNk",
+                  "name": "adText3",
+                  "fill": "$text-tertiary",
+                  "content": "広告枠 728×90",
+                  "fontFamily": "DM Sans",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "W3Cor",
+              "name": "genreRow4",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "id": "poN82",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g13",
+                  "x": 0,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "義母",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "3作品",
+                      "x": 20,
+                      "y": 45
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 69
+                    }
+                  }
+                },
+                {
+                  "id": "UOMyF",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g14",
+                  "x": 288,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "近親相姦",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "5作品",
+                      "x": 20,
+                      "y": 45
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 69
+                    }
+                  }
+                },
+                {
+                  "id": "v6bDS",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g15",
+                  "x": 576,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "女上司",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "4作品",
+                      "x": 20,
+                      "y": 45
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 69
+                    }
+                  }
+                },
+                {
+                  "id": "qbpuh",
+                  "type": "ref",
+                  "ref": "9aKTE",
+                  "width": "fill_container",
+                  "name": "g16",
+                  "x": 864,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "RbEqh": {
+                      "content": "乱交",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "LH0bE": {
+                      "content": "8作品",
+                      "x": 20,
+                      "y": 45
+                    },
+                    "jBgiu": {
+                      "x": 20,
+                      "y": 69
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AnIkK",
+          "type": "ref",
+          "ref": "gxFe9",
+          "width": "fill_container",
+          "name": "actFooter",
+          "x": 0,
+          "y": 1056,
+          "height": "fit_content",
+          "descendants": {
+            "mmZFh": {
+              "width": "fit_content",
+              "height": "fit_content",
+              "x": 503.5,
+              "y": 20
+            },
+            "8boQ5": {
+              "x": 73
+            },
+            "cOyK6": {
+              "x": 492.5,
+              "y": 45
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "z7lLt",
+      "x": 1000,
+      "y": 0,
+      "name": "名鑑TOP - PC",
+      "width": 1200,
+      "fill": "$bg-page",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "dvVYv",
+          "type": "ref",
+          "ref": "HqYLH",
+          "width": "fill_container",
+          "name": "topHeader",
+          "x": 0,
+          "y": 0,
+          "descendants": {
+            "Yd0fY": {
+              "x": 32,
+              "y": 17
+            },
+            "CHWNe": {
+              "width": "fit_content",
+              "height": "fit_content",
+              "x": 1005,
+              "y": 19.5
+            },
+            "m5M35": {
+              "x": 79
+            }
+          }
+        },
+        {
+          "id": "AI7u2",
+          "type": "ref",
+          "ref": "DENFr",
+          "width": "fill_container",
+          "name": "topBc",
+          "x": 0,
+          "y": 60,
+          "descendants": {
+            "jYmVk": {
+              "content": "名鑑TOP",
+              "fill": "$text-primary",
+              "x": 32,
+              "y": 10.5
+            },
+            "HOpsu": {
+              "enabled": false
+            },
+            "Vt14Q": {
+              "enabled": false
+            },
+            "SgF2Y": {
+              "enabled": false
+            },
+            "4Hspq": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "type": "frame",
+          "id": "YlPEL",
+          "name": "topContent",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            24,
+            32
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "ooQVc",
+              "name": "topTitle",
+              "fill": "$text-primary",
+              "content": "動画名鑑",
+              "fontFamily": "Fraunces",
+              "fontSize": 28,
+              "fontWeight": "600",
+              "letterSpacing": -0.8
+            },
+            {
+              "type": "text",
+              "id": "c9ETK",
+              "name": "topSubtitle",
+              "fill": "$text-secondary",
+              "content": "人気AV女優のジャンル別作品データベース",
+              "fontFamily": "DM Sans",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "3X1BQ",
+              "name": "gridRow1",
+              "width": "fill_container",
+              "gap": 20,
+              "children": [
+                {
+                  "id": "naxVM",
+                  "type": "ref",
+                  "ref": "npsFk",
+                  "width": "fill_container",
+                  "name": "card1",
+                  "x": 0,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "Be9ym": {
+                      "width": "fill_container"
+                    },
+                    "wHmvT": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 300
+                    },
+                    "1BEdS": {
+                      "content": "瀬戸環奈",
+                      "x": 14,
+                      "y": 12
+                    },
+                    "eYQaO": {
+                      "content": "120作品",
+                      "x": 14,
+                      "y": 38
+                    }
+                  }
+                },
+                {
+                  "id": "9dKXa",
+                  "type": "ref",
+                  "ref": "npsFk",
+                  "width": "fill_container",
+                  "name": "card2",
+                  "x": 289,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "Be9ym": {
+                      "width": "fill_container"
+                    },
+                    "wHmvT": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 300
+                    },
+                    "1BEdS": {
+                      "content": "三上悠亜",
+                      "x": 14,
+                      "y": 12
+                    },
+                    "eYQaO": {
+                      "content": "245作品",
+                      "x": 14,
+                      "y": 38
+                    }
+                  }
+                },
+                {
+                  "id": "RRSRZ",
+                  "type": "ref",
+                  "ref": "npsFk",
+                  "width": "fill_container",
+                  "name": "card3",
+                  "x": 578,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "Be9ym": {
+                      "width": "fill_container"
+                    },
+                    "wHmvT": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 300
+                    },
+                    "1BEdS": {
+                      "content": "橋本ありな",
+                      "x": 14,
+                      "y": 12
+                    },
+                    "eYQaO": {
+                      "content": "198作品",
+                      "x": 14,
+                      "y": 38
+                    }
+                  }
+                },
+                {
+                  "id": "lB3S8",
+                  "type": "ref",
+                  "ref": "npsFk",
+                  "width": "fill_container",
+                  "name": "card4",
+                  "x": 867,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "Be9ym": {
+                      "width": "fill_container"
+                    },
+                    "wHmvT": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 300
+                    },
+                    "1BEdS": {
+                      "content": "明日花キララ",
+                      "x": 14,
+                      "y": 12
+                    },
+                    "eYQaO": {
+                      "content": "310作品",
+                      "x": 14,
+                      "y": 38
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "JVyoN",
+              "name": "gridRow2",
+              "width": "fill_container",
+              "gap": 20,
+              "children": [
+                {
+                  "id": "1bb7t",
+                  "type": "ref",
+                  "ref": "npsFk",
+                  "width": "fill_container",
+                  "name": "card5",
+                  "x": 0,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "Be9ym": {
+                      "width": "fill_container"
+                    },
+                    "wHmvT": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 300
+                    },
+                    "1BEdS": {
+                      "content": "河北彩花",
+                      "x": 14,
+                      "y": 12
+                    },
+                    "eYQaO": {
+                      "content": "87作品",
+                      "x": 14,
+                      "y": 38
+                    }
+                  }
+                },
+                {
+                  "id": "c9jAY",
+                  "type": "ref",
+                  "ref": "npsFk",
+                  "width": "fill_container",
+                  "name": "card6",
+                  "x": 289,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "Be9ym": {
+                      "width": "fill_container"
+                    },
+                    "wHmvT": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 300
+                    },
+                    "1BEdS": {
+                      "content": "小倉由菜",
+                      "x": 14,
+                      "y": 12
+                    },
+                    "eYQaO": {
+                      "content": "156作品",
+                      "x": 14,
+                      "y": 38
+                    }
+                  }
+                },
+                {
+                  "id": "sXR0r",
+                  "type": "ref",
+                  "ref": "npsFk",
+                  "width": "fill_container",
+                  "name": "card7",
+                  "x": 578,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "Be9ym": {
+                      "width": "fill_container"
+                    },
+                    "wHmvT": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 300
+                    },
+                    "1BEdS": {
+                      "content": "天使もえ",
+                      "x": 14,
+                      "y": 12
+                    },
+                    "eYQaO": {
+                      "content": "203作品",
+                      "x": 14,
+                      "y": 38
+                    }
+                  }
+                },
+                {
+                  "id": "esod8",
+                  "type": "ref",
+                  "ref": "npsFk",
+                  "width": "fill_container",
+                  "name": "card8",
+                  "x": 867,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "Be9ym": {
+                      "width": "fill_container"
+                    },
+                    "wHmvT": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "y": 300
+                    },
+                    "1BEdS": {
+                      "content": "深田えいみ",
+                      "x": 14,
+                      "y": 12
+                    },
+                    "eYQaO": {
+                      "content": "178作品",
+                      "x": 14,
+                      "y": 38
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "VoBs5",
+          "type": "ref",
+          "ref": "gxFe9",
+          "width": "fill_container",
+          "name": "topFooter",
+          "x": 0,
+          "y": 1018,
+          "height": "fit_content",
+          "descendants": {
+            "mmZFh": {
+              "width": "fit_content",
+              "height": "fit_content",
+              "x": 503.5,
+              "y": 20
+            },
+            "8boQ5": {
+              "x": 73
+            },
+            "cOyK6": {
+              "x": 492.5,
+              "y": 45
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "RRpx3",
+      "x": 3600,
+      "y": 0,
+      "name": "ジャンル別ページ - PC",
+      "width": 1200,
+      "fill": "$bg-page",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "Fucz0",
+          "type": "ref",
+          "ref": "HqYLH",
+          "width": "fill_container",
+          "name": "genHeader",
+          "x": 0,
+          "y": 0,
+          "descendants": {
+            "Yd0fY": {
+              "x": 32,
+              "y": 17
+            },
+            "CHWNe": {
+              "width": "fit_content",
+              "height": "fit_content",
+              "x": 1005,
+              "y": 19.5
+            },
+            "m5M35": {
+              "x": 79
+            }
+          }
+        },
+        {
+          "id": "wMhEp",
+          "type": "ref",
+          "ref": "DENFr",
+          "width": "fill_container",
+          "name": "genBc",
+          "x": 0,
+          "y": 60,
+          "descendants": {
+            "jYmVk": {
+              "x": 32,
+              "y": 11.5
+            },
+            "HOpsu": {
+              "x": 65,
+              "y": 11.5
+            },
+            "Vt14Q": {
+              "x": 81,
+              "y": 10.5
+            },
+            "SgF2Y": {
+              "x": 142,
+              "y": 11.5
+            },
+            "4Hspq": {
+              "x": 158,
+              "y": 11.5
+            }
+          }
+        },
+        {
+          "type": "frame",
+          "id": "j90af",
+          "name": "genContent",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            24,
+            32
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "JH7xw",
+              "name": "genTitle",
+              "fill": "$text-primary",
+              "content": "瀬戸環奈のNTR作品一覧",
+              "fontFamily": "Fraunces",
+              "fontSize": 24,
+              "fontWeight": "600",
+              "letterSpacing": -0.5
+            },
+            {
+              "type": "frame",
+              "id": "ENR0v",
+              "name": "genCount",
+              "fill": "$bg-elevated",
+              "padding": [
+                4,
+                10
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "P9lph",
+                  "name": "genCountText",
+                  "fill": "$accent-gold",
+                  "content": "12作品",
+                  "fontFamily": "DM Sans",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "c0ft4",
+              "name": "workList",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "id": "KtpXn",
+                  "type": "ref",
+                  "ref": "GkFEd",
+                  "width": "fill_container",
+                  "name": "wk1",
+                  "x": 0,
+                  "y": 0,
+                  "height": "fit_content",
+                  "descendants": {
+                    "ZzxDU": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 240
+                    },
+                    "fNPX3": {
+                      "content": "最愛の妻が寝取られて... 僕は興奮を抑えられなかった",
+                      "width": "fill_container",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "HmbIA": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 20,
+                      "y": 46
+                    },
+                    "88Ang": {
+                      "content": "発売日：2025/03/15"
+                    },
+                    "HXPJh": {
+                      "content": "レーベル：S1 NO.1 STYLE",
+                      "x": 129
+                    },
+                    "7i8EJ": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 20,
+                      "y": 72
+                    },
+                    "Qnrte": {
+                      "x": 16,
+                      "y": 8
+                    }
+                  }
+                },
+                {
+                  "id": "GMzRi",
+                  "type": "ref",
+                  "ref": "GkFEd",
+                  "width": "fill_container",
+                  "name": "wk2",
+                  "x": 0,
+                  "y": 151,
+                  "height": "fit_content",
+                  "descendants": {
+                    "ZzxDU": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 240
+                    },
+                    "fNPX3": {
+                      "content": "隣人に寝取られた若妻の記録 完全版",
+                      "width": "fill_container",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "HmbIA": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 20,
+                      "y": 46
+                    },
+                    "88Ang": {
+                      "content": "発売日：2025/02/28"
+                    },
+                    "HXPJh": {
+                      "content": "レーベル：MOODYZ",
+                      "x": 132
+                    },
+                    "7i8EJ": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 20,
+                      "y": 72
+                    },
+                    "Qnrte": {
+                      "x": 16,
+                      "y": 8
+                    }
+                  }
+                },
+                {
+                  "id": "4wm9S",
+                  "type": "ref",
+                  "ref": "GkFEd",
+                  "width": "fill_container",
+                  "name": "wk3",
+                  "x": 0,
+                  "y": 302,
+                  "height": "fit_content",
+                  "descendants": {
+                    "ZzxDU": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 240
+                    },
+                    "fNPX3": {
+                      "content": "上司の妻を寝取る部下の告白 密室の情事",
+                      "width": "fill_container",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "HmbIA": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 20,
+                      "y": 46
+                    },
+                    "88Ang": {
+                      "content": "発売日：2025/01/15"
+                    },
+                    "HXPJh": {
+                      "content": "レーベル：MADONNA",
+                      "x": 127
+                    },
+                    "7i8EJ": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 20,
+                      "y": 72
+                    },
+                    "Qnrte": {
+                      "x": 16,
+                      "y": 8
+                    }
+                  }
+                },
+                {
+                  "id": "vFdbu",
+                  "type": "ref",
+                  "ref": "GkFEd",
+                  "width": "fill_container",
+                  "name": "wk4",
+                  "x": 0,
+                  "y": 453,
+                  "height": "fit_content",
+                  "descendants": {
+                    "ZzxDU": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 240
+                    },
+                    "fNPX3": {
+                      "content": "妻が知らない間に... 寝取りドキュメント",
+                      "width": "fill_container",
+                      "x": 20,
+                      "y": 16
+                    },
+                    "HmbIA": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 20,
+                      "y": 46
+                    },
+                    "88Ang": {
+                      "content": "発売日：2024/12/20"
+                    },
+                    "HXPJh": {
+                      "content": "レーベル：Idea Pocket",
+                      "x": 130
+                    },
+                    "7i8EJ": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 20,
+                      "y": 72
+                    },
+                    "Qnrte": {
+                      "x": 16,
+                      "y": 8
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "BogE0",
+              "name": "adBanner2",
+              "width": "fill_container",
+              "height": 250,
+              "fill": "$bg-elevated",
+              "stroke": {
+                "thickness": 1,
+                "fill": "$border-subtle"
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "intQL",
+                  "name": "adText2",
+                  "fill": "$text-tertiary",
+                  "content": "広告枠 300×250",
+                  "fontFamily": "DM Sans",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "0gN9n",
+              "name": "pagination",
+              "width": "fill_container",
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "8sv7u",
+                  "name": "prevBtn",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-strong"
+                  },
+                  "padding": [
+                    8,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "0SJRQ",
+                      "name": "prevText",
+                      "fill": "$text-secondary",
+                      "content": "← 前へ",
+                      "fontFamily": "DM Sans",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "WpA8W",
+                  "name": "pg1",
+                  "width": 36,
+                  "height": 36,
+                  "fill": "$accent-gold",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "2nHrr",
+                      "name": "pg1t",
+                      "fill": "#0B0B0E",
+                      "content": "1",
+                      "fontFamily": "DM Sans",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "LFFdk",
+                  "name": "pg2",
+                  "width": 36,
+                  "height": 36,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-strong"
+                  },
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "79b4p",
+                      "name": "pg2t",
+                      "fill": "$text-secondary",
+                      "content": "2",
+                      "fontFamily": "DM Sans",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "kqveB",
+                  "name": "pg3",
+                  "width": 36,
+                  "height": 36,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-strong"
+                  },
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "UmxQa",
+                      "name": "pg3t",
+                      "fill": "$text-secondary",
+                      "content": "3",
+                      "fontFamily": "DM Sans",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Z8Zpi",
+                  "name": "nextBtn",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-strong"
+                  },
+                  "padding": [
+                    8,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "bPDtf",
+                      "name": "nextText",
+                      "fill": "$text-secondary",
+                      "content": "次へ →",
+                      "fontFamily": "DM Sans",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ybOOI",
+          "type": "ref",
+          "ref": "gxFe9",
+          "width": "fill_container",
+          "name": "genFooter",
+          "x": 0,
+          "y": 1163,
+          "height": "fit_content",
+          "descendants": {
+            "mmZFh": {
+              "width": "fit_content",
+              "height": "fit_content",
+              "x": 503.5,
+              "y": 20
+            },
+            "8boQ5": {
+              "x": 73
+            },
+            "cOyK6": {
+              "x": 492.5,
+              "y": 45
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "HqYLH",
+      "x": 1000,
+      "y": -200,
+      "name": "Component/Header",
+      "reusable": true,
+      "width": 1200,
+      "height": 60,
+      "fill": "$bg-header",
+      "stroke": {
+        "thickness": {
+          "bottom": 1
+        },
+        "fill": "$border-subtle"
+      },
+      "padding": [
+        0,
+        32
+      ],
+      "justifyContent": "space_between",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "Yd0fY",
+          "name": "logo",
+          "fill": "$text-primary",
+          "content": "video-meikan",
+          "fontFamily": "DM Sans",
+          "fontSize": 20,
+          "fontWeight": "700",
+          "letterSpacing": -0.5
+        },
+        {
+          "type": "frame",
+          "id": "CHWNe",
+          "name": "nav",
+          "gap": 24,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "D8WCk",
+              "name": "navTop",
+              "fill": "$text-secondary",
+              "content": "名鑑TOP",
+              "fontFamily": "DM Sans",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "m5M35",
+              "name": "navGenre",
+              "fill": "$text-secondary",
+              "content": "ジャンル一覧",
+              "fontFamily": "DM Sans",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "DENFr",
+      "x": 1000,
+      "y": -120,
+      "name": "Component/Breadcrumb",
+      "reusable": true,
+      "width": 1200,
+      "height": 40,
+      "fill": "$bg-page",
+      "gap": 8,
+      "padding": [
+        0,
+        32
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "jYmVk",
+          "name": "bcItem1",
+          "fill": "$text-secondary",
+          "content": "TOP",
+          "fontFamily": "DM Sans",
+          "fontSize": 13,
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "id": "HOpsu",
+          "name": "bcSep1",
+          "fill": "$text-tertiary",
+          "content": ">",
+          "fontFamily": "DM Sans",
+          "fontSize": 13,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "Vt14Q",
+          "name": "bcItem2",
+          "fill": "$text-secondary",
+          "content": "瀬戸環奈",
+          "fontFamily": "DM Sans",
+          "fontSize": 13,
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "id": "SgF2Y",
+          "name": "bcSep2",
+          "fill": "$text-tertiary",
+          "content": ">",
+          "fontFamily": "DM Sans",
+          "fontSize": 13,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "4Hspq",
+          "name": "bcItem3",
+          "fill": "$text-primary",
+          "content": "NTR",
+          "fontFamily": "DM Sans",
+          "fontSize": 13,
+          "fontWeight": "500"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "npsFk",
+      "x": 2400,
+      "y": -400,
+      "name": "Component/ActressCard",
+      "reusable": true,
+      "width": 260,
+      "fill": "$bg-card",
+      "effect": {
+        "type": "shadow",
+        "shadowType": "outer",
+        "color": "#00000040",
+        "offset": {
+          "x": 0,
+          "y": 4
+        },
+        "blur": 16
+      },
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Be9ym",
+          "name": "actressImg",
+          "clip": true,
+          "width": "fill_container",
+          "height": 300,
+          "fill": "$bg-elevated",
+          "cornerRadius": [
+            8,
+            8,
+            0,
+            0
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "wHmvT",
+          "name": "actressInfo",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 4,
+          "padding": [
+            12,
+            14
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "1BEdS",
+              "name": "actressName",
+              "fill": "$text-primary",
+              "content": "瀬戸環奈",
+              "fontFamily": "DM Sans",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "eYQaO",
+              "name": "actressCount",
+              "fill": "$text-secondary",
+              "content": "120作品",
+              "fontFamily": "DM Sans",
+              "fontSize": 12,
+              "fontWeight": "500"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "wYctC",
+      "x": 2700,
+      "y": -400,
+      "name": "Component/WorkCardVertical",
+      "reusable": true,
+      "width": 200,
+      "fill": "$bg-card",
+      "effect": {
+        "type": "shadow",
+        "shadowType": "outer",
+        "color": "#00000025",
+        "offset": {
+          "x": 0,
+          "y": 2
+        },
+        "blur": 12
+      },
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "ahWP3",
+          "name": "workImg",
+          "clip": true,
+          "width": "fill_container",
+          "height": 113,
+          "fill": "$bg-elevated",
+          "cornerRadius": [
+            8,
+            8,
+            0,
+            0
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "xlv99",
+          "name": "workInfo",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 4,
+          "padding": [
+            10,
+            12
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "hpgyN",
+              "name": "workTitle",
+              "fill": "$text-primary",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "作品タイトルがここに入ります...",
+              "lineHeight": 1.3,
+              "fontFamily": "DM Sans",
+              "fontSize": 13,
+              "fontWeight": "500"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "GkFEd",
+      "x": 2950,
+      "y": -400,
+      "name": "Component/WorkCardHorizontal",
+      "reusable": true,
+      "width": 1136,
+      "fill": "$bg-card",
+      "stroke": {
+        "thickness": 1,
+        "fill": "$border-subtle"
+      },
+      "effect": {
+        "type": "shadow",
+        "shadowType": "outer",
+        "color": "#00000025",
+        "offset": {
+          "x": 0,
+          "y": 2
+        },
+        "blur": 12
+      },
+      "children": [
+        {
+          "type": "frame",
+          "id": "ty8PK",
+          "name": "workImgH",
+          "clip": true,
+          "width": 240,
+          "height": 135,
+          "fill": "$bg-elevated",
+          "cornerRadius": [
+            8,
+            0,
+            0,
+            8
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ZzxDU",
+          "name": "workInfoH",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "padding": [
+            16,
+            20
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "fNPX3",
+              "name": "workTitleH",
+              "fill": "$text-primary",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "作品タイトルがここに入ります 作品タイトル続き",
+              "lineHeight": 1.4,
+              "fontFamily": "DM Sans",
+              "fontSize": 15,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "HmbIA",
+              "name": "workMeta",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "88Ang",
+                  "name": "workDate",
+                  "fill": "$text-secondary",
+                  "content": "発売日：2025/01/15",
+                  "fontFamily": "DM Sans",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "HXPJh",
+                  "name": "workLabel",
+                  "fill": "$text-secondary",
+                  "content": "レーベル：S1",
+                  "fontFamily": "DM Sans",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "7i8EJ",
+              "name": "ctaBtn",
+              "fill": "$accent-gold",
+              "gap": 6,
+              "padding": [
+                8,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Qnrte",
+                  "name": "ctaText",
+                  "fill": "#0B0B0E",
+                  "content": "作品を見る →",
+                  "fontFamily": "DM Sans",
+                  "fontSize": 13,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "gxFe9",
+      "x": 1000,
+      "y": -60,
+      "name": "Component/Footer",
+      "reusable": true,
+      "width": 1200,
+      "fill": "$bg-header",
+      "stroke": {
+        "thickness": {
+          "top": 1
+        },
+        "fill": "$border-subtle"
+      },
+      "layout": "vertical",
+      "gap": 8,
+      "padding": [
+        20,
+        32
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "mmZFh",
+          "name": "footerLinks",
+          "gap": 24,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "mArqK",
+              "name": "footerLink1",
+              "fill": "$text-secondary",
+              "content": "利用規約",
+              "fontFamily": "DM Sans",
+              "fontSize": 12,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "8boQ5",
+              "name": "footerLink2",
+              "fill": "$text-secondary",
+              "content": "プライバシーポリシー",
+              "fontFamily": "DM Sans",
+              "fontSize": 12,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "cOyK6",
+          "name": "footerCopy",
+          "fill": "$text-tertiary",
+          "content": "© 2026 video-meikan All Rights Reserved.",
+          "fontFamily": "DM Sans",
+          "fontSize": 11,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "9aKTE",
+      "x": 3000,
+      "y": -200,
+      "name": "Component/GenreCard",
+      "reusable": true,
+      "width": 260,
+      "fill": "$bg-card",
+      "cornerRadius": 10,
+      "stroke": {
+        "thickness": 1,
+        "fill": "$border-subtle"
+      },
+      "layout": "vertical",
+      "gap": 6,
+      "padding": [
+        16,
+        20
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "RbEqh",
+          "name": "gcName",
+          "fill": "$text-primary",
+          "content": "NTR",
+          "fontFamily": "DM Sans",
+          "fontSize": 16,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "LH0bE",
+          "name": "gcCount",
+          "fill": "$text-secondary",
+          "content": "12作品",
+          "fontFamily": "DM Sans",
+          "fontSize": 12,
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "id": "jBgiu",
+          "name": "gcArrow",
+          "fill": "$accent-gold",
+          "content": "→",
+          "fontFamily": "DM Sans",
+          "fontSize": 14,
+          "fontWeight": "500"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "M8xgO",
+      "x": 4900,
+      "y": -400,
+      "name": "記事ページ - PC",
+      "width": 1200,
+      "fill": "$bg-page",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "hOxR2",
+          "type": "ref",
+          "ref": "HqYLH",
+          "width": "fill_container",
+          "name": "header",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "u4sWx",
+          "type": "ref",
+          "ref": "DENFr",
+          "width": "fill_container",
+          "name": "breadcrumb",
+          "x": 0,
+          "y": 60,
+          "descendants": {
+            "jYmVk": {
+              "content": "TOP"
+            },
+            "Vt14Q": {
+              "content": "記事一覧"
+            },
+            "SgF2Y": {
+              "enabled": true
+            },
+            "4Hspq": {
+              "content": "瀬戸環奈の人気NTR作品5選"
+            }
+          }
+        },
+        {
+          "type": "frame",
+          "id": "MkBIQ",
+          "name": "contentArea",
+          "width": "fill_container",
+          "gap": 32,
+          "padding": [
+            24,
+            32
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "ELJIp",
+              "name": "mainColumn",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 32,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ijZm7",
+                  "name": "articleHeader",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "7NRK3",
+                      "name": "categoryTag",
+                      "fill": "$accent-gold",
+                      "cornerRadius": 4,
+                      "padding": [
+                        4,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "nlIzU",
+                          "name": "catText",
+                          "fill": "#0B0B0E",
+                          "content": "まとめ",
+                          "fontFamily": "DM Sans",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "a4ixD",
+                      "name": "articleTitle",
+                      "fill": "$text-primary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "瀬戸環奈の人気NTR作品5選｜寝取られ好き必見のおすすめランキング",
+                      "lineHeight": 1.5,
+                      "fontFamily": "DM Sans",
+                      "fontSize": 26,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "orltR",
+                      "name": "metaRow",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "DXuA0",
+                          "name": "dateText",
+                          "fill": "$text-secondary",
+                          "content": "2026.03.10",
+                          "fontFamily": "DM Sans",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "M2khX",
+                          "name": "updateText",
+                          "fill": "$text-secondary",
+                          "content": "更新：2026.03.15",
+                          "fontFamily": "DM Sans",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "BYUlP",
+                  "name": "heroImage",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 350,
+                  "fill": "$bg-elevated",
+                  "cornerRadius": 8
+                },
+                {
+                  "type": "frame",
+                  "id": "V6YgN",
+                  "name": "articleBody",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oN1WH",
+                      "name": "bodyIntro",
+                      "fill": "$text-primary",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "瀬戸環奈といえば、清楚な見た目からは想像できないほどの演技力で、特にNTR（寝取られ）ジャンルでの評価が高い女優です。本記事では、ファン投票やレビュー評価をもとに、厳選した人気NTR作品をランキング形式でご紹介します。",
+                      "lineHeight": 1.8,
+                      "fontFamily": "DM Sans",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "rV2de",
+                      "name": "tableOfContents",
+                      "width": "fill_container",
+                      "fill": "$bg-card",
+                      "cornerRadius": 8,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border-subtle"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 20,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "19jLZ",
+                          "name": "tocTitle",
+                          "fill": "$text-primary",
+                          "content": "目次",
+                          "fontFamily": "DM Sans",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ss8m1",
+                          "name": "tocDivider",
+                          "width": "fill_container",
+                          "height": 1,
+                          "fill": "$border-subtle"
+                        },
+                        {
+                          "type": "text",
+                          "id": "cwa4K",
+                          "name": "tocItem1",
+                          "fill": "$accent-gold",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "1. 第1位：最愛の妻が寝取られて…",
+                          "fontFamily": "DM Sans",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "NBOnz",
+                          "name": "tocItem2",
+                          "fill": "$accent-gold",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "2. 第2位：隣人に寝取られた若妻の記録",
+                          "fontFamily": "DM Sans",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "QeEHY",
+                          "name": "tocItem3",
+                          "fill": "$accent-gold",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "3. 第3位：上司の妻を寝取る部下の告白",
+                          "fontFamily": "DM Sans",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "lpVJj",
+                      "name": "h2Section1",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "fEoj9",
+                          "name": "h2Wrapper",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "q97bJ",
+                              "name": "h2Bar",
+                              "width": 4,
+                              "height": 28,
+                              "fill": "$accent-gold",
+                              "cornerRadius": 2
+                            },
+                            {
+                              "type": "text",
+                              "id": "c26Au",
+                              "name": "h2text",
+                              "fill": "$text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "第1位：最愛の妻が寝取られて… 僕は興奮を抑えられなかった",
+                              "lineHeight": 1.4,
+                              "fontFamily": "DM Sans",
+                              "fontSize": 20,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "g3eY0",
+                          "name": "h2body",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "2025年にリリースされた本作は、瀬戸環奈のNTR作品の中でも最高傑作との呼び声が高い一本。夫の目の前で繰り広げられる背徳的なシチュエーションと、瀬戸環奈の迫真の演技が話題を呼びました。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "DM Sans",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "id": "pnerQ",
+                          "type": "ref",
+                          "ref": "GkFEd",
+                          "width": "fill_container",
+                          "name": "workEmbed",
+                          "x": 0,
+                          "y": 117,
+                          "descendants": {
+                            "ZzxDU": {
+                              "width": "fill_container"
+                            },
+                            "fNPX3": {
+                              "width": "fill_container"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "2bjLd",
+                      "name": "adSlot",
+                      "width": "fill_container",
+                      "height": 90,
+                      "fill": "$bg-card",
+                      "cornerRadius": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "BhoQg",
+                          "name": "adText",
+                          "fill": "$text-tertiary",
+                          "content": "広告枠 728×90",
+                          "fontFamily": "DM Sans",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "IEfhG",
+                      "name": "h2Section2",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "XrfHE",
+                          "name": "h2Wrapper2",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "8UJMU",
+                              "name": "h2bar2",
+                              "width": 4,
+                              "height": 28,
+                              "fill": "$accent-gold",
+                              "cornerRadius": 2
+                            },
+                            {
+                              "type": "text",
+                              "id": "vYkOK",
+                              "name": "h2txt2",
+                              "fill": "$text-primary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "第2位：隣人に寝取られた若妻の記録 完全版",
+                              "lineHeight": 1.4,
+                              "fontFamily": "DM Sans",
+                              "fontSize": 20,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "rPD47",
+                          "name": "h2body2",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "ドキュメンタリー風の演出が特徴的な本作。隣人との禁断の関係を、リアルな映像表現で描いています。瀬戸環奈の自然な演技が、作品のリアリティをさらに高めています。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "DM Sans",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "id": "E3o2C",
+                          "type": "ref",
+                          "ref": "GkFEd",
+                          "width": "fill_container",
+                          "name": "workEmbed2",
+                          "x": 0,
+                          "y": 116,
+                          "descendants": {
+                            "ZzxDU": {
+                              "width": "fill_container"
+                            },
+                            "fNPX3": {
+                              "width": "fill_container",
+                              "content": "隣人に寝取られた若妻の記録 完全版"
+                            },
+                            "88Ang": {
+                              "content": "発売日：2025/02/28"
+                            },
+                            "HXPJh": {
+                              "content": "レーベル：MOODYZ"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "dZDgw",
+                      "name": "blockquote",
+                      "width": "fill_container",
+                      "fill": "$bg-card",
+                      "cornerRadius": 8,
+                      "gap": 12,
+                      "padding": [
+                        16,
+                        20
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "DE2B6",
+                          "name": "quoteBorder",
+                          "width": 3,
+                          "height": 48,
+                          "fill": "$accent-gold",
+                          "cornerRadius": 2
+                        },
+                        {
+                          "type": "text",
+                          "id": "xR0mz",
+                          "name": "quoteText",
+                          "fill": "$text-secondary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "瀬戸環奈のNTR作品は、ただのジャンル物ではなく、ストーリー性と演技力の高さが際立っています。特に上記の3作品は入門にも最適です。",
+                          "lineHeight": 1.7,
+                          "fontFamily": "DM Sans",
+                          "fontSize": 14,
+                          "fontWeight": "normal",
+                          "fontStyle": "italic"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tRs9h",
+                      "name": "relatedArticles",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "oUcC9",
+                          "name": "relH2wrap",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "RrG7L",
+                              "name": "relBar",
+                              "width": 4,
+                              "height": 24,
+                              "fill": "$accent-gold",
+                              "cornerRadius": 2
+                            },
+                            {
+                              "type": "text",
+                              "id": "WHv9C",
+                              "name": "relH2",
+                              "fill": "$text-primary",
+                              "content": "関連記事",
+                              "fontFamily": "DM Sans",
+                              "fontSize": 18,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "EQ8V8",
+                          "name": "relatedCard",
+                          "width": "fill_container",
+                          "fill": "$bg-card",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "$border-subtle"
+                          },
+                          "gap": 12,
+                          "padding": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "cPhnR",
+                              "name": "relImg1",
+                              "clip": true,
+                              "width": 120,
+                              "height": 68,
+                              "fill": "$bg-elevated",
+                              "cornerRadius": 6
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Dpy57",
+                              "name": "relInfo1",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 4,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "buWd1",
+                                  "name": "relTitle1",
+                                  "fill": "$text-primary",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "三上悠亜の巨乳作品おすすめ10選",
+                                  "lineHeight": 1.4,
+                                  "fontFamily": "DM Sans",
+                                  "fontSize": 14,
+                                  "fontWeight": "600"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "juraV",
+                                  "name": "relDate1",
+                                  "fill": "$text-secondary",
+                                  "content": "2026.03.08",
+                                  "fontFamily": "DM Sans",
+                                  "fontSize": 12,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "U0Sqi",
+                          "name": "relatedCard2",
+                          "width": "fill_container",
+                          "fill": "$bg-card",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "$border-subtle"
+                          },
+                          "gap": 12,
+                          "padding": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "4iYcu",
+                              "name": "relImg2",
+                              "clip": true,
+                              "width": 120,
+                              "height": 68,
+                              "fill": "$bg-elevated",
+                              "cornerRadius": 6
+                            },
+                            {
+                              "type": "frame",
+                              "id": "FrUNP",
+                              "name": "relInfo2",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 4,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "c1Oht",
+                                  "name": "relTitle2",
+                                  "fill": "$text-primary",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "2026年春の新人女優特集",
+                                  "lineHeight": 1.4,
+                                  "fontFamily": "DM Sans",
+                                  "fontSize": 14,
+                                  "fontWeight": "600"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "piOUh",
+                                  "name": "relDate2",
+                                  "fill": "$text-secondary",
+                                  "content": "2026.03.01",
+                                  "fontFamily": "DM Sans",
+                                  "fontSize": 12,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "FHi6R",
+              "name": "sidebar",
+              "width": 300,
+              "layout": "vertical",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "2sCrQ",
+                  "name": "sidebarProfile",
+                  "width": "fill_container",
+                  "fill": "$bg-card",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-subtle"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "AwC86",
+                      "name": "profImg",
+                      "width": 80,
+                      "height": 80,
+                      "fill": "$bg-elevated",
+                      "cornerRadius": 40
+                    },
+                    {
+                      "type": "text",
+                      "id": "0sear",
+                      "name": "profName",
+                      "fill": "$text-primary",
+                      "content": "瀬戸環奈",
+                      "fontFamily": "DM Sans",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "csjYC",
+                      "name": "profCount",
+                      "fill": "$text-secondary",
+                      "content": "120作品",
+                      "fontFamily": "DM Sans",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ccnjs",
+                      "name": "profBtn",
+                      "width": "fill_container",
+                      "fill": "$accent-gold",
+                      "cornerRadius": 6,
+                      "padding": [
+                        10,
+                        0
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "DuFHQ",
+                          "name": "profBtnTxt",
+                          "fill": "#0B0B0E",
+                          "content": "女優ページを見る →",
+                          "fontFamily": "DM Sans",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "P0QWv",
+                  "name": "sidebarPopular",
+                  "width": "fill_container",
+                  "fill": "$bg-card",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-subtle"
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "pdJXB",
+                      "name": "popTitle",
+                      "fill": "$text-primary",
+                      "content": "人気記事",
+                      "fontFamily": "DM Sans",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "UV8qm",
+                      "name": "popDivider",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$border-subtle"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "EfwD7",
+                      "name": "pop1",
+                      "width": "fill_container",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "zYhI7",
+                          "name": "popNum1",
+                          "fill": "$accent-gold",
+                          "content": "1",
+                          "fontFamily": "DM Sans",
+                          "fontSize": 20,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "I3wnM",
+                          "name": "popTxt1",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "橋本ありなの痴女作品まとめ",
+                          "lineHeight": 1.4,
+                          "fontFamily": "DM Sans",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "mAf9e",
+                      "name": "pop2",
+                      "width": "fill_container",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "2BaHG",
+                          "name": "popNum2",
+                          "fill": "$accent-gold",
+                          "content": "2",
+                          "fontFamily": "DM Sans",
+                          "fontSize": 20,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "kryUh",
+                          "name": "popTxt2",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "深田えいみの人妻作品ベスト5",
+                          "lineHeight": 1.4,
+                          "fontFamily": "DM Sans",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "T2Sdx",
+                      "name": "pop3",
+                      "width": "fill_container",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "MidFK",
+                          "name": "popNum3",
+                          "fill": "$accent-gold",
+                          "content": "3",
+                          "fontFamily": "DM Sans",
+                          "fontSize": 20,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "md0SB",
+                          "name": "popTxt3",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "2026年注目の新人女優ランキング",
+                          "lineHeight": 1.4,
+                          "fontFamily": "DM Sans",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "dTdas",
+                  "name": "sidebarAd",
+                  "width": "fill_container",
+                  "height": 250,
+                  "fill": "$bg-card",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-subtle"
+                  },
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "5rKau",
+                      "name": "sideAdTxt",
+                      "fill": "$text-tertiary",
+                      "content": "広告枠 300×250",
+                      "fontFamily": "DM Sans",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "TEKH0",
+                  "name": "sidebarGenres",
+                  "width": "fill_container",
+                  "fill": "$bg-card",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-subtle"
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "LFoJf",
+                      "name": "genreTitle",
+                      "fill": "$text-primary",
+                      "content": "ジャンルから探す",
+                      "fontFamily": "DM Sans",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "WVnV5",
+                      "name": "genreDivider",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$border-subtle"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "URkz5",
+                      "name": "genreTags",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "irdIh",
+                          "name": "tag1",
+                          "cornerRadius": 16,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "$border-subtle"
+                          },
+                          "padding": [
+                            6,
+                            12
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "GIyZx",
+                              "name": "tag1t",
+                              "fill": "$text-primary",
+                              "content": "NTR",
+                              "fontFamily": "DM Sans",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "halOx",
+                          "name": "tag2",
+                          "cornerRadius": 16,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "$border-subtle"
+                          },
+                          "padding": [
+                            6,
+                            12
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "9bQgy",
+                              "name": "tag2t",
+                              "fill": "$text-primary",
+                              "content": "巨乳",
+                              "fontFamily": "DM Sans",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "pqjVP",
+                          "name": "tag3",
+                          "cornerRadius": 16,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "$border-subtle"
+                          },
+                          "padding": [
+                            6,
+                            12
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "IHn0R",
+                              "name": "tag3t",
+                              "fill": "$text-primary",
+                              "content": "人妻",
+                              "fontFamily": "DM Sans",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "WyJlv",
+                          "name": "tag4",
+                          "cornerRadius": 16,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "$border-subtle"
+                          },
+                          "padding": [
+                            6,
+                            12
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "6HlRT",
+                              "name": "tag4t",
+                              "fill": "$text-primary",
+                              "content": "痴漢",
+                              "fontFamily": "DM Sans",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "LJcA3",
+          "type": "ref",
+          "ref": "gxFe9",
+          "width": "fill_container",
+          "name": "footer",
+          "x": 0,
+          "y": 1976
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "ZNm3X",
+      "x": 2950,
+      "y": 1342,
+      "name": "Component/Blockquote",
+      "reusable": true,
+      "width": 600,
+      "fill": "$bg-card",
+      "cornerRadius": 8,
+      "gap": 12,
+      "padding": [
+        16,
+        20
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "K45wx",
+          "name": "bqBorder",
+          "width": 3,
+          "height": 48,
+          "fill": "$accent-gold",
+          "cornerRadius": 2
+        },
+        {
+          "type": "text",
+          "id": "GU2tS",
+          "name": "bqText",
+          "fill": "$text-secondary",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "引用テキストがここに入ります。",
+          "lineHeight": 1.7,
+          "fontFamily": "DM Sans",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "fontStyle": "italic"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "pochN",
+      "x": 2950,
+      "y": 1500,
+      "name": "Component/RelatedArticleCard",
+      "reusable": true,
+      "width": 600,
+      "fill": "$bg-card",
+      "cornerRadius": 8,
+      "stroke": {
+        "thickness": 1,
+        "fill": "$border-subtle"
+      },
+      "gap": 12,
+      "padding": 12,
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "p7XC6",
+          "name": "relImg",
+          "clip": true,
+          "width": 120,
+          "height": 68,
+          "fill": "$bg-elevated",
+          "cornerRadius": 6
+        },
+        {
+          "type": "frame",
+          "id": "7dWkY",
+          "name": "relInfo",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 4,
+          "children": [
+            {
+              "type": "text",
+              "id": "yR81o",
+              "name": "relTitle",
+              "fill": "$text-primary",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "関連記事タイトル",
+              "lineHeight": 1.4,
+              "fontFamily": "DM Sans",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "3hCc2",
+              "name": "relDate",
+              "fill": "$text-secondary",
+              "content": "2026.03.01",
+              "fontFamily": "DM Sans",
+              "fontSize": 12,
+              "fontWeight": "500"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "44kv1",
+      "x": 2950,
+      "y": 1650,
+      "name": "Component/H2Heading",
+      "reusable": true,
+      "width": 600,
+      "gap": 10,
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "59skO",
+          "name": "h2Bar",
+          "width": 4,
+          "height": 28,
+          "fill": "$accent-gold",
+          "cornerRadius": 2
+        },
+        {
+          "type": "text",
+          "id": "JHSk6",
+          "name": "h2Text",
+          "fill": "$text-primary",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "見出しテキスト",
+          "lineHeight": 1.4,
+          "fontFamily": "DM Sans",
+          "fontSize": 20,
+          "fontWeight": "700"
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "accent-blue": {
+      "type": "color",
+      "value": "#6366F1"
+    },
+    "accent-gold": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FFB547"
+        },
+        {
+          "value": "#D4841A"
+        }
+      ]
+    },
+    "bg-card": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#16161A"
+        },
+        {
+          "value": "#F5F5F7"
+        }
+      ]
+    },
+    "bg-elevated": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#1A1A1E"
+        },
+        {
+          "value": "#EAEAEC"
+        }
+      ]
+    },
+    "bg-header": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#08080A"
+        },
+        {
+          "value": "#FAFAFA"
+        }
+      ]
+    },
+    "bg-page": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#0B0B0E"
+        },
+        {
+          "value": "#FFFFFF"
+        }
+      ]
+    },
+    "border-strong": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#3A3A40"
+        },
+        {
+          "value": "#CCCCD0"
+        }
+      ]
+    },
+    "border-subtle": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#2A2A2E"
+        },
+        {
+          "value": "#E5E5E7"
+        }
+      ]
+    },
+    "text-primary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FAFAF9"
+        },
+        {
+          "value": "#1A1A1E"
+        }
+      ]
+    },
+    "text-secondary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#6B6B70"
+        },
+        {
+          "value": "#6B6B70"
+        }
+      ]
+    },
+    "text-tertiary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#4A4A50"
+        },
+        {
+          "value": "#9E9EA3"
+        }
+      ]
+    }
+  }
+}
