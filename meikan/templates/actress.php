@@ -16,17 +16,7 @@
 
 <?php $actressSlug = $actress['slug']; ?>
 <div class="genre-grid">
-    <?php $count = 0; ?>
     <?php foreach ($genres as $genre): ?>
         <?php require TEMPLATE_DIR . '/partials/genre-card.php'; ?>
-        <?php
-        $count++;
-        if ($count % 12 === 0):
-            $adSize = '728x90';
-            require TEMPLATE_DIR . '/partials/ad-slot.php';
-        endif;
-        ?>
     <?php endforeach; ?>
 </div>
-
-<?php $adSize = '728x90'; require TEMPLATE_DIR . '/partials/ad-slot.php'; ?>

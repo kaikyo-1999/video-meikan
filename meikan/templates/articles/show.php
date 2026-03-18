@@ -38,4 +38,3 @@
 </div>
 <?php endif; ?>
 
-<?php $adSize = '728x90'; require TEMPLATE_DIR . '/partials/ad-slot.php'; ?>

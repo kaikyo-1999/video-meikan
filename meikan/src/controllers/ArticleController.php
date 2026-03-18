@@ -147,9 +147,9 @@ class ArticleController
             }
 
             // FANZA商品リンク埋め込み（**おすすめ作品**：[text](url) パターン）
-            if (preg_match('/\[.+?\]\(https?:\/\/(www\.)?dmm\.co\.jp\/digital\/videoa\/-\/detail\/=\/cid=([a-z0-9_]+)/', $trimmed, $cidMatch)) {
+            if (preg_match('/\[(.+?)\]\(https?:\/\/(www\.)?dmm\.co\.jp\/digital\/videoa\/-\/detail\/=\/cid=([a-z0-9_]+)/', $trimmed, $cidMatch)) {
                 if ($inList) { $html .= "</ul>\n"; $inList = false; }
-                $html .= self::renderWorkEmbed($cidMatch[2]);
+                $html .= self::renderWorkEmbed($cidMatch[3], $cidMatch[1]);
                 continue;
             }
             // FANZA検索リンク埋め込み
@@ -170,7 +170,7 @@ class ArticleController
         return $html;
     }
 
-    private static function renderWorkEmbed(string $sourceId): string
+    private static function renderWorkEmbed(string $sourceId, string $linkText = ''): string
     {
         $work = null;
         if (class_exists('Database')) {
@@ -184,9 +184,18 @@ class ArticleController
             }
         }
 
+        $url = 'https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=' . h($sourceId) . '/';
+        $thumbUrl = 'https://pics.dmm.co.jp/digital/video/' . $sourceId . '/' . $sourceId . 'pl.jpg';
+
         if (!$work) {
-            $url = 'https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=' . h($sourceId) . '/';
-            return '<div class="embed-card"><a href="' . $url . '" target="_blank" rel="nofollow noopener" class="embed-card__link">FANZAで作品を見る →</a></div>' . "\n";
+            $html = '<div class="embed-card embed-card--search">';
+            $html .= '<a href="' . $url . '" target="_blank" rel="nofollow noopener" class="embed-card__inner embed-card__inner--search">';
+            $html .= '<div class="embed-card__info">';
+            $html .= '<p class="embed-card__title">' . h($linkText ?: $sourceId) . '</p>';
+            $html .= '<span class="embed-card__cta">FANZAで見る →</span>';
+            $html .= '</div>';
+            $html .= '</a></div>' . "\n";
+            return $html;
         }
 
         $thumb = h($work['thumbnail_url'] ?? '');
