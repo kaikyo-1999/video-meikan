@@ -1,6 +1,10 @@
 <?php
 
-$envFile = ROOT_DIR . '/.env';
+// .env.local があればそちらを優先（ローカル開発用）
+$envFile = ROOT_DIR . '/.env.local';
+if (!file_exists($envFile)) {
+    $envFile = ROOT_DIR . '/.env';
+}
 if (file_exists($envFile)) {
     $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {

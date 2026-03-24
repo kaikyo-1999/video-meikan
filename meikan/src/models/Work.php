@@ -54,4 +54,105 @@ class Work
         Cache::set($cacheKey, $result);
         return $result;
     }
+
+    /**
+     * 検索・ソート・フィルター対応の作品取得
+     */
+    public static function search(
+        int $actressId,
+        int $genreId,
+        string $sort = '',
+        string $query = '',
+        bool $singleOnly = false,
+        string $vrFilter = '',
+        int $limit = ITEMS_PER_PAGE,
+        int $offset = 0
+    ): array {
+        $db = Database::getInstance();
+
+        $where = 'aw.actress_id = ? AND wg.genre_id = ?';
+        $params = [$actressId, $genreId];
+
+        if ($query !== '') {
+            $where .= ' AND w.title LIKE ?';
+            $params[] = '%' . $query . '%';
+        }
+
+        if ($singleOnly) {
+            $where .= ' AND (SELECT COUNT(*) FROM actress_work aw2 WHERE aw2.work_id = w.id) = 1';
+        }
+
+        if ($vrFilter === '2d') {
+            $where .= ' AND w.title NOT LIKE ?';
+            $params[] = '%【VR】%';
+        } elseif ($vrFilter === 'vr') {
+            $where .= ' AND w.title LIKE ?';
+            $params[] = '%【VR】%';
+        }
+
+        $orderBy = match ($sort) {
+            'rank'    => 'w.review_count DESC, w.release_date DESC, w.id DESC',
+            'review'  => 'w.review_average DESC, w.release_date DESC, w.id DESC',
+            '-date'   => 'w.release_date ASC, w.id ASC',
+            default   => 'w.release_date DESC, w.id DESC',
+        };
+
+        $params[] = $limit;
+        $params[] = $offset;
+
+        $stmt = $db->prepare("
+            SELECT w.*
+            FROM works w
+            INNER JOIN actress_work aw ON w.id = aw.work_id
+            INNER JOIN work_genre wg ON w.id = wg.work_id
+            WHERE {$where}
+            ORDER BY {$orderBy}
+            LIMIT ? OFFSET ?
+        ");
+        $stmt->execute($params);
+        return $stmt->fetchAll();
+    }
+
+    /**
+     * 検索・フィルター対応の件数取得
+     */
+    public static function searchCount(
+        int $actressId,
+        int $genreId,
+        string $query = '',
+        bool $singleOnly = false,
+        string $vrFilter = ''
+    ): int {
+        $db = Database::getInstance();
+
+        $where = 'aw.actress_id = ? AND wg.genre_id = ?';
+        $params = [$actressId, $genreId];
+
+        if ($query !== '') {
+            $where .= ' AND w.title LIKE ?';
+            $params[] = '%' . $query . '%';
+        }
+
+        if ($singleOnly) {
+            $where .= ' AND (SELECT COUNT(*) FROM actress_work aw2 WHERE aw2.work_id = w.id) = 1';
+        }
+
+        if ($vrFilter === '2d') {
+            $where .= ' AND w.title NOT LIKE ?';
+            $params[] = '%【VR】%';
+        } elseif ($vrFilter === 'vr') {
+            $where .= ' AND w.title LIKE ?';
+            $params[] = '%【VR】%';
+        }
+
+        $stmt = $db->prepare("
+            SELECT COUNT(DISTINCT w.id)
+            FROM works w
+            INNER JOIN actress_work aw ON w.id = aw.work_id
+            INNER JOIN work_genre wg ON w.id = wg.work_id
+            WHERE {$where}
+        ");
+        $stmt->execute($params);
+        return (int)$stmt->fetchColumn();
+    }
 }

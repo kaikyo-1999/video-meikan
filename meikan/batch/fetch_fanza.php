@@ -65,6 +65,10 @@ foreach ($actresses as $actress) {
             $existing->execute(['fanza', $sourceId]);
             $workId = $existing->fetchColumn();
 
+            // レビュー情報を抽出
+            $reviewCount = isset($item['review']['count']) ? (int)$item['review']['count'] : null;
+            $reviewAverage = isset($item['review']['average']) ? (float)$item['review']['average'] : null;
+
             if (!$workId) {
                 $thumbnail = '';
                 if (!empty($item['imageURL']['large'])) {
@@ -82,8 +86,8 @@ foreach ($actresses as $actress) {
                 }
 
                 $stmt = $db->prepare('
-                    INSERT INTO works (title, thumbnail_url, release_date, label, affiliate_url, source, source_id)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    INSERT INTO works (title, thumbnail_url, release_date, label, affiliate_url, review_count, review_average, source, source_id)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ');
                 $stmt->execute([
                     $item['title'] ?? '',
@@ -91,11 +95,19 @@ foreach ($actresses as $actress) {
                     $releaseDate,
                     $label,
                     $affiliateUrl,
+                    $reviewCount,
+                    $reviewAverage,
                     'fanza',
                     $sourceId,
                 ]);
                 $workId = $db->lastInsertId();
                 $totalFetched++;
+            } else {
+                // 既存レコードのレビュー情報を更新
+                if ($reviewCount !== null || $reviewAverage !== null) {
+                    $db->prepare('UPDATE works SET review_count = ?, review_average = ? WHERE id = ?')
+                       ->execute([$reviewCount, $reviewAverage, $workId]);
+                }
             }
 
             // 女優×作品の紐付け
