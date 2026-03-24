@@ -8,9 +8,13 @@
 
 require_once __DIR__ . '/config.php';
 
-$apiId = getenv('FANZA_API_ID') ?: '47sPXfBnNCUgVfKabDPy';
+$apiId = getenv('FANZA_API_ID');
 $affiliateId = getenv('FANZA_AFFILIATE_ID');
 
+if (!$apiId) {
+    batchLog('ERROR: FANZA_API_ID が設定されていません。.envを確認してください。');
+    exit(1);
+}
 if (!$affiliateId) {
     batchLog('ERROR: FANZA_AFFILIATE_ID が設定されていません。.envを確認してください。');
     exit(1);
