@@ -13,6 +13,10 @@ class Actress
             SELECT a.*, COUNT(aw.work_id) AS work_count
             FROM actresses a
             LEFT JOIN actress_work aw ON a.id = aw.actress_id
+            WHERE a.thumbnail_url IS NOT NULL
+              AND a.thumbnail_url != ""
+              AND a.thumbnail_url NOT LIKE "%/digital/video/%"
+              AND a.thumbnail_url NOT LIKE "%now_printing%"
             GROUP BY a.id
             ORDER BY work_count DESC, a.name ASC
         ');

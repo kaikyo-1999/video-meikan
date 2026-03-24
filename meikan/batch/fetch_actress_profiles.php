@@ -22,12 +22,13 @@ if (!$affiliateId) {
 
 $db = Database::getInstance();
 
-// thumbnail_url が未設定または作品画像（pics.dmm.co.jp を含む）の女優を対象にする
+// thumbnail_url が未設定または作品画像URLの女優を対象にする
+// ※ actjpgs/ を含むURLは正しいプロフィール画像なので除外
 $actresses = $db->query('
     SELECT * FROM actresses
     WHERE thumbnail_url IS NULL
        OR thumbnail_url = ""
-       OR thumbnail_url LIKE "%pics.dmm.co.jp%"
+       OR (thumbnail_url LIKE "%/digital/video/%" OR thumbnail_url LIKE "%now_printing%")
     ORDER BY id
 ')->fetchAll();
 
