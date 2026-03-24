@@ -1,4 +1,5 @@
-<div class="work-card">
+<?php $cardTag = !empty($work['affiliate_url']) ? 'a' : 'div'; ?>
+<<?= $cardTag ?> class="work-card"<?php if (!empty($work['affiliate_url'])): ?> href="<?= h($work['affiliate_url']) ?>" target="_blank" rel="nofollow noopener"<?php endif; ?>>
     <div class="work-card__image">
         <?php if (!empty($work['thumbnail_url'])): ?>
             <img src="<?= h($work['thumbnail_url']) ?>" alt="<?= h($work['title']) ?>" loading="lazy">
@@ -16,8 +17,6 @@
                 <span>レーベル：<?= h($work['label']) ?></span>
             <?php endif; ?>
         </p>
-        <?php if (!empty($work['affiliate_url'])): ?>
-            <a href="<?= h($work['affiliate_url']) ?>" class="work-card__cta" target="_blank" rel="nofollow noopener">作品を見る &rarr;</a>
-        <?php endif; ?>
+        <span class="work-card__cta">FANZAで見る &rarr;</span>
     </div>
-</div>
+</<?= $cardTag ?>>
