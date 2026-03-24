@@ -4,6 +4,7 @@ secret.md
 
 # 環境依存
 meikan/.env
+meikan/.env.local
 meikan/cache/
 meikan/logs/
 meikan/batch/data/

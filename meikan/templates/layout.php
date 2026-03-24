@@ -29,6 +29,10 @@
 
     <?php require TEMPLATE_DIR . '/partials/footer.php'; ?>
 
+    <script>var BASE_URL = '<?= url() ?>';</script>
     <script src="<?= asset('js/app.js') ?>"></script>
+    <?php if (!empty($genre)): ?>
+    <script src="<?= asset('js/genre.js') ?>"></script>
+    <?php endif; ?>
 </body>
 </html>

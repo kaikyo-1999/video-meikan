@@ -29,6 +29,7 @@ if ($dbAvailable) {
     require_once __DIR__ . '/src/controllers/ActressController.php';
     require_once __DIR__ . '/src/controllers/GenreController.php';
     require_once __DIR__ . '/src/controllers/SitemapController.php';
+    require_once __DIR__ . '/src/controllers/ApiController.php';
 }
 
 $router = new Router();
@@ -42,6 +43,7 @@ $router->add('author/', 'AuthorController@show');
 if ($dbAvailable) {
     $router->add('', 'HomeController@index');
     $router->add('meikan/', 'TopController@index');
+    $router->add('api/works/', 'ApiController@works');
     $router->add('sitemap.xml', 'SitemapController@index');
     $router->add('{actress_slug}/', 'ActressController@show');
     $router->add('{actress_slug}/{genre_slug}/', 'GenreController@show');

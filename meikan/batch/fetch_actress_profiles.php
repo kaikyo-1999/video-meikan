@@ -94,3 +94,9 @@ foreach ($actresses as $actress) {
 }
 
 batchLog("プロフィール画像取得完了: 更新 {$updated} 名, 未取得 {$notFound} 名");
+
+// キャッシュクリア（女優一覧キャッシュに古い画像が残るのを防ぐ）
+if ($updated > 0) {
+    Cache::clear();
+    batchLog("キャッシュクリア完了");
+}
