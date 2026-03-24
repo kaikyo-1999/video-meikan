@@ -136,23 +136,7 @@ foreach ($actresses as $actress) {
         usleep(500000); // 0.5秒
     }
 
-    // 女優のサムネイルを最新作品から取得（未設定の場合）
-    if (empty($actress['thumbnail_url'])) {
-        $thumbStmt = $db->prepare('
-            SELECT w.thumbnail_url
-            FROM works w
-            INNER JOIN actress_work aw ON w.id = aw.work_id
-            WHERE aw.actress_id = ? AND w.thumbnail_url != ""
-            ORDER BY w.release_date DESC
-            LIMIT 1
-        ');
-        $thumbStmt->execute([$actress['id']]);
-        $thumb = $thumbStmt->fetchColumn();
-        if ($thumb) {
-            $db->prepare('UPDATE actresses SET thumbnail_url = ? WHERE id = ?')
-               ->execute([$thumb, $actress['id']]);
-        }
-    }
+    // 女優サムネイルは fetch_actress_profiles.php で設定する（作品画像を使わない）
 
     batchLog("  完了: 新規 {$totalFetched} 件取得");
     usleep(500000);

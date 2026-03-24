@@ -17,6 +17,8 @@
                 <span>レーベル：<?= h($work['label']) ?></span>
             <?php endif; ?>
         </p>
-        <span class="work-card__cta">FANZAで見る &rarr;</span>
+        <?php if (!empty($work['affiliate_url'])): ?>
+            <span class="work-card__cta">作品を見る &rarr;</span>
+        <?php endif; ?>
     </div>
 </<?= $cardTag ?>>
