@@ -44,7 +44,7 @@ DB_NAME=（管理画面で作ったDB名）
 DB_USER=（管理画面で作ったDBユーザー）
 DB_PASS=（設定したパスワード）
 
-FANZA_API_ID=47sPXfBnNCUgVfKabDPy
+FANZA_API_ID=（FANZA APIのAPI ID）
 FANZA_AFFILIATE_ID=（DMMアフィリエイト審査通過後に設定）
 ```
 
