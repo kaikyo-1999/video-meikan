@@ -125,19 +125,25 @@ foreach ($actresses as $actress) {
                     $genreName = $genreInfo['name'] ?? '';
                     if (!$genreName) continue;
 
-                    // ジャンルがDBに存在するか確認（fanza_genre_idまたはnameで）
-                    $gStmt = $db->prepare('SELECT id FROM genres WHERE fanza_genre_id = ? OR name = ? LIMIT 1');
-                    $gStmt->execute([$genreId, $genreName]);
-                    $dbGenreId = $gStmt->fetchColumn();
+                    // genre_fanza_mapping で紐付けされたジャンルを検索（複数ヒットあり得る）
+                    $matchedGenreIds = [];
+                    if ($genreId) {
+                        $gStmt = $db->prepare('SELECT genre_id FROM genre_fanza_mapping WHERE fanza_genre_id = ?');
+                        $gStmt->execute([$genreId]);
+                        $matchedGenreIds = $gStmt->fetchAll(PDO::FETCH_COLUMN);
+                    }
 
-                    if ($dbGenreId) {
-                        // fanza_genre_idを更新
-                        if ($genreId) {
-                            $db->prepare('UPDATE genres SET fanza_genre_id = ? WHERE id = ? AND fanza_genre_id IS NULL')
-                               ->execute([$genreId, $dbGenreId]);
+                    // マッピングになければ旧方式（genres.fanza_genre_id or name）でフォールバック
+                    if (empty($matchedGenreIds)) {
+                        $gStmt = $db->prepare('SELECT id FROM genres WHERE fanza_genre_id = ? OR name = ? LIMIT 1');
+                        $gStmt->execute([$genreId, $genreName]);
+                        $fallbackId = $gStmt->fetchColumn();
+                        if ($fallbackId) {
+                            $matchedGenreIds = [$fallbackId];
                         }
+                    }
 
-                        // 作品×ジャンルの紐付け
+                    foreach ($matchedGenreIds as $dbGenreId) {
                         $db->prepare('INSERT IGNORE INTO work_genre (work_id, genre_id) VALUES (?, ?)')
                            ->execute([$workId, $dbGenreId]);
                     }

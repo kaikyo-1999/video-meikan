@@ -62,6 +62,7 @@ class Actress
             INNER JOIN actress_work aw ON w.id = aw.work_id
             WHERE aw.actress_id = ?
             GROUP BY g.id
+            HAVING work_count >= 3
             ORDER BY work_count DESC
         ');
         $stmt->execute([$actressId]);

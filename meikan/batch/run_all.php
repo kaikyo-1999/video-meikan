@@ -7,7 +7,8 @@
  *   1. register_actresses.php  — 新規女優をDBに登録
  *   2. fetch_actress_profiles.php — 女優のプロフィール画像を取得
  *   3. fetch_fanza.php — 作品データを取得・紐付け
- *   4. clear_cache.php — キャッシュをクリア
+ *   4. assign_title_genres.php — タイトルベースのジャンル紐付け
+ *   5. clear_cache.php — キャッシュをクリア
  *
  * ⚠ 順序を守らないと、作品画像が女優サムネイルに設定される問題が再発します
  *
@@ -22,6 +23,7 @@ $batches = [
     'register_actresses.php',
     'fetch_actress_profiles.php',
     'fetch_fanza.php',
+    'assign_title_genres.php',
     'clear_cache.php',
 ];
 
