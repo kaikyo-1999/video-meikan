@@ -7,8 +7,8 @@ class AuthorController
         $articles = ArticleController::allArticles();
 
         render('author', [
-            'pageTitle' => 'av博士のプロフィール | ' . SITE_NAME,
-            'metaDescription' => 'av博士のプロフィール。AV歴10年超、毎月1万円以上課金する独身ひとり暮らしのAVオタクが運営するデータベースサイトです。',
+            'pageTitle' => SITE_NAME . 'のプロフィール | ' . SITE_NAME,
+            'metaDescription' => SITE_NAME . 'のプロフィール。AV歴10年超、毎月1万円以上課金する独身ひとり暮らしのAVオタクが運営するデータベースサイトです。',
             'breadcrumbs' => [
                 ['label' => 'TOP', 'url' => ''],
                 ['label' => '著者について', 'url' => ''],
