@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= h($pageTitle ?? SITE_TITLE . ' | ' . SITE_NAME) ?></title>
     <meta name="description" content="<?= h($metaDescription ?? SITE_DESCRIPTION) ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= asset('favicon-32.png') ?>">
+    <link rel="icon" type="image/png" sizes="64x64" href="<?= asset('favicon.png') ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= asset('apple-touch-icon.png') ?>">
     <link rel="canonical" href="<?= h($canonical ?? fullUrl()) ?>">
     <link rel="stylesheet" href="<?= asset('css/style.css') ?>">
     <?php if (!empty($jsonLd)): ?>
