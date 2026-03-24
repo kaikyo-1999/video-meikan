@@ -1,7 +1,7 @@
 <?php
 
-define('SITE_NAME', 'av博士');
-define('SITE_TITLE', 'av博士');
+define('SITE_NAME', 'AV博士');
+define('SITE_TITLE', 'AV女優ジャンル別名鑑');
 define('SITE_DESCRIPTION', '人気AV女優のジャンル別作品データベース');
 define('BASE_PATH', '');
 define('BASE_URL', BASE_PATH . '/');
