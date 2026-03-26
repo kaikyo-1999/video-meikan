@@ -26,12 +26,14 @@ class Genre
     {
         $db = Database::getInstance();
         $stmt = $db->prepare('
-            SELECT DISTINCT g.slug
+            SELECT g.slug
             FROM genres g
             INNER JOIN work_genre wg ON g.id = wg.genre_id
             INNER JOIN works w ON wg.work_id = w.id
             INNER JOIN actress_work aw ON w.id = aw.work_id
             WHERE aw.actress_id = ?
+            GROUP BY g.id
+            HAVING COUNT(DISTINCT w.id) >= 3
         ');
         $stmt->execute([$actressId]);
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
