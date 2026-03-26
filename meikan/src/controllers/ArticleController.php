@@ -3,6 +3,7 @@
 class ArticleController
 {
     private const ARTICLES_DIR = ROOT_DIR . '/content/articles';
+    private static ?string $currentAffiliateId = null;
 
     public function index(array $params): void
     {
@@ -95,14 +96,16 @@ class ArticleController
         ];
 
         if ($includeBody) {
-            $article['body_html'] = self::markdownToHtml($body);
+            $affiliateId = $meta['affiliate_id'] ?? null;
+            $article['body_html'] = self::markdownToHtml($body, $affiliateId);
         }
 
         return $article;
     }
 
-    private static function markdownToHtml(string $md): string
+    private static function markdownToHtml(string $md, ?string $affiliateIdOverride = null): string
     {
+        self::$currentAffiliateId = $affiliateIdOverride;
         $md = trim($md);
         $lines = explode("\n", $md);
         $html = '';
@@ -147,11 +150,22 @@ class ArticleController
             }
 
             // --- キャストカード開始 ---
-            if ($trimmed === ':::cast') {
+            if (preg_match('/^:::cast(?:\[(.+?)\])?$/', $trimmed, $castMatch)) {
                 $closeList();
                 $flushBlockquote();
                 $inBox = true;
                 $boxType = 'cast';
+                $boxTitle = $castMatch[1] ?? '';
+                $boxLines = [];
+                continue;
+            }
+
+            // --- サンプル画像ギャラリー開始 ---
+            if ($trimmed === ':::samples') {
+                $closeList();
+                $flushBlockquote();
+                $inBox = true;
+                $boxType = 'samples';
                 $boxTitle = '';
                 $boxLines = [];
                 continue;
@@ -171,27 +185,49 @@ class ArticleController
             // --- 装飾ボックス / 吹き出し / キャスト終了 ---
             if ($trimmed === ':::' && $inBox) {
                 if ($boxType === 'cast') {
-                    $out = '<div class="cast-list">';
+                    $tableTitle = $boxTitle ?: 'AV女優';
+                    $out = '<div class="article-table-wrap"><table class="cast-table">';
+                    $out .= '<thead><tr>';
+                    $out .= '<th>' . h($tableTitle) . '</th>';
+                    $out .= '<th>体型</th>';
+                    $out .= '</tr></thead><tbody>';
+
                     foreach ($boxLines as $bl) {
                         $bl = trim($bl);
                         if ($bl === '') continue;
                         $parts = array_map('trim', explode('|', $bl));
                         $name = h($parts[0] ?? '');
-                        $img = h($parts[1] ?? '');
-                        $size = h($parts[2] ?? '');
-                        $height = h($parts[3] ?? '');
-                        $age = h($parts[4] ?? '');
-                        $out .= '<div class="cast-card">';
+                        $img = h($parts[2] ?? '');
+                        $size = h($parts[3] ?? '');
+                        $height = h($parts[4] ?? '');
+                        $age = h($parts[5] ?? '');
+
+                        $out .= '<tr>';
+                        $out .= '<td class="cast-table__actress">';
                         if ($img) {
-                            $out .= '<div class="cast-card__image"><img src="' . $img . '" alt="' . $name . '" loading="lazy"></div>';
+                            $out .= '<img src="' . $img . '" alt="' . $name . '" loading="lazy">';
                         }
-                        $out .= '<div class="cast-card__name">' . $name . '</div>';
-                        $out .= '<div class="cast-card__meta">';
+                        $out .= '<span class="cast-table__name">' . $name . '</span>';
+                        $out .= '</td>';
+                        $out .= '<td class="cast-table__body">';
                         if ($size) $out .= '<span>体型：' . $size . '</span>';
                         if ($height) $out .= '<span>身長：' . $height . '</span>';
                         if ($age) $out .= '<span>年齢：' . $age . '</span>';
-                        $out .= '</div>';
-                        $out .= '</div>';
+                        $out .= '</td>';
+                        $out .= '</tr>';
+                    }
+
+                    $out .= '</tbody></table></div>' . "\n";
+                    $html .= $out;
+                    $inBox = false;
+                    continue;
+                }
+                if ($boxType === 'samples') {
+                    $out = '<div class="article-samples">';
+                    foreach ($boxLines as $bl) {
+                        $bl = trim($bl);
+                        if ($bl === '' || !str_starts_with($bl, 'http')) continue;
+                        $out .= '<img src="' . h($bl) . '" alt="" loading="lazy">';
                     }
                     $out .= '</div>' . "\n";
                     $html .= $out;
@@ -343,6 +379,13 @@ class ArticleController
                 continue;
             }
 
+            // ブロックレベル画像 ![alt](url)
+            if (preg_match('/^!\[(.+?)\]\((.+?)\)$/', $trimmed, $imgMatch)) {
+                $closeList();
+                $html .= '<figure class="article-figure"><img src="' . h($imgMatch[2]) . '" alt="' . h($imgMatch[1]) . '" loading="lazy"></figure>' . "\n";
+                continue;
+            }
+
             // 女優カード埋め込み @actress[slug]
             if (preg_match('/^@actress\[([a-z0-9-]+)\]$/', $trimmed, $actressMatch)) {
                 $closeList();
@@ -395,34 +438,22 @@ class ArticleController
         $fallbackThumb = 'https://pics.dmm.co.jp/digital/video/' . $sourceId . '/' . $sourceId . 'pl.jpg';
 
         if (!$work) {
-            $html = '<div class="embed-card">';
-            $html .= '<a href="' . h($affiliateUrl) . '" target="_blank" rel="nofollow noopener" class="embed-card__inner">';
-            $html .= '<div class="embed-card__image"><img src="' . h($fallbackThumb) . '" alt="' . h($linkText ?: $sourceId) . '" loading="lazy"></div>';
-            $html .= '<div class="embed-card__info">';
-            $html .= '<p class="embed-card__title">' . h($linkText ?: $sourceId) . '</p>';
-            $html .= '<span class="embed-card__cta">FANZAで見る →</span>';
-            $html .= '</div>';
+            $html = '<div class="embed-card embed-card--work">';
+            $html .= '<a href="' . h($affiliateUrl) . '" target="_blank" rel="nofollow noopener" class="embed-card__inner embed-card__inner--work">';
+            $html .= '<div class="embed-card__image embed-card__image--work"><img src="' . h($fallbackThumb) . '" alt="' . h($linkText ?: $sourceId) . '" loading="lazy"></div>';
+            $html .= '<p class="embed-card__title embed-card__title--work">' . h($linkText ?: $sourceId) . '</p>';
             $html .= '</a></div>' . "\n";
             return $html;
         }
 
         $thumb = h($work['thumbnail_url'] ?? '') ?: h($fallbackThumb);
         $title = h($work['title'] ?? '');
-        $date = h($work['release_date'] ?? '');
-        $label = h($work['label'] ?? '');
         $url = !empty($work['affiliate_url']) ? $work['affiliate_url'] : $affiliateUrl;
 
-        $html = '<div class="embed-card">';
-        $html .= '<a href="' . h($url) . '" target="_blank" rel="nofollow noopener" class="embed-card__inner">';
-        $html .= '<div class="embed-card__image"><img src="' . $thumb . '" alt="' . $title . '" loading="lazy"></div>';
-        $html .= '<div class="embed-card__info">';
-        $html .= '<p class="embed-card__title">' . $title . '</p>';
-        $html .= '<div class="embed-card__meta">';
-        if ($date) $html .= '<span>発売日：' . $date . '</span>';
-        if ($label) $html .= '<span>レーベル：' . $label . '</span>';
-        $html .= '</div>';
-        $html .= '<span class="embed-card__cta">FANZAで見る →</span>';
-        $html .= '</div>';
+        $html = '<div class="embed-card embed-card--work">';
+        $html .= '<a href="' . h($url) . '" target="_blank" rel="nofollow noopener" class="embed-card__inner embed-card__inner--work">';
+        $html .= '<div class="embed-card__image embed-card__image--work"><img src="' . $thumb . '" alt="' . $title . '" loading="lazy"></div>';
+        $html .= '<p class="embed-card__title embed-card__title--work">' . $title . '</p>';
         $html .= '</a></div>' . "\n";
 
         return $html;
@@ -481,7 +512,9 @@ class ArticleController
 
     private static function buildAffiliateUrl(string $directUrl): string
     {
-        $affiliateId = getenv('FANZA_DISPLAY_AFFILIATE_ID') ?: getenv('FANZA_AFFILIATE_ID');
+        $affiliateId = self::$currentAffiliateId
+            ?: getenv('FANZA_DISPLAY_AFFILIATE_ID')
+            ?: getenv('FANZA_AFFILIATE_ID');
         if (!$affiliateId) {
             return $directUrl;
         }
