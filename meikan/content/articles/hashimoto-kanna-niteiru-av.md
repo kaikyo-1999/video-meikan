@@ -26,6 +26,11 @@ updated_at: 2026-03-18
 
 **おすすめ作品**：[「キス、してください…」 終電逃し会社の後輩宅に泊めてもらうと…河北彩花](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=sone00266/)
 
+:::samples
+https://pics.dmm.co.jp/digital/video/sone00266/sone00266jp-3.jpg
+https://pics.dmm.co.jp/digital/video/sone00266/sone00266jp-7.jpg
+:::
+
 ## 2. 小倉由菜
 
 小倉由菜もまた、橋本環奈似として名前が挙がることの多い女優の一人です。小柄な体型と、幼さの残るキュートな顔立ちが特徴。
@@ -38,6 +43,11 @@ updated_at: 2026-03-18
 - ナチュラルな雰囲気
 
 **おすすめ作品**：[五反田のHOTELで誰とSEXしたかはナイショです。小倉由菜](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1start00533/)
+
+:::samples
+https://pics.dmm.co.jp/digital/video/1start00533/1start00533jp-3.jpg
+https://pics.dmm.co.jp/digital/video/1start00533/1start00533jp-7.jpg
+:::
 
 ## 3. 架乃ゆら
 

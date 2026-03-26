@@ -24,6 +24,11 @@ updated_at: 2026-03-18
 
 **おすすめ作品**：[完全引退 AV女優、最後の1日。三上悠亜ラストセックス](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=ssis00834/)
 
+:::samples
+https://pics.dmm.co.jp/digital/video/ssis00834/ssis00834jp-3.jpg
+https://pics.dmm.co.jp/digital/video/ssis00834/ssis00834jp-7.jpg
+:::
+
 ## 2. 明日花キララ
 
 明日花キララは、整形公言済みの完成された美しさが特徴。今田美桜の持つ「完璧な美人顔」という点で共通するものがあります。
@@ -37,6 +42,11 @@ updated_at: 2026-03-18
 
 **おすすめ作品**：[デビュー10周年企画 明日花キララの潜在エロスを120％ひき出す媚薬漬け性獣セックス4本番](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=ssni00192/)
 
+:::samples
+https://pics.dmm.co.jp/digital/video/ssni00192/ssni00192jp-3.jpg
+https://pics.dmm.co.jp/digital/video/ssni00192/ssni00192jp-7.jpg
+:::
+
 ## 3. 深田えいみ
 
 深田えいみは、くりっとした大きな目と、はっきりとした顔立ちが特徴です。今田美桜の可愛らしさの中にある「強さ」を感じさせる表情が共通しています。
@@ -49,6 +59,11 @@ updated_at: 2026-03-18
 - 明るいキャラクター
 
 **おすすめ作品**：[勃起障害には予約不要の深田泌尿器科クリニックへ 深田えいみ](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1fsdss00789/)
+
+:::samples
+https://pics.dmm.co.jp/digital/video/1fsdss00789/1fsdss00789jp-3.jpg
+https://pics.dmm.co.jp/digital/video/1fsdss00789/1fsdss00789jp-7.jpg
+:::
 
 ## 4. 篠田ゆう
 

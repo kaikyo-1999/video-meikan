@@ -24,6 +24,11 @@ updated_at: 2026-03-18
 
 **おすすめ作品**：[「キス、してください…」 終電逃し会社の後輩宅に泊めてもらうと…河北彩花](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=sone00266/)
 
+:::samples
+https://pics.dmm.co.jp/digital/video/sone00266/sone00266jp-3.jpg
+https://pics.dmm.co.jp/digital/video/sone00266/sone00266jp-7.jpg
+:::
+
 ## 2. 楓カレン
 
 楓カレンは、ハーフのような彫りの深い顔立ちが特徴。広瀬すずの持つ凛とした雰囲気と、どこか共通するオーラがあります。
@@ -37,6 +42,11 @@ updated_at: 2026-03-18
 
 **おすすめ作品**：[DIGITAL CHANNEL DC144 楓カレン 美しき女神 初ぶっかけ解禁](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=ipzz00802/)
 
+:::samples
+https://pics.dmm.co.jp/digital/video/ipzz00802/ipzz00802jp-3.jpg
+https://pics.dmm.co.jp/digital/video/ipzz00802/ipzz00802jp-7.jpg
+:::
+
 ## 3. 天使もえ
 
 天使もえという芸名の通り、天使のような可愛らしさを持つ女優です。広瀬すずの持つ少女的な可愛らしさと大人っぽさの共存が、天使もえにも感じられます。
@@ -49,6 +59,11 @@ updated_at: 2026-03-18
 - 表情の豊かさ
 
 **おすすめ作品**：[「セミフィクション。」天使もえ](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1fns00093/)
+
+:::samples
+https://pics.dmm.co.jp/digital/video/1fns00093/1fns00093jp-3.jpg
+https://pics.dmm.co.jp/digital/video/1fns00093/1fns00093jp-7.jpg
+:::
 
 ## 4. 石原希望
 
@@ -75,6 +90,11 @@ updated_at: 2026-03-18
 - 表情の変化の豊かさ
 
 **おすすめ作品**：[五反田のHOTELで誰とSEXしたかはナイショです。小倉由菜](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1start00533/)
+
+:::samples
+https://pics.dmm.co.jp/digital/video/1start00533/1start00533jp-3.jpg
+https://pics.dmm.co.jp/digital/video/1start00533/1start00533jp-7.jpg
+:::
 
 ## まとめ
 

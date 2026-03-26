@@ -24,6 +24,11 @@ updated_at: 2026-03-18
 
 **おすすめ作品**：[「セミフィクション。」天使もえ](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1fns00093/)
 
+:::samples
+https://pics.dmm.co.jp/digital/video/1fns00093/1fns00093jp-3.jpg
+https://pics.dmm.co.jp/digital/video/1fns00093/1fns00093jp-7.jpg
+:::
+
 ## 2. 橋本ありな
 
 橋本ありなは、端正な顔立ちとスレンダーなスタイルが特徴の人気女優です。新垣結衣さんの「飾らない美しさ」に通じる、ナチュラルな魅力を持っています。
@@ -37,6 +42,11 @@ updated_at: 2026-03-18
 
 **おすすめ作品**：[橋本ありなの作品一覧をFANZAで見る](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1fsdss00437/)
 
+:::samples
+https://pics.dmm.co.jp/digital/video/1fsdss00437/1fsdss00437jp-3.jpg
+https://pics.dmm.co.jp/digital/video/1fsdss00437/1fsdss00437jp-7.jpg
+:::
+
 ## 3. 楓カレン
 
 楓カレンは、明るくさわやかな笑顔が魅力の女優です。新垣結衣さんのCM出演時のような、見る人を元気にする爽やかさがあります。
@@ -49,6 +59,11 @@ updated_at: 2026-03-18
 - スタイルの良さ
 
 **おすすめ作品**：[DIGITAL CHANNEL DC144 楓カレン 美しき女神 初ぶっかけ解禁](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=ipzz00802/)
+
+:::samples
+https://pics.dmm.co.jp/digital/video/ipzz00802/ipzz00802jp-3.jpg
+https://pics.dmm.co.jp/digital/video/ipzz00802/ipzz00802jp-7.jpg
+:::
 
 ## 4. 石川澪
 
@@ -75,6 +90,11 @@ updated_at: 2026-03-18
 - 自然体の可愛らしさ
 
 **おすすめ作品**：[「キス、してください…」 終電逃し会社の後輩宅に泊めてもらうと…河北彩花](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=sone00266/)
+
+:::samples
+https://pics.dmm.co.jp/digital/video/sone00266/sone00266jp-3.jpg
+https://pics.dmm.co.jp/digital/video/sone00266/sone00266jp-7.jpg
+:::
 
 ## まとめ
 
