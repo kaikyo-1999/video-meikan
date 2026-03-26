@@ -2,7 +2,7 @@
 <<?= $cardTag ?> class="work-card"<?php if (!empty($work['affiliate_url'])): ?> href="<?= h($work['affiliate_url']) ?>" target="_blank" rel="nofollow noopener"<?php endif; ?>>
     <div class="work-card__image">
         <?php if (!empty($work['thumbnail_url'])): ?>
-            <img src="<?= h($work['thumbnail_url']) ?>" alt="<?= h($work['title']) ?>" loading="lazy">
+            <img src="<?= h($work['thumbnail_url']) ?>" alt="<?= h($work['title']) ?>" width="147" height="200" loading="lazy">
         <?php else: ?>
             <div class="work-card__placeholder"></div>
         <?php endif; ?>

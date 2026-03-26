@@ -1,7 +1,7 @@
 <a href="<?= h(url($actress['slug'] . '/')) ?>" class="actress-card">
     <div class="actress-card__image">
         <?php if (!empty($actress['thumbnail_url'])): ?>
-            <img src="<?= h($actress['thumbnail_url']) ?>" alt="<?= h($actress['name']) ?>" loading="lazy">
+            <img src="<?= h($actress['thumbnail_url']) ?>" alt="<?= h($actress['name']) ?>" width="300" height="300" loading="lazy">
         <?php else: ?>
             <div class="actress-card__placeholder"></div>
         <?php endif; ?>

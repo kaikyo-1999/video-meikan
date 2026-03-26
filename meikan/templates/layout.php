@@ -9,10 +9,22 @@
     <link rel="icon" type="image/png" sizes="64x64" href="<?= asset('favicon.png') ?>">
     <link rel="apple-touch-icon" sizes="180x180" href="<?= asset('apple-touch-icon.png') ?>">
     <link rel="canonical" href="<?= h($canonical ?? fullUrl()) ?>">
+    <!-- OGP -->
+    <meta property="og:title" content="<?= h($pageTitle ?? SITE_TITLE . ' | ' . SITE_NAME) ?>">
+    <meta property="og:description" content="<?= h($metaDescription ?? SITE_DESCRIPTION) ?>">
+    <meta property="og:url" content="<?= h($canonical ?? fullUrl()) ?>">
+    <meta property="og:type" content="<?= h($ogType ?? 'website') ?>">
+    <meta property="og:site_name" content="<?= h(SITE_NAME) ?>">
+    <?php if (!empty($ogImage)): ?>
+    <meta property="og:image" content="<?= h($ogImage) ?>">
+    <?php endif; ?>
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="<?= asset('css/style.css') ?>">
     <?php if (!empty($jsonLd)): ?>
     <?= jsonLd($jsonLd) ?>
     <?php endif; ?>
+    <?= jsonLd(['@context' => 'https://schema.org', '@type' => 'WebSite', 'name' => SITE_NAME, 'url' => fullUrl()]) ?>
+
 </head>
 <body>
     <?php require TEMPLATE_DIR . '/partials/header.php'; ?>

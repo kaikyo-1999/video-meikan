@@ -12,9 +12,18 @@ class HomeController
         $articles = ArticleController::allArticles();
         $latestArticles = array_slice($articles, 0, 5);
 
+        $jsonLd = [
+            '@context' => 'https://schema.org',
+            '@type' => 'Organization',
+            'name' => SITE_NAME,
+            'url' => fullUrl(),
+            'description' => SITE_DESCRIPTION,
+        ];
+
         render('home', [
             'pageTitle' => SITE_NAME . ' | ' . SITE_DESCRIPTION,
             'metaDescription' => SITE_DESCRIPTION,
+            'jsonLd' => $jsonLd,
             'pickupActresses' => $pickupActresses,
             'latestArticles' => $latestArticles,
         ]);

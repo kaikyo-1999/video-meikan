@@ -36,14 +36,38 @@ class ArticleController
         $related = array_filter($allArticles, fn($a) => $a['slug'] !== $slug);
         $related = array_slice($related, 0, 3);
 
+        $jsonLd = [
+            '@context' => 'https://schema.org',
+            '@type' => 'Article',
+            'headline' => $article['title'],
+            'datePublished' => $article['published_at'],
+            'dateModified' => $article['updated_at'] ?: $article['published_at'],
+            'author' => [
+                '@type' => 'Person',
+                'name' => 'av博士',
+                'url' => fullUrl('author/'),
+            ],
+            'publisher' => [
+                '@type' => 'Organization',
+                'name' => SITE_NAME,
+            ],
+            'description' => $article['description'],
+            'mainEntityOfPage' => [
+                '@type' => 'WebPage',
+                '@id' => fullUrl('article/' . $slug . '/'),
+            ],
+        ];
+
         render('articles/show', [
             'pageTitle' => $article['title'] . ' | ' . SITE_NAME,
             'metaDescription' => $article['description'],
+            'ogType' => 'article',
             'breadcrumbs' => [
                 ['label' => 'TOP', 'url' => ''],
                 ['label' => '記事一覧', 'url' => 'article/'],
                 ['label' => $article['title'], 'url' => ''],
             ],
+            'jsonLd' => $jsonLd,
             'article' => $article,
             'related' => $related,
         ]);
@@ -97,18 +121,21 @@ class ArticleController
 
         if ($includeBody) {
             $affiliateId = $meta['affiliate_id'] ?? null;
-            $article['body_html'] = self::markdownToHtml($body, $affiliateId);
+            $result = self::markdownToHtml($body, $affiliateId);
+            $article['body_html'] = $result['html'];
+            $article['toc'] = $result['toc'];
         }
 
         return $article;
     }
 
-    private static function markdownToHtml(string $md, ?string $affiliateIdOverride = null): string
+    private static function markdownToHtml(string $md, ?string $affiliateIdOverride = null): array
     {
         self::$currentAffiliateId = $affiliateIdOverride;
         $md = trim($md);
         $lines = explode("\n", $md);
         $html = '';
+        $toc = [];
         $inList = false;
         $inOl = false;
         $inTable = false;
@@ -343,7 +370,9 @@ class ArticleController
             if (str_starts_with($trimmed, '## ')) {
                 $closeList();
                 $text = h(substr($trimmed, 3));
-                $html .= "<h2>{$text}</h2>\n";
+                $id = 'h-' . count($toc);
+                $toc[] = ['level' => 2, 'text' => $text, 'id' => $id];
+                $html .= "<h2 id=\"{$id}\">{$text}</h2>\n";
                 continue;
             }
 
@@ -351,7 +380,9 @@ class ArticleController
             if (str_starts_with($trimmed, '### ')) {
                 $closeList();
                 $text = h(substr($trimmed, 4));
-                $html .= "<h3>{$text}</h3>\n";
+                $id = 'h-' . count($toc);
+                $toc[] = ['level' => 3, 'text' => $text, 'id' => $id];
+                $html .= "<h3 id=\"{$id}\">{$text}</h3>\n";
                 continue;
             }
 
@@ -416,7 +447,7 @@ class ArticleController
         $flushBlockquote();
         if ($inTable) $html .= "</tbody></table></div>\n";
 
-        return $html;
+        return ['html' => $html, 'toc' => $toc];
     }
 
     private static function renderWorkEmbed(string $sourceId, string $linkText = ''): string

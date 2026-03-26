@@ -1,4 +1,4 @@
-<?php $headingText = '記事一覧'; require TEMPLATE_DIR . '/partials/section-heading.php'; ?>
+<h1 class="page-title">記事一覧</h1>
 <p class="page-description">AV女優に関するまとめ記事・コラム</p>
 
 <div class="article-list">
