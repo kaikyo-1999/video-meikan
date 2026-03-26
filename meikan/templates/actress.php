@@ -1,7 +1,7 @@
 <div class="profile-section">
     <div class="profile-section__image">
         <?php if (!empty($actress['thumbnail_url'])): ?>
-            <img src="<?= h($actress['thumbnail_url']) ?>" alt="<?= h($actress['name']) ?>">
+            <img src="<?= h($actress['thumbnail_url']) ?>" alt="<?= h($actress['name']) ?>" width="300" height="300">
         <?php else: ?>
             <div class="profile-section__placeholder"></div>
         <?php endif; ?>

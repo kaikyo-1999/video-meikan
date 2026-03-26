@@ -6,6 +6,14 @@ class AuthorController
     {
         $articles = ArticleController::allArticles();
 
+        $jsonLd = [
+            '@context' => 'https://schema.org',
+            '@type' => 'Person',
+            'name' => 'av博士',
+            'url' => fullUrl('author/'),
+            'description' => 'AV歴10年超、毎月1万円以上課金する独身ひとり暮らしのAVオタクが運営するデータベースサイト',
+        ];
+
         render('author', [
             'pageTitle' => SITE_NAME . 'のプロフィール | ' . SITE_NAME,
             'metaDescription' => SITE_NAME . 'のプロフィール。AV歴10年超、毎月1万円以上課金する独身ひとり暮らしのAVオタクが運営するデータベースサイトです。',
@@ -13,6 +21,7 @@ class AuthorController
                 ['label' => 'TOP', 'url' => ''],
                 ['label' => '著者について', 'url' => ''],
             ],
+            'jsonLd' => $jsonLd,
             'articles' => $articles,
         ]);
     }

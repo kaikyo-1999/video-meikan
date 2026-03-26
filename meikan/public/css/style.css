@@ -1360,3 +1360,46 @@ ul, ol { list-style: none; }
     background: var(--color-accent);
     color: #FFFFFF;
 }
+
+/* --- Article TOC --- */
+.article-toc {
+    background: var(--color-card);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 24px 0;
+}
+.article-toc__title {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 12px;
+    color: var(--color-text);
+}
+.article-toc__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: toc;
+}
+.article-toc__item {
+    margin: 0;
+    line-height: 1.6;
+}
+.article-toc__item--h2 {
+    counter-increment: toc;
+}
+.article-toc__item--h2::before {
+    content: counter(toc) ". ";
+    font-weight: 600;
+    color: var(--color-accent);
+}
+.article-toc__item--h3 {
+    padding-left: 1.4em;
+    font-size: 14px;
+}
+.article-toc__item a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+.article-toc__item a:hover {
+    color: var(--color-accent);
+}
