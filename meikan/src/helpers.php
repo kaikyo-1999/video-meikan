@@ -40,7 +40,9 @@ function render(string $template, array $data = []): void
  */
 function asset(string $path): string
 {
-    return BASE_URL . 'public/' . ltrim($path, '/');
+    $filePath = ROOT_DIR . '/public/' . ltrim($path, '/');
+    $ver = file_exists($filePath) ? filemtime($filePath) : '';
+    return BASE_URL . 'public/' . ltrim($path, '/') . '?v=' . $ver;
 }
 
 /**
