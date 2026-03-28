@@ -30,8 +30,8 @@
     <?php foreach ($works as $work): ?>
         <?php require TEMPLATE_DIR . '/partials/work-card-horizontal.php'; ?>
         <?php $workIndex++; ?>
-        <?php if ($workIndex === 6 && !empty($similarActresses)): ?>
-            <div class="similar-inline">
+        <?php if (($workIndex === 6 || $workIndex === 12) && !empty($similarActresses)): ?>
+            <div class="similar-inline <?= $workIndex === 6 ? 'similar-inline--sp' : 'similar-inline--pc' ?>">
                 <p class="similar-inline__title">似ている女優</p>
                 <div class="similar-inline__scroll">
                     <?php foreach ($similarActresses as $similar): ?>

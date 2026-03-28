@@ -1270,6 +1270,9 @@ ul, ol { list-style: none; }
 }
 
 /* --- Similar Inline Card (genre page) --- */
+.similar-inline--pc {
+    display: none;
+}
 .similar-inline {
     background: var(--color-bg);
     border: 1px solid #E0E0E2;
@@ -1343,6 +1346,28 @@ ul, ol { list-style: none; }
     .similar-actress-grid {
         grid-template-columns: repeat(5, 1fr);
         gap: 16px;
+    }
+    .similar-inline--sp {
+        display: none;
+    }
+    .similar-inline--pc {
+        display: block;
+    }
+    .similar-inline {
+        padding: 16px 20px;
+    }
+    .similar-inline__scroll {
+        gap: 20px;
+    }
+    .similar-inline__item {
+        width: 100px;
+    }
+    .similar-inline__image {
+        width: 100px;
+        height: 100px;
+    }
+    .similar-inline__name {
+        font-size: 13px;
     }
     .work-list {
         display: grid;
