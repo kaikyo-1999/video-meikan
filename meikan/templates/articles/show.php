@@ -16,14 +16,29 @@
 
     <?php if (!empty($article['toc']) && count($article['toc']) >= 3): ?>
     <nav class="article-toc" aria-label="目次">
-        <p class="article-toc__title">目次</p>
-        <ol class="article-toc__list">
-            <?php foreach ($article['toc'] as $item): ?>
-            <li class="article-toc__item article-toc__item--h<?= $item['level'] ?>">
-                <a href="#<?= h($item['id']) ?>"><?= h($item['text']) ?></a>
-            </li>
-            <?php endforeach; ?>
-        </ol>
+        <details class="article-toc__details">
+            <summary class="article-toc__summary">
+                <span class="article-toc__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="8" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="8" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="8" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="3" cy="6" r="1.5" fill="currentColor"/>
+                        <circle cx="3" cy="12" r="1.5" fill="currentColor"/>
+                        <circle cx="3" cy="18" r="1.5" fill="currentColor"/>
+                    </svg>
+                </span>
+                <span class="article-toc__title-text">目次</span>
+                <span class="article-toc__toggle-label"></span>
+            </summary>
+            <ol class="article-toc__list">
+                <?php foreach ($article['toc'] as $item): ?>
+                <li class="article-toc__item article-toc__item--h<?= $item['level'] ?>">
+                    <a href="#<?= h($item['id']) ?>"><?= $item['text'] ?></a>
+                </li>
+                <?php endforeach; ?>
+            </ol>
+        </details>
     </nav>
     <?php endif; ?>
 

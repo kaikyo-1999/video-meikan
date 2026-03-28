@@ -78,6 +78,28 @@ class Actress
         return (int)$db->query('SELECT COUNT(*) FROM actresses')->fetchColumn();
     }
 
+    public static function getSimilarActresses(int $actressId): array
+    {
+        $cacheKey = 'similar_actresses_' . $actressId;
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return $cached;
+
+        $db = Database::getInstance();
+        $stmt = $db->prepare('
+            SELECT a.id, a.name, a.slug, a.thumbnail_url, sa.score
+            FROM similar_actresses sa
+            INNER JOIN actresses a ON sa.similar_actress_id = a.id
+            WHERE sa.actress_id = ?
+            ORDER BY sa.score DESC
+            LIMIT 5
+        ');
+        $stmt->execute([$actressId]);
+        $result = $stmt->fetchAll();
+
+        Cache::set($cacheKey, $result);
+        return $result;
+    }
+
     public static function allForSitemap(): array
     {
         $db = Database::getInstance();

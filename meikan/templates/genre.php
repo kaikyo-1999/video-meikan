@@ -25,15 +25,60 @@
     </div>
 </div>
 
-<div class="work-list" id="workList" data-page="1" data-total-pages="<?= $pagination['total_pages'] ?>" data-actress-id="<?= (int)$actress['id'] ?>" data-genre-id="<?= (int)$genre['id'] ?>">
-    <?php foreach ($works as $work): ?>
-        <?php require TEMPLATE_DIR . '/partials/work-card-horizontal.php'; ?>
-    <?php endforeach; ?>
-</div>
+<div class="genre-layout">
+    <div class="genre-layout__main">
+        <div class="work-list" id="workList" data-page="1" data-total-pages="<?= $pagination['total_pages'] ?>" data-actress-id="<?= (int)$actress['id'] ?>" data-genre-id="<?= (int)$genre['id'] ?>">
+            <?php $workIndex = 0; ?>
+            <?php foreach ($works as $work): ?>
+                <?php require TEMPLATE_DIR . '/partials/work-card-horizontal.php'; ?>
+                <?php $workIndex++; ?>
+                <?php if ($workIndex === 6 && !empty($similarActresses)): ?>
+                    <div class="similar-inline" id="similarInline">
+                        <p class="similar-inline__title">似ている女優</p>
+                        <div class="similar-inline__scroll">
+                            <?php foreach ($similarActresses as $similar): ?>
+                                <a href="<?= h(url($similar['slug'] . '/')) ?>" class="similar-inline__item">
+                                    <div class="similar-inline__image">
+                                        <?php if (!empty($similar['thumbnail_url'])): ?>
+                                            <img src="<?= h($similar['thumbnail_url']) ?>" alt="<?= h($similar['name']) ?>" width="300" height="300" loading="lazy">
+                                        <?php else: ?>
+                                            <div class="similar-inline__placeholder"></div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <span class="similar-inline__name"><?= h($similar['name']) ?></span>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
 
-<p id="workNoResults" class="work-controls__no-results" style="display:none;">該当する作品が見つかりませんでした。</p>
+        <p id="workNoResults" class="work-controls__no-results" style="display:none;">該当する作品が見つかりませんでした。</p>
 
-<div id="infiniteLoader" class="infinite-loader" <?php if ($pagination['total_pages'] <= 1): ?>style="display:none;"<?php endif; ?>>
-    <div class="infinite-loader__spinner"></div>
-    <p class="infinite-loader__text">読み込み中...</p>
+        <div id="infiniteLoader" class="infinite-loader" <?php if ($pagination['total_pages'] <= 1): ?>style="display:none;"<?php endif; ?>>
+            <div class="infinite-loader__spinner"></div>
+            <p class="infinite-loader__text">読み込み中...</p>
+        </div>
+    </div>
+
+    <?php if (!empty($similarActresses)): ?>
+    <aside class="genre-layout__sidebar" id="similarSidebar">
+        <div class="similar-sidebar">
+            <p class="similar-sidebar__title">似ている女優</p>
+            <?php foreach ($similarActresses as $similar): ?>
+                <a href="<?= h(url($similar['slug'] . '/')) ?>" class="similar-sidebar__item">
+                    <div class="similar-sidebar__image">
+                        <?php if (!empty($similar['thumbnail_url'])): ?>
+                            <img src="<?= h($similar['thumbnail_url']) ?>" alt="<?= h($similar['name']) ?>" width="300" height="300" loading="lazy">
+                        <?php else: ?>
+                            <div class="similar-sidebar__placeholder"></div>
+                        <?php endif; ?>
+                    </div>
+                    <span class="similar-sidebar__name"><?= h($similar['name']) ?></span>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </aside>
+    <?php endif; ?>
 </div>

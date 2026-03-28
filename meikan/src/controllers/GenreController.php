@@ -29,6 +29,7 @@ class GenreController
 
         $pagination = paginate($totalWorks, ITEMS_PER_PAGE, $page);
         $works = Work::findByActressAndGenre($actress['id'], $genre['id'], ITEMS_PER_PAGE, $pagination['offset']);
+        $similarActresses = Actress::getSimilarActresses($actress['id']);
 
         $jsonLd = [
             '@context' => 'https://schema.org',
@@ -60,6 +61,7 @@ class GenreController
             'works' => $works,
             'totalWorks' => $totalWorks,
             'pagination' => $pagination,
+            'similarActresses' => $similarActresses,
             'jsonLd' => $jsonLd,
         ]);
     }

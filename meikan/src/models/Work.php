@@ -2,6 +2,27 @@
 
 class Work
 {
+    public static function findByActress(int $actressId): array
+    {
+        $cacheKey = 'works_actress_' . $actressId;
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return $cached;
+
+        $db = Database::getInstance();
+        $stmt = $db->prepare('
+            SELECT w.*
+            FROM works w
+            INNER JOIN actress_work aw ON w.id = aw.work_id
+            WHERE aw.actress_id = ?
+            ORDER BY w.release_date DESC, w.id DESC
+        ');
+        $stmt->execute([$actressId]);
+        $result = $stmt->fetchAll();
+
+        Cache::set($cacheKey, $result);
+        return $result;
+    }
+
     public static function findByActressAndGenre(
         int $actressId,
         int $genreId,

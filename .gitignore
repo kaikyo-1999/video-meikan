@@ -1,6 +1,7 @@
 # 機密ファイル
 secret.md
 *.zip
+marke-analytics-fa4cf49cfeef.json
 
 # 環境依存
 meikan/.env

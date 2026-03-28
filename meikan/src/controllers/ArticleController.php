@@ -61,6 +61,7 @@ class ArticleController
         render('articles/show', [
             'pageTitle' => $article['title'] . ' | ' . SITE_NAME,
             'metaDescription' => $article['description'],
+            'noindex' => $article['noindex'],
             'ogType' => 'article',
             'breadcrumbs' => [
                 ['label' => 'TOP', 'url' => ''],
@@ -117,6 +118,7 @@ class ArticleController
             'category' => $meta['category'] ?? '',
             'published_at' => $meta['published_at'] ?? '',
             'updated_at' => $meta['updated_at'] ?? '',
+            'noindex' => ($meta['noindex'] ?? '') === 'true',
         ];
 
         if ($includeBody) {
@@ -165,6 +167,14 @@ class ArticleController
         foreach ($lines as $line) {
             $trimmed = trim($line);
 
+            // --- インライン目次 ---
+            if ($trimmed === ':::toc' && !$inBox) {
+                $closeList();
+                $flushBlockquote();
+                $html .= "%%TOC%%\n";
+                continue;
+            }
+
             // --- 吹き出し開始 ---
             if ($trimmed === ':::say') {
                 $closeList();
@@ -205,6 +215,28 @@ class ArticleController
                 $inBox = true;
                 $boxType = $boxMatch[1];
                 $boxTitle = $boxMatch[2] ?? '';
+                $boxLines = [];
+                continue;
+            }
+
+            // --- FAQ アコーディオン開始 ---
+            if (preg_match('/^:::faq\[(.+?)\]$/', $trimmed, $faqMatch)) {
+                $closeList();
+                $flushBlockquote();
+                $inBox = true;
+                $boxType = 'faq';
+                $boxTitle = $faqMatch[1];
+                $boxLines = [];
+                continue;
+            }
+
+            // --- チャット会話開始 ---
+            if ($trimmed === ':::chat') {
+                $closeList();
+                $flushBlockquote();
+                $inBox = true;
+                $boxType = 'chat';
+                $boxTitle = '';
                 $boxLines = [];
                 continue;
             }
@@ -271,6 +303,44 @@ class ArticleController
                         $out .= '<p>' . self::inlineFormat($bl) . '</p>';
                     }
                     $out .= '</div></div>' . "\n";
+                    $html .= $out;
+                    $inBox = false;
+                    continue;
+                }
+                if ($boxType === 'faq') {
+                    $question = h($boxTitle);
+                    $out = '<details class="article-faq">';
+                    $out .= '<summary class="article-faq__question"><span class="article-faq__q">Q</span>' . $question . '</summary>';
+                    $out .= '<div class="article-faq__answer">';
+                    foreach ($boxLines as $bl) {
+                        $bl = trim($bl);
+                        if ($bl === '') continue;
+                        $out .= '<p>' . self::inlineFormat($bl) . '</p>';
+                    }
+                    $out .= '</div></details>' . "\n";
+                    $html .= $out;
+                    $inBox = false;
+                    continue;
+                }
+                if ($boxType === 'chat') {
+                    $out = '<div class="article-chat">';
+                    $speakers = [];
+                    foreach ($boxLines as $bl) {
+                        $bl = trim($bl);
+                        if ($bl === '') continue;
+                        if (!preg_match('/^(.+?):\s*(.+)$/', $bl, $chatMatch)) continue;
+                        $speaker = trim($chatMatch[1]);
+                        $message = self::inlineFormat(trim($chatMatch[2]));
+                        if (!in_array($speaker, $speakers, true)) {
+                            $speakers[] = $speaker;
+                        }
+                        $side = array_search($speaker, $speakers, true) === 0 ? 'left' : 'right';
+                        $out .= '<div class="article-chat__row article-chat__row--' . $side . '">';
+                        $out .= '<span class="article-chat__label">' . h($speaker) . '</span>';
+                        $out .= '<div class="article-chat__bubble">' . $message . '</div>';
+                        $out .= '</div>';
+                    }
+                    $out .= '</div>' . "\n";
                     $html .= $out;
                     $inBox = false;
                     continue;
@@ -437,6 +507,14 @@ class ArticleController
                 continue;
             }
 
+            // ※ 注釈段落
+            if (str_starts_with($trimmed, '※')) {
+                $closeList();
+                $text = self::inlineFormat($trimmed);
+                $html .= "<p class=\"article-note\">{$text}</p>\n";
+                continue;
+            }
+
             // 段落
             $closeList();
             $text = self::inlineFormat($trimmed);
@@ -446,6 +524,16 @@ class ArticleController
         $closeList();
         $flushBlockquote();
         if ($inTable) $html .= "</tbody></table></div>\n";
+
+        // インライン目次の展開
+        if (str_contains($html, '%%TOC%%')) {
+            if (count($toc) >= 3) {
+                $html = str_replace("%%TOC%%\n", self::renderTocHtml($toc), $html);
+                $toc = [];
+            } else {
+                $html = str_replace("%%TOC%%\n", '', $html);
+            }
+        }
 
         return ['html' => $html, 'toc' => $toc];
     }
@@ -541,6 +629,33 @@ class ArticleController
         return $html;
     }
 
+    private static function renderTocHtml(array $toc): string
+    {
+        $svgIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
+            . '<line x1="8" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
+            . '<line x1="8" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
+            . '<line x1="8" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
+            . '<circle cx="3" cy="6" r="1.5" fill="currentColor"/>'
+            . '<circle cx="3" cy="12" r="1.5" fill="currentColor"/>'
+            . '<circle cx="3" cy="18" r="1.5" fill="currentColor"/>'
+            . '</svg>';
+        $out = '<nav class="article-toc" aria-label="目次">'
+            . '<details class="article-toc__details">'
+            . '<summary class="article-toc__summary">'
+            . '<span class="article-toc__icon">' . $svgIcon . '</span>'
+            . '<span class="article-toc__title-text">目次</span>'
+            . '<span class="article-toc__toggle-label"></span>'
+            . '</summary>'
+            . '<ol class="article-toc__list">';
+        foreach ($toc as $item) {
+            $out .= '<li class="article-toc__item article-toc__item--h' . (int)$item['level'] . '">'
+                . '<a href="#' . h($item['id']) . '">' . $item['text'] . '</a>'
+                . '</li>';
+        }
+        $out .= '</ol></details></nav>' . "\n";
+        return $out;
+    }
+
     private static function buildAffiliateUrl(string $directUrl): string
     {
         $affiliateId = self::$currentAffiliateId
@@ -559,6 +674,13 @@ class ArticleController
         $text = preg_replace_callback('/!img\[(.+?)\]/', function ($m) use (&$links) {
             $key = '%%LINK' . count($links) . '%%';
             $links[$key] = '<img src="' . h($m[1]) . '" alt="" class="article-inline-img" loading="lazy">';
+            return $key;
+        }, $text);
+
+        // [btn text](url) → ボタンリンク（先に処理）
+        $text = preg_replace_callback('/\[btn ([^\]]+)\]\(([^)]+)\)/', function ($m) use (&$links) {
+            $key = '%%LINK' . count($links) . '%%';
+            $links[$key] = '<a href="' . h($m[2]) . '" class="article-btn" target="_blank" rel="nofollow noopener">' . h($m[1]) . '</a>';
             return $key;
         }, $text);
 

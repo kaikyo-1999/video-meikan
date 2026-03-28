@@ -12,6 +12,13 @@ class ActressController
         }
 
         $genres = Actress::getGenres($actress['id']);
+        $similarActresses = Actress::getSimilarActresses($actress['id']);
+
+        // 作品数が少なくジャンルが空の場合、作品リストを直接表示
+        $works = [];
+        if (empty($genres)) {
+            $works = Work::findByActress($actress['id']);
+        }
 
         $jsonLd = [
             '@context' => 'https://schema.org',
@@ -39,6 +46,8 @@ class ActressController
             ],
             'actress' => $actress,
             'genres' => $genres,
+            'works' => $works,
+            'similarActresses' => $similarActresses,
             'jsonLd' => $jsonLd,
         ]);
     }
