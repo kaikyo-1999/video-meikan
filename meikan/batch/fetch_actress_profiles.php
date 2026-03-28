@@ -24,15 +24,28 @@ $db = Database::getInstance();
 
 /**
  * 女優名が一致するか判定（括弧内の別名も照合）
- * API名「木下ひまり（花沢ひまり）」⇔ DB名「木下ひまり」or「花沢ひまり」→ true
- * 完全一致 or 括弧の外側/内側と一致する場合のみtrue
+ *
+ * 対応パターン:
+ *   完全一致: 「AIKA」=「AIKA」
+ *   括弧前: 「Hitomi（田中瞳）」⇔「Hitomi」
+ *   括弧内: 「木下ひまり（花沢ひまり）」⇔「花沢ひまり」
+ *   括弧前スペース: 「みひな （あずみひな、永井みひな）」⇔「みひな」
+ *   括弧内読点区切り: 「みひな （あずみひな、永井みひな）」⇔「永井みひな」
  */
 function actressNameMatches(string $apiName, string $dbName): bool
 {
     if ($apiName === $dbName) return true;
-    // 括弧付き: "メイン名（別名）" の構造を分解
-    if (preg_match('/^(.+?)（(.+?)）$/', $apiName, $m)) {
-        if ($m[1] === $dbName || $m[2] === $dbName) return true;
+
+    // 括弧付き: "メイン名（別名1、別名2）" または "メイン名 （別名1、別名2）" を分解
+    if (preg_match('/^(.+?)\s*（(.+?)）$/', $apiName, $m)) {
+        $mainName = trim($m[1]);
+        if ($mainName === $dbName) return true;
+
+        // 括弧内を読点・カンマで分割して各別名と照合
+        $aliases = preg_split('/[、,]\s*/', $m[2]);
+        foreach ($aliases as $alias) {
+            if (trim($alias) === $dbName) return true;
+        }
     }
     return false;
 }
@@ -42,14 +55,14 @@ function actressNameMatches(string $apiName, string $dbName): bool
  */
 function resolveImageViaWork(PDO $db, array $actress, string $apiId, string $affiliateId): string
 {
-    // 出演者数が少ない作品を優先（名前特定しやすい）
+    // 出演者数が少ない作品を優先（名前特定しやすい）、最大10作品試す
     $stmt = $db->prepare('
         SELECT w.source_id
         FROM works w
         INNER JOIN actress_work aw ON w.id = aw.work_id
         WHERE aw.actress_id = ? AND w.source = "fanza"
         ORDER BY (SELECT COUNT(*) FROM actress_work aw2 WHERE aw2.work_id = w.id) ASC
-        LIMIT 3
+        LIMIT 10
     ');
     $stmt->execute([$actress['id']]);
     $works = $stmt->fetchAll();
@@ -135,18 +148,17 @@ foreach ($actresses as $actress) {
     $data = json_decode($response, true);
     $actresses_result = $data['result']['actress'] ?? [];
 
-    // 名前が完全一致する女優を探す（画像あり優先）
+    // 名前一致する女優を探す（画像あり優先、括弧内別名も照合）
     $matched = null;
     foreach ($actresses_result as $result) {
-        if (($result['name'] ?? '') === $actress['name']) {
-            $hasImage = !empty($result['imageURL']['large']) || !empty($result['imageURL']['small']);
-            if ($hasImage) {
-                $matched = $result;
-                break;
-            }
-            if ($matched === null) {
-                $matched = $result;
-            }
+        if (!actressNameMatches($result['name'] ?? '', $actress['name'])) continue;
+        $hasImage = !empty($result['imageURL']['large']) || !empty($result['imageURL']['small']);
+        if ($hasImage) {
+            $matched = $result;
+            break;
+        }
+        if ($matched === null) {
+            $matched = $result;
         }
     }
 
