@@ -59,12 +59,18 @@ foreach ($actresses as $actress) {
     $data = json_decode($response, true);
     $actresses_result = $data['result']['actress'] ?? [];
 
-    // 名前が完全一致する女優を探す
+    // 名前が完全一致する女優を探す（画像あり優先）
     $matched = null;
     foreach ($actresses_result as $result) {
         if (($result['name'] ?? '') === $actress['name']) {
-            $matched = $result;
-            break;
+            $hasImage = !empty($result['imageURL']['large']) || !empty($result['imageURL']['small']);
+            if ($hasImage) {
+                $matched = $result;
+                break;
+            }
+            if ($matched === null) {
+                $matched = $result;
+            }
         }
     }
 
