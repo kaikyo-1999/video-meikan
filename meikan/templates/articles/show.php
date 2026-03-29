@@ -1,5 +1,3 @@
-<?php $headingText = $article['category'] ?: '記事'; require TEMPLATE_DIR . '/partials/section-heading.php'; ?>
-
 <article class="article">
     <div class="article__header">
         <?php if (!empty($article['category'])): ?>

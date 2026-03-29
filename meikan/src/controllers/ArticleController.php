@@ -242,6 +242,17 @@ class ArticleController
                 continue;
             }
 
+            // --- メリデメ比較表開始 ---
+            if (preg_match('/^:::proscons(?:\[(.+?)\])?$/', $trimmed, $pcMatch)) {
+                $closeList();
+                $flushBlockquote();
+                $inBox = true;
+                $boxType = 'proscons';
+                $boxTitle = $pcMatch[1] ?? '';
+                $boxLines = [];
+                continue;
+            }
+
             // --- チャット会話開始 ---
             if ($trimmed === ':::chat') {
                 $closeList();
@@ -359,6 +370,52 @@ class ArticleController
                         $out .= '<p>' . self::inlineFormat($bl) . '</p>';
                     }
                     $out .= '</div></details>' . "\n";
+                    $html .= $out;
+                    $inBox = false;
+                    continue;
+                }
+                if ($boxType === 'proscons') {
+                    $title = $boxTitle ?: '';
+                    $pros = [];
+                    $cons = [];
+                    $currentSide = null;
+                    $prosLabel = 'メリット';
+                    $consLabel = 'デメリット';
+                    foreach ($boxLines as $bl) {
+                        $bl = trim($bl);
+                        if ($bl === '') continue;
+                        if (preg_match('/^pros(?:\[(.+?)\])?:$/', $bl, $plMatch)) {
+                            $currentSide = 'pros';
+                            if (!empty($plMatch[1])) $prosLabel = $plMatch[1];
+                            continue;
+                        }
+                        if (preg_match('/^cons(?:\[(.+?)\])?:$/', $bl, $clMatch)) {
+                            $currentSide = 'cons';
+                            if (!empty($clMatch[1])) $consLabel = $clMatch[1];
+                            continue;
+                        }
+                        if ($currentSide === 'pros' && str_starts_with($bl, '- ')) {
+                            $pros[] = self::inlineFormat(substr($bl, 2));
+                        } elseif ($currentSide === 'cons' && str_starts_with($bl, '- ')) {
+                            $cons[] = self::inlineFormat(substr($bl, 2));
+                        }
+                    }
+                    $out = '<div class="article-proscons">';
+                    if ($title) {
+                        $out .= '<div class="article-proscons__title">' . h($title) . '</div>';
+                    }
+                    $out .= '<div class="article-proscons__grid">';
+                    $out .= '<div class="article-proscons__col article-proscons__col--pros">';
+                    $out .= '<div class="article-proscons__label article-proscons__label--pros">' . h($prosLabel) . '</div>';
+                    $out .= '<ul>';
+                    foreach ($pros as $p) $out .= '<li>' . $p . '</li>';
+                    $out .= '</ul></div>';
+                    $out .= '<div class="article-proscons__col article-proscons__col--cons">';
+                    $out .= '<div class="article-proscons__label article-proscons__label--cons">' . h($consLabel) . '</div>';
+                    $out .= '<ul>';
+                    foreach ($cons as $c) $out .= '<li>' . $c . '</li>';
+                    $out .= '</ul></div>';
+                    $out .= '</div></div>' . "\n";
                     $html .= $out;
                     $inBox = false;
                     continue;

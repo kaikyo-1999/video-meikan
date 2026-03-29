@@ -88,3 +88,15 @@ function fullUrl(string $path = ''): string
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
     return $scheme . '://' . $host . url($path);
 }
+
+/**
+ * 現在のリクエストURLのフルURL（canonical/og:url用）
+ * REQUEST_URIからクエリ文字列を除いたパスを使う
+ */
+function currentFullUrl(): string
+{
+    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? '/';
+    return $scheme . '://' . $host . $path;
+}

@@ -758,19 +758,21 @@ ul, ol { list-style: none; }
 }
 .article__body {
     line-height: 1.9;
-    font-size: 15px;
+    font-size: 16px;
 }
 .article__body h2 {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
     margin: 40px 0 16px;
     padding-left: 14px;
     border-left: 4px solid var(--color-accent);
 }
 .article__body h3 {
-    font-size: 17px;
+    font-size: 19px;
     font-weight: 700;
-    margin: 28px 0 12px;
+    margin: 32px 0 14px;
+    padding-left: 12px;
+    border-left: 3px solid var(--color-accent);
 }
 .article__body p {
     margin-bottom: 16px;
@@ -783,7 +785,7 @@ ul, ol { list-style: none; }
 }
 .article__body li {
     margin-bottom: 4px;
-    font-size: 14px;
+    font-size: 15px;
     color: var(--color-text-sub);
 }
 .article__body strong {
@@ -797,7 +799,7 @@ ul, ol { list-style: none; }
 }
 .article__body ol li {
     margin-bottom: 4px;
-    font-size: 14px;
+    font-size: 15px;
     color: var(--color-text-sub);
 }
 .article__body hr {
@@ -842,6 +844,9 @@ ul, ol { list-style: none; }
 }
 .article__body table td {
     color: var(--color-text);
+}
+.article__body table td:first-child {
+    text-align: center;
 }
 
 /* --- Cast Table (actress summary table) --- */
@@ -990,9 +995,10 @@ ul, ol { list-style: none; }
 /* --- Article Figure (block-level image) --- */
 .article-figure {
     margin: 20px 0;
+    text-align: center;
 }
 .article-figure img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     border-radius: var(--radius);
 }
@@ -1035,10 +1041,11 @@ ul, ol { list-style: none; }
 
 /* --- Article Inline Image (for tables etc) --- */
 .article-inline-img {
-    width: 80px;
+    max-width: 100px;
     height: auto;
     border-radius: 4px;
     display: block;
+    margin: 0 auto 4px;
 }
 
 /* --- Article Box (memo / alert / titled) --- */
@@ -1086,7 +1093,7 @@ ul, ol { list-style: none; }
     border-color: #D64545;
     background: #FFF5F5;
 }
-.article-box--alert .article-box__body::before {
+.article-box--alert .article-box__title::before {
     content: "\26A0\FE0F ";
 }
 
@@ -1147,6 +1154,74 @@ ul, ol { list-style: none; }
 }
 .article-say__bubble p:last-child {
     margin-bottom: 0;
+}
+
+/* --- Article Pros/Cons --- */
+.article-proscons {
+    margin: 24px 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+.article-proscons__title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-card);
+}
+.article-proscons__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.article-proscons__col {
+    padding: 16px;
+}
+.article-proscons__col--pros {
+    border-right: 1px solid var(--color-border);
+}
+.article-proscons__label {
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+.article-proscons__label--pros {
+    background: #E8F5E9;
+    color: #2E7D32;
+}
+.article-proscons__label--cons {
+    background: #FFEBEE;
+    color: #C62828;
+}
+.article-proscons__col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.article-proscons__col li {
+    padding: 6px 0;
+    font-size: 14px;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+.article-proscons__col li::before {
+    content: "・";
+}
+.article-proscons__col--cons li .article-marker--red {
+    background: linear-gradient(transparent 60%, #FFCDD2 60%);
+}
+@media (max-width: 480px) {
+    .article-proscons__grid {
+        grid-template-columns: 1fr;
+    }
+    .article-proscons__col--pros {
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+    }
 }
 
 /* --- Article Marker --- */
@@ -1259,20 +1334,26 @@ ul, ol { list-style: none; }
 }
 
 /* --- Article Button Link --- */
+.article__body p:has(.article-btn) {
+    text-align: center;
+    margin: 24px 0;
+}
 .article-btn {
     display: inline-block;
-    background: #1A6DD4;
+    background: #E91E8C;
     color: #fff !important;
     font-weight: 700;
-    font-size: 14px;
-    padding: 8px 20px;
-    border-radius: 6px;
+    font-size: 15px;
+    padding: 14px 32px;
+    border-radius: 8px;
     text-decoration: none !important;
     line-height: 1.4;
+    transition: background 0.2s;
 }
 .article-btn:hover {
-    background: #155BB5;
+    background: #C4177A;
     color: #fff !important;
+    text-decoration: none !important;
 }
 
 /* --- Article Note --- */
