@@ -21,17 +21,17 @@ av女優博士です。直近半年にデビューした新人の中から、小
 
 ## 小柄・ミニマムのおすすめ新人AV女優
 
-| 女優名 | デビュー月 | 身長 | スリーサイズ | おすすめ度 |
-| --- | --- | --- | --- | --- |
-| 天音るな | 2026年1月 | 148cm | 非公開（Kカップ） | ★★★★★ |
-| 芦田希空 | 2025年10月 | 149cm | B78/W54/H80（Bカップ） | ★★★★ |
-| 堀北桃愛 | 2025年10月 | 150cm | B82/W57/H83（Fカップ） | ★★★★★ |
-| 牧河柚乃 | 2025年12月 | 150cm | 非公開 | ★★★★ |
-| 香川あんず | 2026年1月 | 150cm | 非公開（Fカップ） | ★★★★ |
-| 夏生なつ | 2025年12月 | 152cm | B90/W57/H88（Gカップ） | ★★★★★ |
-| 花咲澪 | 2025年12月 | 155cm | B90/W56/H90（Gカップ） | ★★★★★ |
+:::cast[小柄新人AV女優]{デビュー月,身長,スリーサイズ}
+天音るな | - | https://pics.dmm.co.jp/digital/video/sone00590/sone00590pl.jpg | 2026年1月 | 148cm | 非公開（Kカップ）
+芦田希空 | - | https://pics.dmm.co.jp/digital/video/mida00464/mida00464pl.jpg | 2025年10月 | 149cm | B78/W54/H80（Bカップ）
+堀北桃愛 | - | https://pics.dmm.co.jp/digital/video/ipzz00713/ipzz00713pl.jpg | 2025年10月 | 150cm | B82/W57/H83（Fカップ）
+牧河柚乃 | - | https://pics.dmm.co.jp/digital/video/nkd00339/nkd00339pl.jpg | 2025年12月 | 150cm | 非公開
+香川あんず | - | https://pics.dmm.co.jp/digital/video/midv00906/midv00906pl.jpg | 2026年1月 | 150cm | 非公開（Fカップ）
+夏生なつ | - | https://pics.dmm.co.jp/digital/video/snos00055/snos00055pl.jpg | 2025年12月 | 152cm | B90/W57/H88（Gカップ）
+花咲澪 | - | https://pics.dmm.co.jp/digital/video/ipzz00770/ipzz00770pl.jpg | 2025年12月 | 155cm | B90/W56/H90（Gカップ）
+:::
 
-### 天音るな
+## 天音るな
 
 ![天音るなのサンプル](https://pics.dmm.co.jp/digital/video/sone00590/sone00590jp-6.jpg)
 
@@ -48,7 +48,7 @@ av女優博士です。直近半年にデビューした新人の中から、小
 
 @actress[runa-2]
 
-**おすすめ作品**：[天音るな AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=sone00590/)
+**デビュー作品**：[天音るな AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=sone00590/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/sone00590/sone00590jp-2.jpg
@@ -56,10 +56,10 @@ https://pics.dmm.co.jp/digital/video/sone00590/sone00590jp-9.jpg
 :::
 
 :::say
-148cmにKカップというスペックは業界でも屈指のギャップ。S1からのデビューということで作品クオリティも折り紙つきです。
+148cm×Kカップというスペックは業界全体を見渡しても屈指のギャップだ。S1 NO.1 STYLEが送り出した新人ということで映像品質も折り紙付き。ミニマム好きもグラマー好きも両取りできる稀有な逸材だな。
 :::
 
-### 芦田希空
+## 芦田希空
 
 ![芦田希空のサンプル](https://pics.dmm.co.jp/digital/video/mida00464/mida00464jp-5.jpg)
 
@@ -76,7 +76,7 @@ https://pics.dmm.co.jp/digital/video/sone00590/sone00590jp-9.jpg
 
 @actress[ashida-noa]
 
-**おすすめ作品**：[新人 幼顔×幼体 ダメなコトを覗いてるような背徳ミニマム 幼ビジュ原石 芦田希空](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=mifd00360/)
+**デビュー作品**：[新人 幼顔×幼体 ダメなコトを覗いてるような背徳ミニマム 幼ビジュ原石 芦田希空](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=mifd00360/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/mida00464/mida00464jp-3.jpg
@@ -84,10 +84,10 @@ https://pics.dmm.co.jp/digital/video/mida00464/mida00464jp-9.jpg
 :::
 
 :::say
-音大生のクラシック少女がまさかのAVデビュー。149cmのミニマムボディと幼顔の組み合わせは背徳感たっぷりです。
+音大でクラシックを専攻する149cmの「幼ビジュ原石」をMOODYZが発掘した。W54cmの細身ボディに幼顔、恥ずかしがり屋な性格が生む背徳感はミニマム系の中でも独特だ。DINO所属でロリ系好きのツボを的確に押さえている。
 :::
 
-### 堀北桃愛
+## 堀北桃愛
 
 ![堀北桃愛のサンプル](https://pics.dmm.co.jp/digital/video/ipzz00713/ipzz00713jp-5.jpg)
 
@@ -104,7 +104,7 @@ https://pics.dmm.co.jp/digital/video/mida00464/mida00464jp-9.jpg
 
 @actress[horikita-moea]
 
-**おすすめ作品**：[FIRST IMPRESSION 187 堀北桃愛](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=ipzz00303/)
+**デビュー作品**：[FIRST IMPRESSION 187 堀北桃愛](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=ipzz00303/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/ipzz00713/ipzz00713jp-2.jpg
@@ -112,10 +112,10 @@ https://pics.dmm.co.jp/digital/video/ipzz00713/ipzz00713jp-3.jpg
 :::
 
 :::say
-ミスコンファイナリストの経歴が光る。150cmにFカップのギャップボディと整ったルックスは、アイポケ新人の中でも特別な存在感です。
+3万人の応募者から勝ち残ったミスコンファイナリストが150cm×Fカップという反則スペックでアイポケのFIRST IMPRESSIONを担った。週刊ポストのグラビアやデジタル写真集もデビュー前に出ており、業界の期待値が極めて高い新人だ。
 :::
 
-### 牧河柚乃
+## 牧河柚乃
 
 ![牧河柚乃のサンプル](https://pics.dmm.co.jp/digital/video/nkd00339/nkd00339jp-6.jpg)
 
@@ -132,7 +132,7 @@ https://pics.dmm.co.jp/digital/video/ipzz00713/ipzz00713jp-3.jpg
 
 @actress[makikawa-yuno]
 
-**おすすめ作品**：[性玩妖精 牧河柚乃](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=nkd00339/)
+**デビュー作品**：[性玩妖精 牧河柚乃](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=nkd00339/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/nkd00339/nkd00339jp-3.jpg
@@ -140,10 +140,10 @@ https://pics.dmm.co.jp/digital/video/nkd00339/nkd00339jp-10.jpg
 :::
 
 :::say
-デビューからのハイペースな作品リリースが目を引く。150cmのコンパクトボディで複数レーベルをまたいで活躍する注目株です。
+150cmのコンパクトボディで中嶋興業・テンダー・わかしラボと複数レーベルをまたぎ、デビュー直後から12本以上という驚異的なペースで活動している。くすぐりフェチから一般AVまでこなす守備範囲の広さは、この小柄な体から想像できない。
 :::
 
-### 香川あんず
+## 香川あんず
 
 ![香川あんずのサンプル](https://pics.dmm.co.jp/digital/video/midv00906/midv00906jp-6.jpg)
 
@@ -160,7 +160,7 @@ https://pics.dmm.co.jp/digital/video/nkd00339/nkd00339jp-10.jpg
 
 @actress[anzu]
 
-**おすすめ作品**：[香川あんず AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=midv00906/)
+**デビュー作品**：[香川あんず AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=midv00906/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/midv00906/midv00906jp-2.jpg
@@ -168,10 +168,10 @@ https://pics.dmm.co.jp/digital/video/midv00906/midv00906jp-9.jpg
 :::
 
 :::say
-150cmにFカップというバランスは小柄系の新人でも特に目を引く。2026年デビューの最新ルーキーとして要チェックです。
+150cm×FカップというミニマムグラマーのスペックがMOODYZ系MIDVからデビューだ。「あんずちゃん」の愛称で早くもファンが付き始めており、小柄好きにもグラマー好きにも刺さる万能型の新人だな。
 :::
 
-### 夏生なつ
+## 夏生なつ
 
 ![夏生なつのサンプル](https://pics.dmm.co.jp/digital/video/snos00055/snos00055jp-6.jpg)
 
@@ -188,7 +188,7 @@ https://pics.dmm.co.jp/digital/video/midv00906/midv00906jp-9.jpg
 
 @actress[natsu]
 
-**おすすめ作品**：[夏生なつ AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=snos00055/)
+**デビュー作品**：[夏生なつ AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=snos00055/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/snos00055/snos00055jp-2.jpg
@@ -196,10 +196,10 @@ https://pics.dmm.co.jp/digital/video/snos00055/snos00055jp-6.jpg
 :::
 
 :::say
-152cmにGカップというスペックはS1が自信を持って送り出した素材の証。小柄グラマー系の頂点に立つ逸材です。
+152cm×B90のGカップをS1 NO.1 STYLEが送り出したという事実がすべてを物語っている。W57cmのくびれとH88cmのメリハリが加わり、小柄グラマー系の中でもスタイルの完成度が頭一つ抜けている逸材だ。
 :::
 
-### 花咲澪
+## 花咲澪
 
 ![花咲澪のサンプル](https://pics.dmm.co.jp/digital/video/ipzz00770/ipzz00770jp-6.jpg)
 
@@ -216,7 +216,7 @@ https://pics.dmm.co.jp/digital/video/snos00055/snos00055jp-6.jpg
 
 @actress[hanasaki-mio]
 
-**おすすめ作品**：[FIRST IMPRESSION 189 花咲澪](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=ipzz00770/)
+**デビュー作品**：[FIRST IMPRESSION 189 花咲澪](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=ipzz00770/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/ipzz00770/ipzz00770jp-2.jpg
@@ -224,7 +224,7 @@ https://pics.dmm.co.jp/digital/video/ipzz00770/ipzz00770jp-9.jpg
 :::
 
 :::say
-バストとヒップが両方90cmのシンメトリーボディは圧倒的。FIRST IMPRESSIONシリーズの品質保証もあり、これは必見の一本です。
+B90×H90のシンメトリーボディにW56cmのくびれという155cmとは思えないスペックだ。アイポケのFIRST IMPRESSION 189を担っており、撮影クオリティも含めてミニマムグラマー系の決定版と言っていい。
 :::
 
 ## まとめ

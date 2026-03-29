@@ -22,18 +22,17 @@ av女優博士です。直近半年にデビューした新人の中から、芸
 
 ## 芸能人出身のおすすめ新人AV女優
 
-| 女優名 | デビュー月 | 身長 | スリーサイズ | おすすめ度 |
-| --- | --- | --- | --- | --- |
-| 雛形みくる | 2026年2月 | 170cm | B95(I) W54 H90 | ★★★★★ |
-| 堀北桃愛 | 2025年10月 | 150cm | B82(F) W57 H83 | ★★★★★ |
-| 最上もあ | 2025年10月 | 144cm | B94(G) W58 H88 | ★★★★★ |
-| 村流那 | 2026年2月 | 158cm | B92(F) W62 H89 | ★★★★☆ |
-| 青坂あおい | 2026年1月 | 163cm | B80(C) W62 H97 | ★★★★☆ |
-| 咲月ひな | 2026年3月 | 152cm | B80(A) W54 H82 | ★★★★☆ |
-| 重盛れいか | 2026年1月 | - | B98(H) W58 H85 | ★★★★☆ |
-| 最上もあ | 2025年10月 | 144cm | B94(G) W58 H88 | ★★★★★ |
+:::cast[芸能人出身新人AV女優]{デビュー月,身長,スリーサイズ}
+雛形みくる | - | https://pics.dmm.co.jp/digital/video/snos00080/snos00080pl.jpg | 2026年2月 | 170cm | B95(I) W54 H90
+堀北桃愛 | - | https://pics.dmm.co.jp/digital/video/ipzz00713/ipzz00713pl.jpg | 2025年10月 | 150cm | B82(F) W57 H83
+最上もあ | - | https://pics.dmm.co.jp/digital/video/mifd00658/mifd00658pl.jpg | 2025年10月 | 144cm | B94(G) W58 H88
+村流那 | - | https://pics.dmm.co.jp/digital/video/cawd00954/cawd00954pl.jpg | 2026年2月 | 158cm | B92(F) W62 H89
+青坂あおい | - | https://pics.dmm.co.jp/digital/video/cawd00918/cawd00918pl.jpg | 2026年1月 | 163cm | B80(C) W62 H97
+咲月ひな | - | https://pics.dmm.co.jp/digital/video/mukc00122/mukc00122pl.jpg | 2026年3月 | 152cm | B80(A) W54 H82
+重盛れいか | - | https://pics.dmm.co.jp/digital/video/cawd00937/cawd00937pl.jpg | 2026年1月 | - | B98(H) W58 H85
+:::
 
-### 雛形みくる
+## 雛形みくる
 
 ![雛形みくるのサンプル](https://pics.dmm.co.jp/digital/video/snos00080/snos00080jp-6.jpg)
 
@@ -47,7 +46,7 @@ av女優博士です。直近半年にデビューした新人の中から、芸
 
 @actress[mikuru]
 
-**おすすめ作品**：[新人NO.1STYLE 雛形みくる AVデビュー 幼顔Icup 実はとんでもないくびれで170cmの高身長](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=snos00080/)
+**デビュー作品**：[新人NO.1STYLE 雛形みくる AVデビュー 幼顔Icup 実はとんでもないくびれで170cmの高身長](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=snos00080/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/snos00080/snos00080jp-2.jpg
@@ -55,12 +54,12 @@ https://pics.dmm.co.jp/digital/video/snos00080/snos00080jp-9.jpg
 :::
 
 :::say
-170cmのIカップとくびれのトリプルギャップが最高。デビュー作からクオリティが高く、今後の作品展開が本当に楽しみな新人です。
+170cm×Iカップ×W54cmのトリプルギャップはS1歴代新人の中でもトップクラスだ。元介護���という異色の経歴で、コンプレックスだった高身長が今や最大の武器になっている。デビュー作のクオリティからして、S1の本気度が窺える。
 :::
 
 ---
 
-### 堀北桃愛
+## 堀北桃愛
 
 ![堀北桃愛のサンプル](https://pics.dmm.co.jp/digital/video/ipzz00713/ipzz00713jp-3.jpg)
 
@@ -74,7 +73,7 @@ https://pics.dmm.co.jp/digital/video/snos00080/snos00080jp-9.jpg
 
 @actress[horikita-moea]
 
-**おすすめ作品**：[30,000人が応募した日本一可愛い学生を決めるミスコンファイナリスト！！ FIRST IMPRESSION 187 堀北桃愛](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=ipzz00713/)
+**デビュー作品**：[30,000人が応募した日本一可愛い学生を決めるミスコンファイナリスト！！ FIRST IMPRESSION 187 堀北桃愛](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=ipzz00713/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/ipzz00713/ipzz00713jp-2.jpg
@@ -82,12 +81,12 @@ https://pics.dmm.co.jp/digital/video/ipzz00713/ipzz00713jp-5.jpg
 :::
 
 :::say
-医学生×ミスコンファイナリストという経歴が異色すぎる。Fカップとは思えないほど品があって、アイデアポケットが本気で推しているのがわかります。
+3万人の応募者から勝ち上がったミスコンファイナリストが現役医学生という経歴は異色すぎる。150cm×Fカップのギャップに加え、知性から来る品の良さがアイデアポケットのFIRST IMPRESSIONシリーズにぴったりハマっている。
 :::
 
 ---
 
-### 最上もあ
+## 最上もあ
 
 ![最上もあのサンプル](https://pics.dmm.co.jp/digital/video/mifd00658/mifd00658jp-6.jpg)
 
@@ -101,7 +100,7 @@ https://pics.dmm.co.jp/digital/video/ipzz00713/ipzz00713jp-5.jpg
 
 @actress[moa]
 
-**おすすめ作品**：[新人 お〜い！ネット民の特定班たち！！みんなでワタシの子役時代を特定してみろ〜 広告、CM、バラエティ番組、ドラマ、映画、遊園地PVを網羅した元子役タレントAVデビュー！！ 最上もあ](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=mifd00658/)
+**デビュー作品**：[新人 お〜い！ネット民の特定班たち！！みんなでワタシの子役時代を特定してみろ〜 広告、CM、バラエティ番組、ドラマ、映画、遊園地PVを網羅した元子役タレントAVデビュー！！ 最上もあ](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=mifd00658/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/mifd00658/mifd00658jp-2.jpg
@@ -109,12 +108,12 @@ https://pics.dmm.co.jp/digital/video/mifd00658/mifd00658jp-9.jpg
 :::
 
 :::say
-「ネット民よ子役時代を特定してみろ」というタイトルからして只者じゃない。144cmにGカップという反則スペック、今後のMoodyzでの活躍が楽しみです。
+「ネット民よ子役時代を特定してみろ」というタイトルからして只者じゃない。144cm×Gカップという反則スペックに、子役時代から培った表情の豊かさが加わっている。MOODYZ Fresh（MIFD）からのデビューで映像品質も申し分ない。
 :::
 
 ---
 
-### 村流那
+## 村流那
 
 ![村流那のサンプル](https://pics.dmm.co.jp/digital/video/cawd00954/cawd00954jp-6.jpg)
 
@@ -128,7 +127,7 @@ https://pics.dmm.co.jp/digital/video/mifd00658/mifd00658jp-9.jpg
 
 @actress[muraruna]
 
-**おすすめ作品**：[ハメたら雄叫びイキまくる肉欲ボディ。柔道の天才少女 村 流那（20） AVデビュー！！](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=cawd00954/)
+**デビュー作品**：[ハメたら雄叫びイキまくる肉欲ボディ。柔道の天才少女 村 流那（20） AVデビュー！！](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=cawd00954/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/cawd00954/cawd00954jp-2.jpg
@@ -136,12 +135,12 @@ https://pics.dmm.co.jp/digital/video/cawd00954/cawd00954jp-10.jpg
 :::
 
 :::say
-柔道×AV女優という唯一無二の経歴。鍛え上げられた体とFカップ、デビュー作での激しい反応は必見。アスリート系が好きな方に超おすすめです。
+柔道の天才少女がkawaii*専属でAVデビューという唯一無二の経歴だ。158cm×Fカップの鍛え上げられた肉体が全力で反応するデビュー作は、アスリート系ジャンルの中でも頭一つ抜けた仕上がりだな。
 :::
 
 ---
 
-### 青坂あおい
+## 青坂あおい
 
 ![青坂あおいのサンプル](https://pics.dmm.co.jp/digital/video/cawd00918/cawd00918jp-6.jpg)
 
@@ -155,7 +154,7 @@ https://pics.dmm.co.jp/digital/video/cawd00954/cawd00954jp-10.jpg
 
 @actress[aoi]
 
-**おすすめ作品**：[1億分の1 美少女 青坂あおい AV DEBUT 日本国民の中で、ただ1人の「美」を司る者。](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=cawd00918/)
+**デビュー作品**：[1億分の1 美少女 青坂あおい AV DEBUT 日本国民の中で、ただ1人の「美」を司る者。](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=cawd00918/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/cawd00918/cawd00918jp-2.jpg
@@ -163,12 +162,12 @@ https://pics.dmm.co.jp/digital/video/cawd00918/cawd00918jp-9.jpg
 :::
 
 :::say
-「1億分の1の美少女」というキャッチコピーに偽りなし。上品な雰囲気とH97cmの美尻が特に印象的。kawaii*の専属として今後も目が離せません。
+「1億分の1の美少女」というキャッチコピーに偽りはない。芸能活動で磨かれた上品な雰囲気にH97cmの美尻が加わり、kawaii*の専属新人として完成度が高い。20歳の初々しさと品の良さの両立がこの女優の最大の武器だ。
 :::
 
 ---
 
-### 咲月ひな
+## 咲月ひな
 
 ![咲月ひなのサンプル](https://pics.dmm.co.jp/digital/video/mukc00122/mukc00122jp-6.jpg)
 
@@ -182,7 +181,7 @@ https://pics.dmm.co.jp/digital/video/cawd00918/cawd00918jp-9.jpg
 
 @actress[hina]
 
-**おすすめ作品**：[無垢史上最高レベル 咲月ひな AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=mukc00122/)
+**デビュー作品**：[無垢史上最高レベル 咲月ひな AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=mukc00122/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/mukc00122/mukc00122jp-2.jpg
@@ -190,12 +189,12 @@ https://pics.dmm.co.jp/digital/video/mukc00122/mukc00122jp-9.jpg
 :::
 
 :::say
-仮面女子出身という経歴を持つ咲月ひな。アイドル時代の清楚なイメージとのギャップが魅力。デビューしたばかりなので今後の活躍に注目です。
+仮面女子（アリスプロジェクト）出身の本物の地下アイドルがAVに来た。Aカップのスレンダーボディだが、無垢レーベルが「史上最高レベル」と評価するだけあって顔面偏差値が高い。アイドル時代のファンベースも含め、話題性は十分だ。
 :::
 
 ---
 
-### 重盛れいか
+## 重盛れいか
 
 ![重盛れいかのサンプル](https://pics.dmm.co.jp/digital/video/cawd00937/cawd00937jp-6.jpg)
 
@@ -209,7 +208,7 @@ TikTokフォロワー10万人超、X（旧Twitter）フォロワー4万人超を
 
 @actress[reika]
 
-**おすすめ作品**：[重盛れいか kawaii*デビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=cawd00937/)
+**デビュー作品**：[重盛れいか kawaii*デビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=cawd00937/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/cawd00937/cawd00937jp-2.jpg
@@ -217,7 +216,7 @@ https://pics.dmm.co.jp/digital/video/cawd00937/cawd00937jp-9.jpg
 :::
 
 :::say
-TikTok10万フォロワーのSNSグラドルがAVデビュー。Hカップ98cmという数字以上に、グラドル経験から来るカメラへの慣れが際立っています。
+TikTok10万・X4万フォロワーのSNSグラドルがkawaii*からデビューだ。B98のHカップはグラドル時代から折り紙付きで、撮影慣れした表情やポージングの完成度がデビュー作とは思えないレベル。SNSのカリスマ性がAVでも活きている。
 :::
 
 ---

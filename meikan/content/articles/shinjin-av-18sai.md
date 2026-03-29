@@ -21,15 +21,15 @@ av女優博士です。2025〜2026年のデビュー組の中から、18歳・19
 
 ## 18〜19歳でデビューした新人AV女優
 
-| 女優名 | デビュー月 | 身長 | スリーサイズ | おすすめ度 |
-| --- | --- | --- | --- | --- |
-| 高星なぎさ | 2026年1月 | 非公開 | 非公開 | ★★★★★ |
-| 寺川ねね | 2025年10月 | 非公開 | 非公開 | ★★★★★ |
-| 佐野葉月 | 2025年9月 | 非公開 | Bカップ | ★★★★ |
-| 結川ひより | 2026年1月 | 非公開 | 非公開 | ★★★★ |
-| 翔乃そら | 2026年2月 | 非公開 | Aカップ | ★★★★ |
+:::cast[18歳新人AV女優]{デビュー月,身長,スリーサイズ}
+高星なぎさ | - | https://pics.dmm.co.jp/digital/video/1sdab00342/1sdab00342pl.jpg | 2026年1月 | 非公開 | 非公開
+寺川ねね | - | https://pics.dmm.co.jp/digital/video/1sdab00340/1sdab00340pl.jpg | 2025年10月 | 非公開 | 非公開
+佐野葉月 | - | https://pics.dmm.co.jp/digital/video/1sdab00339/1sdab00339pl.jpg | 2025年9月 | 非公開 | Bカップ
+結川ひより | - | https://pics.dmm.co.jp/digital/video/1sdab00333/1sdab00333pl.jpg | 2026年1月 | 非公開 | 非公開
+翔乃そら | - | https://pics.dmm.co.jp/digital/video/cawd00947/cawd00947pl.jpg | 2026年2月 | 非公開 | Aカップ
+:::
 
-### 高星なぎさ
+## 高星なぎさ
 
 ![高星なぎさのサンプル](https://pics.dmm.co.jp/digital/video/1sdab00342/1sdab00342jp-5.jpg)
 
@@ -46,7 +46,7 @@ av女優博士です。2025〜2026年のデビュー組の中から、18歳・19
 
 @actress[nagisa]
 
-**おすすめ作品**：[一度は妄想で侵したクラスメイト。名古屋育ち・Z世代の黒髪美少女 高星なぎさ 18歳AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1sdab00342/)
+**デビュー作品**：[一度は妄想で侵したクラスメイト。名古屋育ち・Z世代の黒髪美少女 高星なぎさ 18歳AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1sdab00342/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/1sdab00342/1sdab00342jp-2.jpg
@@ -59,7 +59,7 @@ https://pics.dmm.co.jp/digital/video/1sdab00342/1sdab00342jp-4.jpg
 
 ---
 
-### 寺川ねね
+## 寺川ねね
 
 ![寺川ねねのサンプル](https://pics.dmm.co.jp/digital/video/1sdab00340/1sdab00340jp-6.jpg)
 
@@ -76,7 +76,7 @@ https://pics.dmm.co.jp/digital/video/1sdab00342/1sdab00342jp-4.jpg
 
 @actress[nene]
 
-**おすすめ作品**：[【18歳AVデビュー】純潔を奪われたい惑う瞳のミニマム女子。自転車で走る1時間半、毎日1人でエッチな妄想してた。 寺川ねね](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1sdab00340/)
+**デビュー作品**：[【18歳AVデビュー】純潔を奪われたい惑う瞳のミニマム女子。自転車で走る1時間半、毎日1人でエッチな妄想してた。 寺川ねね](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1sdab00340/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/1sdab00340/1sdab00340jp-2.jpg
@@ -89,7 +89,7 @@ https://pics.dmm.co.jp/digital/video/1sdab00340/1sdab00340jp-8.jpg
 
 ---
 
-### 佐野葉月
+## 佐野葉月
 
 ![佐野葉月のサンプル](https://pics.dmm.co.jp/digital/video/1sdab00339/1sdab00339jp-6.jpg)
 
@@ -107,7 +107,7 @@ https://pics.dmm.co.jp/digital/video/1sdab00340/1sdab00340jp-8.jpg
 
 @actress[sano-hazuki]
 
-**おすすめ作品**：[角オナニー歴10年！？ 将来もエッチもまだ模索中の、ベビーフェイス×しっかり者なギャップ美少女。プロの手ほどきで快感に目覚め、大量潮吹き！ 佐野葉月](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1sdab00339/)
+**デビュー作品**：[角オナニー歴10年！？ 将来もエッチもまだ模索中の、ベビーフェイス×しっかり者なギャップ美少女。プロの手ほどきで快感に目覚め、大量潮吹き！ 佐野葉月](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1sdab00339/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/1sdab00339/1sdab00339jp-2.jpg
@@ -120,7 +120,7 @@ https://pics.dmm.co.jp/digital/video/1sdab00339/1sdab00339jp-8.jpg
 
 ---
 
-### 結川ひより
+## 結川ひより
 
 ![結川ひよりのサンプル](https://pics.dmm.co.jp/digital/video/1sdab00333/1sdab00333jp-6.jpg)
 
@@ -137,7 +137,7 @@ https://pics.dmm.co.jp/digital/video/1sdab00339/1sdab00339jp-8.jpg
 
 @actress[hiyori]
 
-**おすすめ作品**：[知りたい感じたい『精子を飲んでみたい』うるうるな瞳と真っ白肌の東北っ娘。あくなき探求心を持つ元美術部の少女は念願の精飲SEXで本能を剥き出しにする。 結川ひより](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1sdab00333/)
+**デビュー作品**：[知りたい感じたい『精子を飲んでみたい』うるうるな瞳と真っ白肌の東北っ娘。あくなき探求心を持つ元美術部の少女は念願の精飲SEXで本能を剥き出しにする。 結川ひより](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1sdab00333/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/1sdab00333/1sdab00333jp-2.jpg
@@ -150,7 +150,7 @@ https://pics.dmm.co.jp/digital/video/1sdab00333/1sdab00333jp-7.jpg
 
 ---
 
-### 翔乃そら
+## 翔乃そら
 
 ![翔乃そらのサンプル](https://pics.dmm.co.jp/digital/video/cawd00947/cawd00947jp-6.jpg)
 
@@ -167,7 +167,7 @@ https://pics.dmm.co.jp/digital/video/1sdab00333/1sdab00333jp-7.jpg
 
 @actress[sora]
 
-**おすすめ作品**：[史上最も幼くエッチなAカップ合法ロリ交通警備員 AVデビュー 翔乃そら](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=cawd00947/)
+**デビュー作品**：[史上最も幼くエッチなAカップ合法ロリ交通警備員 AVデビュー 翔乃そら](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=cawd00947/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/cawd00947/cawd00947jp-2.jpg

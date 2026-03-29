@@ -21,15 +21,15 @@ av女優博士です。直近半年にデビューした新人の中から、元
 
 ## 元アイドルのおすすめ新人AV女優
 
-| 女優名 | デビュー月 | 身長 | スリーサイズ | おすすめ度 |
-| --- | --- | --- | --- | --- |
-| 姫森あむ | 2026年2月 | 153cm | B93(G) W58 H85 | ★★★★★ |
-| 喜多川みら | 2026年2月 | 167cm | B92(G) W62 H90 | ★★★★★ |
-| 甘夏唯 | 2026年2月 | 155cm | B88(E) W60 H87 | ★★★★☆ |
-| 咲月ひな | 2026年3月 | 152cm | B80(A) W54 H82 | ★★★★☆ |
-| 浅海なみ | 2026年2月 | 155cm | B84(D) W60 H89 | ★★★★☆ |
+:::cast[元アイドル新人AV女優]{デビュー月,身長,スリーサイズ}
+姫森あむ | - | https://pics.dmm.co.jp/digital/video/ipzz00774/ipzz00774pl.jpg | 2026年2月 | 153cm | B93(G) W58 H85
+喜多川みら | - | https://pics.dmm.co.jp/digital/video/snos00085/snos00085pl.jpg | 2026年2月 | 167cm | B92(G) W62 H90
+甘夏唯 | - | https://pics.dmm.co.jp/digital/video/1fns00151/1fns00151pl.jpg | 2026年2月 | 155cm | B88(E) W60 H87
+咲月ひな | - | https://pics.dmm.co.jp/digital/video/mukc00122/mukc00122pl.jpg | 2026年3月 | 152cm | B80(A) W54 H82
+浅海なみ | - | https://pics.dmm.co.jp/digital/video/cawd00952/cawd00952pl.jpg | 2026年2月 | 155cm | B84(D) W60 H89
+:::
 
-### 姫森あむ
+## 姫森あむ
 
 ![姫森あむのサンプル](https://pics.dmm.co.jp/digital/video/ipzz00774/ipzz00774jp-6.jpg)
 
@@ -43,7 +43,7 @@ av女優博士です。直近半年にデビューした新人の中から、元
 
 @actress[amu]
 
-**おすすめ作品**：[姫森あむ アイデアポケット AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=ipzz00774/)
+**デビュー作品**：[姫森あむ アイデアポケット AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=ipzz00774/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/ipzz00774/ipzz00774jp-2.jpg
@@ -51,12 +51,12 @@ https://pics.dmm.co.jp/digital/video/ipzz00774/ipzz00774jp-7.jpg
 :::
 
 :::say
-ベロティカ出身のGカップアイドルがアイデアポケットに入るとは。アイドル時代には見せなかった一面が全開で、デビュー直後から完成度の高い作品を連発しています。
+ベロティカ出身の153cm×Gカップがアイデアポケット専属に入るという展開は衝撃的だ。アイドル時代の人懐っこい笑顔はそのまま、デビュー作から見せた積極性で完成度の高い作品を連発している。元アイドル新人の中でもスペックが頭一つ抜けているな。
 :::
 
 ---
 
-### 喜多川みら
+## 喜多川みら
 
 ![喜多川みらのサンプル](https://pics.dmm.co.jp/digital/video/snos00085/snos00085jp-6.jpg)
 
@@ -70,7 +70,7 @@ https://pics.dmm.co.jp/digital/video/ipzz00774/ipzz00774jp-7.jpg
 
 @actress[mira]
 
-**おすすめ作品**：[新人NO.1STYLE 喜多川みら AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=snos00085/)
+**デビュー作品**：[新人NO.1STYLE 喜多川みら AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=snos00085/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/snos00085/snos00085jp-2.jpg
@@ -78,12 +78,12 @@ https://pics.dmm.co.jp/digital/video/snos00085/snos00085jp-9.jpg
 :::
 
 :::say
-ご当地アイドル出身の167cmGカップがS1に入るという抜擢。長身×巨乳×アイドル経験という三拍子揃った新人で、今後の専属作品がとても楽しみです。
+北九州のご当地アイドル「キタキュンスマイル」出身で167cm×Gカップという恵まれたスペックがS1 NO.1 STYLEに抜擢された。長身×巨乳×アイドル経験の三拍子は業界関係者から「逸材」と評されており、S1専属としての今後が非常に楽しみだ。
 :::
 
 ---
 
-### 甘夏唯
+## 甘夏唯
 
 ![甘夏唯のサンプル](https://pics.dmm.co.jp/digital/video/1fns00151/1fns00151jp-6.jpg)
 
@@ -97,7 +97,7 @@ https://pics.dmm.co.jp/digital/video/snos00085/snos00085jp-9.jpg
 
 @actress[amanatsu-yui]
 
-**おすすめ作品**：[甘夏唯 FALENOstar AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1fsrn001/)
+**デビュー作品**：[甘夏唯 FALENOstar AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1fsrn001/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/1fns00151/1fns00151jp-2.jpg
@@ -105,12 +105,12 @@ https://pics.dmm.co.jp/digital/video/1fns00151/1fns00151jp-9.jpg
 :::
 
 :::say
-北海道ご当地アイドル出身でFALENOstar入り。清楚なアイドルイメージとEカップのギャップがたまらない。デビュー作は初々しさと積極性が絶妙なバランスです。
+北海道のご当地アイドル「フルーティー」19期生がFALENOstar専属でデビューだ。北国仕込みの白い肌に155cm×B88のEカップというバランスの良さは、清楚なアイドルイメージとの落差が強烈。アイドル経験で磨かれた表現力がデビュー作にも活きている。
 :::
 
 ---
 
-### 咲月ひな
+## 咲月ひな
 
 ![咲月ひなのサンプル](https://pics.dmm.co.jp/digital/video/mukc00122/mukc00122jp-6.jpg)
 
@@ -124,7 +124,7 @@ https://pics.dmm.co.jp/digital/video/1fns00151/1fns00151jp-9.jpg
 
 @actress[hina]
 
-**おすすめ作品**：[無垢史上最高レベル 咲月ひな AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=mukc00122/)
+**デビュー作品**：[無垢史上最高レベル 咲月ひな AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=mukc00122/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/mukc00122/mukc00122jp-2.jpg
@@ -132,12 +132,12 @@ https://pics.dmm.co.jp/digital/video/mukc00122/mukc00122jp-9.jpg
 :::
 
 :::say
-仮面女子出身という本物の地下アイドルがデビュー。スレンダーボディと清楚な顔立ちは、アイドル時代から変わらない魅力。3月デビューの注目新人です。
+仮面女子（アリスプロジェクト）出身の本物の地下アイドルが無垢からデビューだ。Aカップのスレンダーボディと清楚な顔立ちは変わらず、無垢が「史上最高レベル」と謳うだけの素材力がある。地下アイドル界のトップブランド出身という話題性も大きい。
 :::
 
 ---
 
-### 浅海なみ
+## 浅海なみ
 
 ![浅海なみのサンプル](https://pics.dmm.co.jp/digital/video/cawd00952/cawd00952jp-6.jpg)
 
@@ -151,7 +151,7 @@ https://pics.dmm.co.jp/digital/video/mukc00122/mukc00122jp-9.jpg
 
 @actress[nami-2]
 
-**おすすめ作品**：[浅海なみ kawaii* AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=cawd00952/)
+**デビュー作品**：[浅海なみ kawaii* AVデビュー](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=cawd00952/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/cawd00952/cawd00952jp-2.jpg
@@ -159,7 +159,7 @@ https://pics.dmm.co.jp/digital/video/cawd00952/cawd00952jp-9.jpg
 :::
 
 :::say
-大手オーディション最終選考まで残った実力者がkawaii*でデビュー。アイドルになり損ねた逸材がAV業界に来てくれた、という意味で業界全体が得をした感じです。
+大手アイドルオーディション最終選考まで残った実力者がkawaii*専属でデビューだ。アイドルになれなかった「非公式の一流素材」であり、155cm×Dカップのナチュラルなスタイルとオーディションで磨かれた存在感がそのままAVで開花している。
 :::
 
 ---
