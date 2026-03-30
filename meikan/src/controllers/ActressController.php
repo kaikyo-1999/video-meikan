@@ -14,6 +14,12 @@ class ActressController
         $genres = Actress::getGenres($actress['id']);
         $similarActresses = Actress::getSimilarActresses($actress['id']);
 
+        // 似ている女優が空の場合、タグ+デビュー時期ベースの関連女優をフォールバック
+        $relatedActresses = [];
+        if (empty($similarActresses)) {
+            $relatedActresses = Actress::getRelatedActresses($actress['id']);
+        }
+
         // 作品数が少なくジャンルが空の場合、作品リストを直接表示
         $works = [];
         if (empty($genres)) {
@@ -48,6 +54,7 @@ class ActressController
             'genres' => $genres,
             'works' => $works,
             'similarActresses' => $similarActresses,
+            'relatedActresses' => $relatedActresses,
             'jsonLd' => $jsonLd,
         ]);
     }

@@ -100,6 +100,38 @@ class Actress
         return $result;
     }
 
+    /**
+     * 関連女優を取得（タグ+デビュー時期ベース、作品少ない女優向け）
+     * similar_actressesが空の場合のフォールバック
+     */
+    public static function getRelatedActresses(int $actressId): array
+    {
+        $cacheKey = 'related_actresses_' . $actressId;
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return $cached;
+
+        $db = Database::getInstance();
+
+        // テーブルが存在しない場合は空配列
+        try {
+            $stmt = $db->prepare('
+                SELECT a.id, a.name, a.slug, a.thumbnail_url, ra.score
+                FROM related_actresses ra
+                INNER JOIN actresses a ON ra.related_actress_id = a.id
+                WHERE ra.actress_id = ?
+                ORDER BY ra.score DESC
+                LIMIT 5
+            ');
+            $stmt->execute([$actressId]);
+            $result = $stmt->fetchAll();
+        } catch (\Throwable $e) {
+            $result = [];
+        }
+
+        Cache::set($cacheKey, $result);
+        return $result;
+    }
+
     public static function allForSitemap(): array
     {
         $db = Database::getInstance();

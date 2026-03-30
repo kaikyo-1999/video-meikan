@@ -14,10 +14,24 @@ if (!file_exists($jsonPath)) {
     exit(1);
 }
 
-$names = json_decode(file_get_contents($jsonPath), true);
-if (!$names) {
+$rawEntries = json_decode(file_get_contents($jsonPath), true);
+if (!$rawEntries) {
     batchLog("ERROR: JSONの読み込みに失敗しました");
     exit(1);
+}
+
+// JSON形式: 文字列 or {"name": "漢字名", "reading": "ひらがな読み"}
+$names = [];
+$readings = []; // name => reading のマップ
+foreach ($rawEntries as $entry) {
+    if (is_string($entry)) {
+        $names[] = $entry;
+    } elseif (is_array($entry) && isset($entry['name'])) {
+        $names[] = $entry['name'];
+        if (isset($entry['reading'])) {
+            $readings[$entry['name']] = $entry['reading'];
+        }
+    }
 }
 
 batchLog("登録対象: " . count($names) . " 名");
@@ -37,7 +51,7 @@ $slugSet = array_flip($existingSlugs);
  * 日本語名からslugを生成
  * ローマ字変換ライブラリがないため、名前をハイフン区切りのURL-safeな形式に変換
  */
-function generateSlug(string $name, array &$slugSet): string
+function generateSlug(string $name, array &$slugSet, string $reading = ''): string
 {
     // 基本的なローマ字変換テーブル（ひらがな→ローマ字）
     $romajiMap = [
@@ -75,8 +89,11 @@ function generateSlug(string $name, array &$slugSet): string
         'ゃ' => 'ya', 'ゅ' => 'yu', 'ょ' => 'yo',
     ];
 
+    // 読み仮名が指定されていればそちらを優先（漢字名対策）
+    $source = $reading ?: $name;
+
     // カタカナ→ひらがな変換
-    $hiragana = mb_convert_kana($name, 'c'); // カタカナ→ひらがな
+    $hiragana = mb_convert_kana($source, 'c'); // カタカナ→ひらがな
 
     // スペース・全角スペースで分割（姓名の区切り）
     $parts = preg_split('/[\s　・]+/u', $hiragana);
@@ -159,7 +176,8 @@ foreach ($names as $name) {
         continue;
     }
 
-    $slug = generateSlug($name, $slugSet);
+    $reading = $readings[$name] ?? '';
+    $slug = generateSlug($name, $slugSet, $reading);
     if (!$slug) {
         $errors[] = $name;
         continue;

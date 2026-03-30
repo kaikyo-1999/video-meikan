@@ -81,8 +81,9 @@ foreach ($actresses as $actress) {
                     $thumbnail = $item['imageURL']['list'];
                 }
 
-                $affiliateUrl = $item['affiliateURL'] ?? ($item['URL'] ?? '');
-                $affiliateUrl = str_replace('al.fanza.co.jp', 'al.dmm.co.jp', $affiliateUrl);
+                $displayAffiliateId = getenv('FANZA_DISPLAY_AFFILIATE_ID') ?: $affiliateId;
+                $directUrl = 'https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=' . $sourceId . '/';
+                $affiliateUrl = 'https://al.dmm.co.jp/?lurl=' . urlencode($directUrl) . '&af_id=' . $displayAffiliateId . '&ch=toolbar&ch_id=text';
                 $releaseDate = !empty($item['date']) ? date('Y-m-d', strtotime($item['date'])) : null;
                 $label = '';
                 if (!empty($item['iteminfo']['label'])) {

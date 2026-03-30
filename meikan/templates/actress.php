@@ -47,4 +47,20 @@
         </a>
     <?php endforeach; ?>
 </div>
+<?php elseif (!empty($relatedActresses)): ?>
+<h2 class="section-title"><?= h($actress['name']) ?>の関連女優</h2>
+<div class="similar-actress-grid">
+    <?php foreach ($relatedActresses as $related): ?>
+        <a href="<?= h(url($related['slug'] . '/')) ?>" class="similar-actress-card">
+            <div class="similar-actress-card__image">
+                <?php if (!empty($related['thumbnail_url'])): ?>
+                    <img src="<?= h($related['thumbnail_url']) ?>" alt="<?= h($related['name']) ?>" width="300" height="300" loading="lazy">
+                <?php else: ?>
+                    <div class="similar-actress-card__placeholder"></div>
+                <?php endif; ?>
+            </div>
+            <p class="similar-actress-card__name"><?= h($related['name']) ?></p>
+        </a>
+    <?php endforeach; ?>
+</div>
 <?php endif; ?>

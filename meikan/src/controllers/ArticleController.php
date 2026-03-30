@@ -149,10 +149,31 @@ class ArticleController
         $castCustomLabels = null;
         $inBlockquote = false;
         $blockquoteLines = [];
+        $imgBuffer = [];
 
         $closeList = function () use (&$html, &$inList, &$inOl) {
             if ($inList) { $html .= "</ul>\n"; $inList = false; }
             if ($inOl) { $html .= "</ol>\n"; $inOl = false; }
+        };
+
+        $flushImgBuffer = function () use (&$html, &$imgBuffer) {
+            if (empty($imgBuffer)) return;
+            if (count($imgBuffer) >= 3) {
+                $html .= '<div class="article-samples">';
+                foreach ($imgBuffer as $entry) {
+                    $html .= '<img src="' . h($entry['url']) . '" alt="' . h($entry['alt']) . '" loading="lazy">';
+                }
+                $html .= '</div>' . "\n";
+            } else {
+                foreach ($imgBuffer as $entry) {
+                    if ($entry['alt'] !== '') {
+                        $html .= '<figure class="article-figure"><img src="' . h($entry['url']) . '" alt="' . h($entry['alt']) . '" loading="lazy"></figure>' . "\n";
+                    } else {
+                        $html .= '<p><img src="' . h($entry['url']) . '" alt="" class="article-inline-img" loading="lazy"></p>' . "\n";
+                    }
+                }
+            }
+            $imgBuffer = [];
         };
 
         $flushBlockquote = function () use (&$html, &$inBlockquote, &$blockquoteLines) {
@@ -333,8 +354,16 @@ class ArticleController
                     $out = '<div class="article-samples">';
                     foreach ($boxLines as $bl) {
                         $bl = trim($bl);
-                        if ($bl === '' || !str_starts_with($bl, 'http')) continue;
-                        $out .= '<img src="' . h($bl) . '" alt="" loading="lazy">';
+                        if ($bl === '') continue;
+                        // !img[url] 形式と生URL両対応
+                        if (preg_match('/^!img\[(.+?)\]$/', $bl, $imgM)) {
+                            $url = $imgM[1];
+                        } elseif (str_starts_with($bl, 'http')) {
+                            $url = $bl;
+                        } else {
+                            continue;
+                        }
+                        $out .= '<img src="' . h($url) . '" alt="" loading="lazy">';
                     }
                     $out .= '</div>' . "\n";
                     if (self::$lastWorkUrl) {
@@ -426,16 +455,30 @@ class ArticleController
                     foreach ($boxLines as $bl) {
                         $bl = trim($bl);
                         if ($bl === '') continue;
-                        if (!preg_match('/^(.+?):\s*(.+)$/', $bl, $chatMatch)) continue;
+                        if (!preg_match('/^((?:[^\[:]|\[.*?\])+):\s*(.+)$/', $bl, $chatMatch)) continue;
                         $speaker = trim($chatMatch[1]);
                         $message = self::inlineFormat(trim($chatMatch[2]));
+                        // 名前[avatar_url] 形式のアバターURL抽出
+                        $avatarUrl = null;
+                        if (preg_match('/^(.+?)\[(.+?)\]$/', $speaker, $avMatch)) {
+                            $speaker = trim($avMatch[1]);
+                            $avatarUrl = trim($avMatch[2]);
+                        }
                         if (!in_array($speaker, $speakers, true)) {
                             $speakers[] = $speaker;
                         }
                         $side = array_search($speaker, $speakers, true) === 0 ? 'left' : 'right';
-                        $out .= '<div class="article-chat__row article-chat__row--' . $side . '">';
+                        $rowClass = 'article-chat__row article-chat__row--' . $side . ($avatarUrl ? ' article-chat__row--avatar' : '');
+                        $out .= '<div class="' . $rowClass . '">';
+                        if ($avatarUrl) {
+                            $out .= '<img src="' . h($avatarUrl) . '" alt="' . h($speaker) . '" class="article-chat__avatar" loading="lazy">';
+                            $out .= '<div class="article-chat__content">';
+                        }
                         $out .= '<span class="article-chat__label">' . h($speaker) . '</span>';
                         $out .= '<div class="article-chat__bubble">' . $message . '</div>';
+                        if ($avatarUrl) {
+                            $out .= '</div>';
+                        }
                         $out .= '</div>';
                     }
                     $out .= '</div>' . "\n";
@@ -473,6 +516,19 @@ class ArticleController
             if ($inBox) {
                 $boxLines[] = $trimmed;
                 continue;
+            }
+
+            // 連続画像ギャラリー: 空行をまたいでバッファリング、3枚以上で横スクロール化
+            if (preg_match('/^!img\[(.+?)\]$/', $trimmed, $imgBufMatch)) {
+                $imgBuffer[] = ['url' => $imgBufMatch[1], 'alt' => ''];
+                continue;
+            }
+            if (preg_match('/^!\[(.+?)\]\((.+?)\)$/', $trimmed, $imgBufFigMatch)) {
+                $imgBuffer[] = ['url' => $imgBufFigMatch[2], 'alt' => $imgBufFigMatch[1]];
+                continue;
+            }
+            if ($trimmed !== '' && !empty($imgBuffer)) {
+                $flushImgBuffer();
             }
 
             // --- 引用ブロック ---
@@ -580,12 +636,7 @@ class ArticleController
                 continue;
             }
 
-            // ブロックレベル画像 ![alt](url)
-            if (preg_match('/^!\[(.+?)\]\((.+?)\)$/', $trimmed, $imgMatch)) {
-                $closeList();
-                $html .= '<figure class="article-figure"><img src="' . h($imgMatch[2]) . '" alt="' . h($imgMatch[1]) . '" loading="lazy"></figure>' . "\n";
-                continue;
-            }
+            // ブロックレベル画像 ![alt](url) — 連続3枚以上はバッファ経由でカルーセル化（上の処理で対応済み）
 
             // 女優カード埋め込み @actress[slug]
             if (preg_match('/^@actress\[([a-z0-9-]+)\]$/', $trimmed, $actressMatch)) {
@@ -623,6 +674,7 @@ class ArticleController
 
         $closeList();
         $flushBlockquote();
+        $flushImgBuffer();
         if ($inTable) $html .= "</tbody></table></div>\n";
 
         // インライン目次の展開
@@ -654,13 +706,21 @@ class ArticleController
 
         $affiliateUrl = self::buildAffiliateUrl('https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=' . $sourceId . '/');
 
+        // CIDの数字プレフィックス有無で画像パスが異なるケースがある
+        // (例: 1ebod00944 → ebod00944, ただし 1sdab00330 はそのまま)
+        $strippedId = preg_replace('/^\d+/', '', $sourceId);
         $fallbackThumb = 'https://pics.dmm.co.jp/digital/video/' . $sourceId . '/' . $sourceId . 'pl.jpg';
+        $altThumb = ($strippedId !== $sourceId)
+            ? 'https://pics.dmm.co.jp/digital/video/' . $strippedId . '/' . $strippedId . 'pl.jpg'
+            : '';
+
+        $onerror = $altThumb ? ' onerror="this.onerror=null;this.src=\'' . h($altThumb) . '\'"' : '';
 
         if (!$work) {
             self::$lastWorkUrl = $affiliateUrl;
             $html = '<div class="embed-card embed-card--work">';
             $html .= '<a href="' . h($affiliateUrl) . '" target="_blank" rel="nofollow noopener" class="embed-card__inner embed-card__inner--work">';
-            $html .= '<div class="embed-card__image embed-card__image--work"><img src="' . h($fallbackThumb) . '" alt="' . h($linkText ?: $sourceId) . '" loading="lazy"></div>';
+            $html .= '<div class="embed-card__image embed-card__image--work"><img src="' . h($fallbackThumb) . '" alt="' . h($linkText ?: $sourceId) . '" loading="lazy"' . $onerror . '></div>';
             $html .= '<p class="embed-card__title embed-card__title--work">' . h($linkText ?: $sourceId) . '</p>';
             $html .= '</a></div>' . "\n";
             return $html;
@@ -668,12 +728,12 @@ class ArticleController
 
         $thumb = h($work['thumbnail_url'] ?? '') ?: h($fallbackThumb);
         $title = h($work['title'] ?? '');
-        $url = !empty($work['affiliate_url']) ? $work['affiliate_url'] : $affiliateUrl;
+        $url = $affiliateUrl;
         self::$lastWorkUrl = $url;
 
         $html = '<div class="embed-card embed-card--work">';
         $html .= '<a href="' . h($url) . '" target="_blank" rel="nofollow noopener" class="embed-card__inner embed-card__inner--work">';
-        $html .= '<div class="embed-card__image embed-card__image--work"><img src="' . $thumb . '" alt="' . $title . '" loading="lazy"></div>';
+        $html .= '<div class="embed-card__image embed-card__image--work"><img src="' . $thumb . '" alt="' . $title . '" loading="lazy"' . $onerror . '></div>';
         $html .= '<p class="embed-card__title embed-card__title--work">' . $title . '</p>';
         $html .= '</a></div>' . "\n";
 
@@ -715,9 +775,11 @@ class ArticleController
         $count = (int)($actress['work_count'] ?? 0);
 
         $html = '<div class="embed-card">';
-        $html .= '<a href="' . h($pageUrl) . '" class="embed-card__inner">';
         if ($thumb) {
+            $html .= '<a href="' . h($pageUrl) . '" class="embed-card__inner">';
             $html .= '<div class="embed-card__image embed-card__image--portrait"><img src="' . $thumb . '" alt="' . $name . '" loading="lazy"></div>';
+        } else {
+            $html .= '<a href="' . h($pageUrl) . '" class="embed-card__inner embed-card__inner--no-image">';
         }
         $html .= '<div class="embed-card__info">';
         $html .= '<p class="embed-card__title">' . $name . '</p>';

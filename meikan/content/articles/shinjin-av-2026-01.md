@@ -30,21 +30,21 @@ av女優博士です。1月は27名とボリューム多めだったが、数の
 結川ひより | - | https://pics.dmm.co.jp/digital/video/1sdab00333/1sdab00333pl.jpg | 2026年1月6日 | 156cm | SODクリエイト
 生田さな | - | https://pics.dmm.co.jp/digital/video/1fns00155/1fns00155pl.jpg | 2026年1月8日 | 155cm | FALENO
 林芽依 | - | https://pics.dmm.co.jp/digital/video/ipzz00780/ipzz00780pl.jpg | 2026年1月9日 | 161cm | アイデアポケット
-紫月みやび | - | https://pics.dmm.co.jp/digital/video/midv00897/midv00897pl.jpg | 2026年1月9日 | 非公開 | 非公開
+紫月みやび | - | https://pics.dmm.co.jp/digital/video/ipzz00773/ipzz00773pl.jpg | 2026年1月9日 | 非公開 | 非公開
 佐野秋帆 | - | https://pics.dmm.co.jp/digital/video/ebod00944/ebod00944pl.jpg | 2026年1月16日 | 非公開 | E-BODY
 南見京 | - | https://pics.dmm.co.jp/digital/video/fpre00205/fpre00205pl.jpg | 2026年1月16日 | 170cm | Fitch
-天音るな | - | https://pics.dmm.co.jp/digital/video/sone00590/sone00590pl.jpg | 2026年1月16日 | 非公開 | 非公開
+天音るな | - | https://pics.dmm.co.jp/digital/video/ebwh00297/ebwh00297pl.jpg | 2026年1月16日 | 非公開 | 非公開
 早瀬すみれ | - | https://pics.dmm.co.jp/digital/video/deab00006/deab00006pl.jpg | 2026年1月16日 | 非公開 | 非公開
-望月円 | - | https://pics.dmm.co.jp/digital/video/sone00591/sone00591pl.jpg | 2026年1月16日 | 非公開 | 非公開
+望月円 | - | https://pics.dmm.co.jp/digital/video/mida00454/mida00454pl.jpg | 2026年1月16日 | 非公開 | 非公開
 湊音かれん | - | https://pics.dmm.co.jp/digital/video/pred00841/pred00841pl.jpg | 2026年1月16日 | 非公開 | 非公開
-高星なぎさ | - | https://pics.dmm.co.jp/digital/video/1sdab00342/1sdab00342pl.jpg | 2026年1月20日 | 非公開 | 非公開
+高星なぎさ | - | https://pics.dmm.co.jp/digital/video/1sdab00342/1sdab00342pl.jpg | 2026年1月20日 | 非公開 | SODクリエイト
 与田ひかげ | - | https://pics.dmm.co.jp/digital/video/1sdjs00350/1sdjs00350pl.jpg | 2026年1月27日 | 非公開 | SODクリエイト
 月待青花 | - | https://pics.dmm.co.jp/digital/video/1kuse00038/1kuse00038pl.jpg | 2026年1月27日 | 非公開 | 非公開
-奏海麻衣 | - | https://pics.dmm.co.jp/digital/video/midv00907/midv00907pl.jpg | 2026年1月30日 | 149cm | MOODYZ
+奏海麻衣 | - | https://pics.dmm.co.jp/digital/video/mida00529/mida00529pl.jpg | 2026年1月30日 | 149cm | MOODYZ
 小泉楓 | - | https://pics.dmm.co.jp/digital/video/cawd00942/cawd00942pl.jpg | 2026年1月30日 | 非公開 | 非公開
 溝端恋 | - | https://pics.dmm.co.jp/digital/video/cawd00929/cawd00929pl.jpg | 2026年1月30日 | 非公開 | 非公開
 重盛れいか | - | https://pics.dmm.co.jp/digital/video/cawd00937/cawd00937pl.jpg | 2026年1月30日 | 非公開 | 非公開
-香川あんず | - | https://pics.dmm.co.jp/digital/video/midv00906/midv00906pl.jpg | 2026年1月30日 | 150cm | 非公開
+香川あんず | - | https://pics.dmm.co.jp/digital/video/cawd00936/cawd00936pl.jpg | 2026年1月30日 | 150cm | 非公開
 :::
 
 ## 井上もも
@@ -305,7 +305,7 @@ SOD社員シリーズは定番中の定番だが、人事部22歳というのは
 
 ## 香川あんず
 
-![香川あんずのサンプル](https://pics.dmm.co.jp/digital/video/midv00906/midv00906jp-6.jpg)
+![香川あんずのサンプル](https://pics.dmm.co.jp/digital/video/cawd00936/cawd00936jp-6.jpg)
 
 | 項目 | 詳細 |
 | --- | --- |
@@ -320,11 +320,11 @@ SOD社員シリーズは定番中の定番だが、人事部22歳というのは
 
 @actress[anzu]
 
-**デビュー作品**：[香川あんず AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=midv00906/)
+**デビュー作品**：[香川あんず AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=cawd00936/)
 
 :::samples
-https://pics.dmm.co.jp/digital/video/midv00906/midv00906jp-2.jpg
-https://pics.dmm.co.jp/digital/video/midv00906/midv00906jp-10.jpg
+https://pics.dmm.co.jp/digital/video/cawd00936/cawd00936jp-2.jpg
+https://pics.dmm.co.jp/digital/video/cawd00936/cawd00936jp-8.jpg
 :::
 
 :::say
@@ -333,7 +333,7 @@ TikTokファンを引き連れてのAV転身は計算できるデビューの仕
 
 ## 奏海麻衣
 
-![奏海麻衣のサンプル](https://pics.dmm.co.jp/digital/video/midv00907/midv00907jp-6.jpg)
+![奏海麻衣のサンプル](https://pics.dmm.co.jp/digital/video/mida00529/mida00529jp-5.jpg)
 
 | 項目 | 詳細 |
 | --- | --- |
@@ -348,11 +348,11 @@ TikTokファンを引き連れてのAV転身は計算できるデビューの仕
 
 @actress[kanami-mai]
 
-**デビュー作品**：[奏海麻衣 AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=midv00907/)
+**デビュー作品**：[奏海麻衣 AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=mida00529/)
 
 :::samples
-https://pics.dmm.co.jp/digital/video/midv00907/midv00907jp-3.jpg
-https://pics.dmm.co.jp/digital/video/midv00907/midv00907jp-9.jpg
+https://pics.dmm.co.jp/digital/video/mida00529/mida00529jp-3.jpg
+https://pics.dmm.co.jp/digital/video/mida00529/mida00529jp-5.jpg
 :::
 
 :::say
@@ -361,7 +361,7 @@ https://pics.dmm.co.jp/digital/video/midv00907/midv00907jp-9.jpg
 
 ## 紫月みやび
 
-![紫月みやびのサンプル](https://pics.dmm.co.jp/digital/video/midv00897/midv00897jp-5.jpg)
+![紫月みやびのサンプル](https://pics.dmm.co.jp/digital/video/ipzz00773/ipzz00773jp-5.jpg)
 
 | 項目 | 詳細 |
 | --- | --- |
@@ -373,20 +373,20 @@ https://pics.dmm.co.jp/digital/video/midv00907/midv00907jp-9.jpg
 
 @actress[miyabi]
 
-**デビュー作品**：[紫月みやび AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=midv00897/)
+**デビュー作品**：[紫月みやび AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=ipzz00773/)
 
 :::samples
-https://pics.dmm.co.jp/digital/video/midv00897/midv00897jp-3.jpg
-https://pics.dmm.co.jp/digital/video/midv00897/midv00897jp-9.jpg
+https://pics.dmm.co.jp/digital/video/ipzz00773/ipzz00773jp-3.jpg
+https://pics.dmm.co.jp/digital/video/ipzz00773/ipzz00773jp-9.jpg
 :::
 
 :::say
-MOODYZ系のMIDVからデビューしてプロフィール非公開のまま3作品をリリースしている。このペースは現場での評価が相当高い証拠だ。MOODYZ品質の映像で実力を見せつけており、情報が公開され次第一気にブレイクする可能性がある。
+アイデアポケットからデビューしてプロフィール非公開のまま3作品をリリースしている。このペースは現場での評価が相当高い証拠だ。アイポケ品質の映像で実力を見せつけており、情報が公開され次第一気にブレイクする可能性がある。
 :::
 
 ## 天音るな
 
-![天音るなのサンプル](https://pics.dmm.co.jp/digital/video/sone00590/sone00590jp-6.jpg)
+![天音るなのサンプル](https://pics.dmm.co.jp/digital/video/ebwh00297/ebwh00297jp-6.jpg)
 
 | 項目 | 詳細 |
 | --- | --- |
@@ -398,15 +398,15 @@ MOODYZ系のMIDVからデビューしてプロフィール非公開のまま3作
 
 @actress[runa-2]
 
-**デビュー作品**：[天音るな AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=sone00590/)
+**デビュー作品**：[天音るな AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=ebwh00297/)
 
 :::samples
-https://pics.dmm.co.jp/digital/video/sone00590/sone00590jp-3.jpg
-https://pics.dmm.co.jp/digital/video/sone00590/sone00590jp-10.jpg
+https://pics.dmm.co.jp/digital/video/ebwh00297/ebwh00297jp-3.jpg
+https://pics.dmm.co.jp/digital/video/ebwh00297/ebwh00297jp-6.jpg
 :::
 
 :::say
-デビュー月に5作品はかなり速いペース。この作品はSONEらしい画角と照明の丁寧さがあって、新人の素材を潰さない仕事をしてる。このペースを維持できれば評価が固まってくる。
+デビュー月に5作品はかなり速いペース。この作品はデビュー直後の素材感をそのまま活かした丁寧な仕上がりで、新人の魅力を潰さない仕事をしてる。このペースを維持できれば評価が固まってくる。
 :::
 
 ## 高星なぎさ
@@ -423,7 +423,7 @@ https://pics.dmm.co.jp/digital/video/sone00590/sone00590jp-10.jpg
 
 @actress[nagisa]
 
-**デビュー作品**：[高星なぎさ AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=pred00628/)
+**デビュー作品**：[高星なぎさ AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=1sdab00342/)
 
 :::samples
 https://pics.dmm.co.jp/digital/video/1sdab00342/1sdab00342jp-2.jpg
@@ -436,7 +436,7 @@ https://pics.dmm.co.jp/digital/video/1sdab00342/1sdab00342jp-4.jpg
 
 ## 望月円
 
-![望月円のサンプル](https://pics.dmm.co.jp/digital/video/sone00591/sone00591jp-6.jpg)
+![望月円のサンプル](https://pics.dmm.co.jp/digital/video/mida00454/mida00454jp-6.jpg)
 
 | 項目 | 詳細 |
 | --- | --- |
@@ -448,15 +448,15 @@ https://pics.dmm.co.jp/digital/video/1sdab00342/1sdab00342jp-4.jpg
 
 @actress[mochizuki-madoka]
 
-**デビュー作品**：[望月円 AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=sone00591/)
+**デビュー作品**：[望月円 AV DEBUT](https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=mida00454/)
 
 :::samples
-https://pics.dmm.co.jp/digital/video/sone00591/sone00591jp-3.jpg
-https://pics.dmm.co.jp/digital/video/sone00591/sone00591jp-9.jpg
+https://pics.dmm.co.jp/digital/video/mida00454/mida00454jp-3.jpg
+https://pics.dmm.co.jp/digital/video/mida00454/mida00454jp-7.jpg
 :::
 
 :::say
-この作品はSONEレーベルのクオリティが保証されてて、プロフィール非公開でも映像の質は担保される。3作品コンスタントに出てるのは継続性の証拠で、好みが合うなら今から追っておいて損はない。
+この作品はMOODYZレーベルのクオリティが保証されてて、プロフィール非公開でも映像の質は担保される。3作品コンスタントに出てるのは継続性の証拠で、好みが合うなら今から追っておいて損はない。
 :::
 
 以下の女優も2026年1月にAVデビューを果たしている。

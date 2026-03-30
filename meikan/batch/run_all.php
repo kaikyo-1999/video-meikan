@@ -10,7 +10,8 @@
  *   4. assign_title_genres.php — タイトルベースのジャンル紐付け
  *   5. calculate_debut_dates.php — デビュー日を算出
  *   6. calculate_similar_actresses.php — 似ている女優を計算
- *   7. clear_cache.php — キャッシュをクリア
+ *   7. calculate_related_actresses.php — 関連女優を計算（タグ+デビュー時期ベース）
+ *   8. clear_cache.php — キャッシュをクリア
  *
  * ⚠ 順序を守らないと、作品画像が女優サムネイルに設定される問題が再発します
  *
@@ -28,6 +29,7 @@ $batches = [
     'assign_title_genres.php',
     'calculate_debut_dates.php',
     'calculate_similar_actresses.php',
+    'calculate_related_actresses.php',
     'clear_cache.php',
 ];
 
