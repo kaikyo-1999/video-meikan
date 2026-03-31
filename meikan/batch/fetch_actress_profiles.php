@@ -156,7 +156,12 @@ $actresses = $db->query('
     WHERE thumbnail_url IS NULL
        OR thumbnail_url = ""
        OR (thumbnail_url LIKE "%/digital/video/%" OR thumbnail_url LIKE "%now_printing%")
-       OR (bust IS NULL AND height IS NULL AND birthday IS NULL)
+       OR bust IS NULL
+       OR height IS NULL
+       OR birthday IS NULL
+       OR prefectures IS NULL
+       OR blood_type IS NULL
+       OR hobby IS NULL
     ORDER BY id
 ')->fetchAll();
 
