@@ -43,9 +43,23 @@ class ActressController
             ];
         }
 
+        $metaName = $actress['name'];
+        $metaWorkCount = (int)$actress['work_count'];
+        $metaAgePart = '';
+        if (!empty($actress['birthday'])) {
+            $metaAge = (new DateTime($actress['birthday']))->diff(new DateTime())->y;
+            $metaAgePart = "（{$metaAge}歳）";
+        }
+        $metaSizePart = '';
+        if (!empty($actress['bust']) && !empty($actress['waist']) && !empty($actress['hip'])) {
+            $metaSizePart = "B{$actress['bust']}/W{$actress['waist']}/H{$actress['hip']}。";
+        }
+        $metaYear = date('Y');
+        $metaDescription = "{$metaName}{$metaAgePart}の最新AV作品{$metaWorkCount}本をジャンル別に検索できる。{$metaSizePart}評価順・新着順での並べ替えにも対応。{$metaYear}年の最新作品を随時更新中。";
+
         render('actress', [
             'pageTitle' => $actress['name'] . 'のジャンル別作品一覧 | ' . SITE_NAME,
-            'metaDescription' => $actress['name'] . 'の出演作品をジャンル別に一覧表示。',
+            'metaDescription' => $metaDescription,
             'breadcrumbs' => [
                 ['label' => 'TOP', 'url' => ''],
                 ['label' => $actress['name'], 'url' => ''],
