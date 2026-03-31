@@ -1,3 +1,6 @@
+<?php
+$hasProfile = !empty($actress['bust']) || !empty($actress['height']) || !empty($actress['birthday']) || !empty($actress['blood_type']) || !empty($actress['hobby']) || !empty($actress['prefectures']);
+?>
 <div class="profile-section">
     <div class="profile-section__image">
         <?php if (!empty($actress['thumbnail_url'])): ?>
@@ -9,8 +12,44 @@
     <div class="profile-section__info">
         <h1 class="profile-section__name"><?= h($actress['name']) ?></h1>
         <p class="profile-section__count">作品数：<?= (int)$actress['work_count'] ?>本</p>
+        <?php if ($hasProfile): ?>
+        <table class="profile-detail__table">
+            <?php if (!empty($actress['birthday'])): ?>
+            <?php
+                $birthday = new DateTime($actress['birthday']);
+                $age = $birthday->diff(new DateTime())->y;
+            ?>
+            <tr><th>年齢</th><td><?= $age ?>歳（<?= $birthday->format('Y年n月j日') ?>生まれ）</td></tr>
+            <?php endif; ?>
+            <?php if (!empty($actress['height'])): ?>
+            <tr><th>身長</th><td><?= (int)$actress['height'] ?>cm</td></tr>
+            <?php endif; ?>
+            <?php if (!empty($actress['bust']) && !empty($actress['waist']) && !empty($actress['hip'])): ?>
+            <tr><th>スリーサイズ</th><td>B<?= (int)$actress['bust'] ?> / W<?= (int)$actress['waist'] ?> / H<?= (int)$actress['hip'] ?></td></tr>
+            <?php endif; ?>
+            <?php if (!empty($actress['blood_type'])): ?>
+            <tr><th>血液型</th><td><?= h($actress['blood_type']) ?>型</td></tr>
+            <?php endif; ?>
+            <?php if (!empty($actress['prefectures'])): ?>
+            <tr><th>出身地</th><td><?= h($actress['prefectures']) ?></td></tr>
+            <?php endif; ?>
+            <?php if (!empty($actress['hobby'])): ?>
+            <tr><th>趣味</th><td><?= h($actress['hobby']) ?></td></tr>
+            <?php endif; ?>
+        </table>
+        <?php endif; ?>
     </div>
 </div>
+
+<?php if (!empty($actress['comment'])): ?>
+<div class="hakase-comment">
+    <div class="hakase-comment__icon"><img src="<?= h(url('public/images/author-avatar.png')) ?>" alt="av女優博士" width="48" height="48" loading="lazy"></div>
+    <div class="hakase-comment__body">
+        <span class="hakase-comment__label">AV博士のコメント</span>
+        <p class="hakase-comment__text"><?= nl2br(h($actress['comment'])) ?></p>
+    </div>
+</div>
+<?php endif; ?>
 
 <?php if (!empty($genres)): ?>
 <h2 class="section-title">ジャンル別作品</h2>

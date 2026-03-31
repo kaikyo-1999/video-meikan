@@ -51,9 +51,47 @@ function actressNameMatches(string $apiName, string $dbName): bool
 }
 
 /**
- * 作品APIから女優IDを逆引きし、ActressSearchでプロフィール画像を取得する
+ * ActressSearch APIの結果からプロフィール情報を抽出する
  */
-function resolveImageViaWork(PDO $db, array $actress, string $apiId, string $affiliateId): string
+function extractProfile(array $result): array
+{
+    return [
+        'bust'        => !empty($result['bust'])        ? (int)$result['bust']        : null,
+        'waist'       => !empty($result['waist'])       ? (int)$result['waist']       : null,
+        'hip'         => !empty($result['hip'])          ? (int)$result['hip']         : null,
+        'height'      => !empty($result['height'])       ? (int)$result['height']      : null,
+        'birthday'    => !empty($result['birthday'])     ? $result['birthday']         : null,
+        'blood_type'  => !empty($result['blood_type'])   ? $result['blood_type']       : null,
+        'hobby'       => !empty($result['hobby'])        ? $result['hobby']            : null,
+        'prefectures' => !empty($result['prefectures'])  ? $result['prefectures']      : null,
+    ];
+}
+
+/**
+ * プロフィール情報をDBに更新する
+ */
+function updateProfile(PDO $db, int $actressId, array $profile): void
+{
+    $sets = [];
+    $params = [];
+    foreach ($profile as $col => $val) {
+        if ($val !== null) {
+            $sets[] = "{$col} = ?";
+            $params[] = $val;
+        }
+    }
+    if (empty($sets)) return;
+
+    $params[] = $actressId;
+    $sql = 'UPDATE actresses SET ' . implode(', ', $sets) . ' WHERE id = ?';
+    $db->prepare($sql)->execute($params);
+}
+
+/**
+ * 作品APIから女優IDを逆引きし、ActressSearchでプロフィール画像を取得する
+ * @return array ['image' => string, 'profile' => array]
+ */
+function resolveImageViaWork(PDO $db, array $actress, string $apiId, string $affiliateId): array
 {
     // 出演者数が少ない作品を優先（名前特定しやすい）、最大10作品試す
     $stmt = $db->prepare('
@@ -104,20 +142,21 @@ function resolveImageViaWork(PDO $db, array $actress, string $apiId, string $aff
             $img = $result['imageURL']['large'] ?? $result['imageURL']['small'] ?? '';
             if ($img) {
                 batchLog("  ID逆引き成功: {$actress['name']} (actress_id={$actressId})");
-                return $img;
+                return ['image' => $img, 'profile' => extractProfile($result)];
             }
         }
     }
-    return '';
+    return ['image' => '', 'profile' => []];
 }
 
-// thumbnail_url が未設定または作品画像URLの女優を対象にする
+// thumbnail_url が未設定/作品画像URL の女優、またはプロフィール未取得の女優を対象
 // ※ actjpgs/ を含むURLは正しいプロフィール画像なので除外
 $actresses = $db->query('
     SELECT * FROM actresses
     WHERE thumbnail_url IS NULL
        OR thumbnail_url = ""
        OR (thumbnail_url LIKE "%/digital/video/%" OR thumbnail_url LIKE "%now_printing%")
+       OR (bust IS NULL AND height IS NULL AND birthday IS NULL)
     ORDER BY id
 ')->fetchAll();
 
@@ -164,21 +203,33 @@ foreach ($actresses as $actress) {
 
     // プロフィール画像を取得（large > small の優先順）
     $imageUrl = '';
+    $profile = [];
     if ($matched) {
         if (!empty($matched['imageURL']['large'])) {
             $imageUrl = $matched['imageURL']['large'];
         } elseif (!empty($matched['imageURL']['small'])) {
             $imageUrl = $matched['imageURL']['small'];
         }
+        $profile = extractProfile($matched);
     }
 
     // フォールバック: 名前検索で画像が取れなかった場合、作品APIから女優IDを逆引き
     if (!$imageUrl) {
-        $imageUrl = resolveImageViaWork($db, $actress, $apiId, $affiliateId);
+        $resolved = resolveImageViaWork($db, $actress, $apiId, $affiliateId);
+        $imageUrl = $resolved['image'];
+        if (!empty($resolved['profile'])) {
+            $profile = $resolved['profile'];
+        }
     }
 
     if (!$imageUrl) {
-        batchLog("  画像なし: {$actress['name']}");
+        // 画像がなくてもプロフィール情報があれば保存
+        if (!empty($profile)) {
+            updateProfile($db, $actress['id'], $profile);
+            batchLog("  画像なし（プロフィールのみ更新）: {$actress['name']}");
+        } else {
+            batchLog("  画像なし: {$actress['name']}");
+        }
         $notFound++;
         usleep(500000);
         continue;
@@ -186,6 +237,10 @@ foreach ($actresses as $actress) {
 
     $db->prepare('UPDATE actresses SET thumbnail_url = ? WHERE id = ?')
        ->execute([$imageUrl, $actress['id']]);
+    // プロフィール情報も保存
+    if (!empty($profile)) {
+        updateProfile($db, $actress['id'], $profile);
+    }
     $updated++;
     batchLog("  更新: {$actress['name']} => {$imageUrl}");
 
