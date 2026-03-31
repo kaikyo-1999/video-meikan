@@ -290,6 +290,12 @@ ul, ol { list-style: none; }
     font-weight: 700;
     margin-bottom: 4px;
 }
+.profile-section__name-age {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--color-text-sub);
+    margin-left: 4px;
+}
 .profile-section__count {
     font-size: 14px;
     color: var(--color-text-sub);

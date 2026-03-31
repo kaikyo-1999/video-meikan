@@ -10,7 +10,7 @@ $hasProfile = !empty($actress['bust']) || !empty($actress['height']) || !empty($
         <?php endif; ?>
     </div>
     <div class="profile-section__info">
-        <h1 class="profile-section__name"><?= h($actress['name']) ?></h1>
+        <h1 class="profile-section__name"><?= h($actress['name']) ?><?php if (!empty($actress['birthday'])): ?><?php $_age = (new DateTime($actress['birthday']))->diff(new DateTime())->y; ?><span class="profile-section__name-age">（<?= $_age ?>歳）</span><?php endif; ?></h1>
         <p class="profile-section__count">作品数：<?= (int)$actress['work_count'] ?>本</p>
         <?php if ($hasProfile): ?>
         <table class="profile-detail__table">
@@ -19,7 +19,7 @@ $hasProfile = !empty($actress['bust']) || !empty($actress['height']) || !empty($
                 $birthday = new DateTime($actress['birthday']);
                 $age = $birthday->diff(new DateTime())->y;
             ?>
-            <tr><th>年齢</th><td><?= $age ?>歳（<?= $birthday->format('Y年n月j日') ?>生まれ）</td></tr>
+            <tr><th>年齢</th><td><?= $age ?>歳<span class="profile-detail__birthday">（<?= $birthday->format('Y年n月j日') ?>生まれ）</span></td></tr>
             <?php endif; ?>
             <?php if (!empty($actress['height'])): ?>
             <tr><th>身長</th><td><?= (int)$actress['height'] ?>cm</td></tr>
@@ -46,7 +46,8 @@ $hasProfile = !empty($actress['bust']) || !empty($actress['height']) || !empty($
     <div class="hakase-comment__icon"><img src="<?= h(url('public/images/author-avatar.png')) ?>" alt="av女優博士" width="48" height="48" loading="lazy"></div>
     <div class="hakase-comment__body">
         <span class="hakase-comment__label">AV博士のコメント</span>
-        <p class="hakase-comment__text"><?= nl2br(h($actress['comment'])) ?></p>
+        <div class="hakase-comment__text"><p><?= nl2br(h($actress['comment'])) ?></p></div>
+        <button class="hakase-comment__toggle" type="button" onclick="this.parentElement.classList.toggle('is-expanded');this.textContent=this.parentElement.classList.contains('is-expanded')?'閉じる':'続きを読む'">続きを読む</button>
     </div>
 </div>
 <?php endif; ?>
