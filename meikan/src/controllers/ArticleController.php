@@ -367,7 +367,7 @@ class ArticleController
                     }
                     $out .= '</div>' . "\n";
                     if (self::$lastWorkUrl) {
-                        $out .= '<div class="article-samples-cta"><a href="' . h(self::$lastWorkUrl) . '" target="_blank" rel="nofollow noopener" class="article-samples-cta__btn">作品を見る →</a></div>' . "\n";
+                        $out .= '<div class="article-samples-cta"><a href="' . h(self::$lastWorkUrl) . '" target="_blank" rel="nofollow noopener" class="article-samples-cta__btn">無料でサンプル動画を見る →</a></div>' . "\n";
                         self::$lastWorkUrl = null;
                     }
                     $html .= $out;
