@@ -52,20 +52,6 @@ $hasProfile = !empty($actress['bust']) || !empty($actress['height']) || !empty($
 </div>
 <?php endif; ?>
 
-<?php if (!empty($genres)): ?>
-<h2 class="section-title">ジャンル別作品</h2>
-
-<?php $actressSlug = $actress['slug']; ?>
-<div class="genre-grid genre-grid--collapsible<?= count($genres) > 6 ? '' : ' is-expanded' ?>">
-    <?php foreach ($genres as $genre): ?>
-        <?php require TEMPLATE_DIR . '/partials/genre-card.php'; ?>
-    <?php endforeach; ?>
-</div>
-<?php if (count($genres) > 6): ?>
-<button class="genre-grid__toggle" type="button">もっと見る</button>
-<?php endif; ?>
-<?php endif; ?>
-
 <?php if (!empty($works)): ?>
 <h2 class="section-title">出演作品</h2>
 

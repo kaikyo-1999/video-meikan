@@ -2582,7 +2582,7 @@ p > .article-inline-img {
     text-align: center;
     text-decoration: none;
     transition: background 0.2s;
-    align-self: flex-start;
+    align-self: center;
     margin-top: 4px;
 }
 .work-card-v2__cta:hover {

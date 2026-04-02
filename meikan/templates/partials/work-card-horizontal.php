@@ -19,7 +19,7 @@
             <?php endif; ?>
         </p>
         <?php if (!empty($work['affiliate_url'])): ?>
-            <span class="work-card__cta">無料でサンプル動画を見る &rarr;</span>
+            <span class="work-card__cta">高画質フル動画をダウンロード &rarr;</span>
         <?php endif; ?>
     </div>
 </<?= $cardTag ?>>

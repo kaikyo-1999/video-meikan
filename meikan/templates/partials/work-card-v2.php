@@ -75,7 +75,7 @@ $hasCarousel = $totalSlides > 1;
             <p class="work-card-v2__date">配信開始日：<?= h($work['release_date']) ?></p>
         <?php endif; ?>
         <?php if (!empty($work['affiliate_url'])): ?>
-        <a class="work-card-v2__cta" href="<?= h($work['affiliate_url']) ?>" target="_blank" rel="nofollow noopener">無料でサンプル動画を見る &rarr;</a>
+        <a class="work-card-v2__cta" href="<?= h($work['affiliate_url']) ?>" target="_blank" rel="nofollow noopener">高画質フル動画をダウンロード &rarr;</a>
         <?php endif; ?>
     </div>
 </div>
