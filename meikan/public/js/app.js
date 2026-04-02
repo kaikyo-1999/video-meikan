@@ -45,3 +45,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// Sidebar Genre List: もっと見る / 閉じる
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.sidebar-genre-list__toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var list = btn.previousElementSibling;
+            var expanded = list.classList.toggle('is-expanded');
+            btn.textContent = expanded ? '閉じる' : btn.dataset.label;
+        });
+        btn.dataset.label = btn.textContent;
+    });
+});
+
+// Genre Grid: もっと見る / 閉じる
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.genre-grid__toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var grid = btn.previousElementSibling;
+            var expanded = grid.classList.toggle('is-expanded');
+            btn.textContent = expanded ? '閉じる' : 'もっと見る';
+        });
+    });
+});

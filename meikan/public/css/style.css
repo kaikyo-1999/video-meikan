@@ -416,16 +416,68 @@ ul, ol { list-style: none; }
     font-weight: 700;
     flex: 1;
     min-width: 0;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .genre-card__count {
     font-size: 12px;
     color: var(--color-text-sub);
     white-space: nowrap;
+    margin: 0;
+    flex-shrink: 0;
 }
 .genre-card__arrow {
     color: var(--color-accent);
     font-size: 13px;
     flex-shrink: 0;
+}
+
+/* Genre Grid: 3行まで表示 */
+.genre-grid--collapsible:not(.is-expanded) > :nth-child(n+7) {
+    display: none;
+}
+.genre-grid__toggle {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 24px;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    color: var(--color-accent);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.genre-grid__toggle:hover {
+    background: var(--color-bg);
+}
+
+/* Sidebar Genre List: 8件まで表示 */
+.sidebar-genre-list__extra {
+    display: none;
+}
+.sidebar-genre-list.is-expanded .sidebar-genre-list__extra {
+    display: list-item;
+}
+.sidebar-genre-list__toggle {
+    display: block;
+    width: 100%;
+    padding: 6px 10px;
+    margin-top: 4px;
+    background: none;
+    border: none;
+    color: var(--color-accent);
+    font-size: 13px;
+    cursor: pointer;
+    text-align: left;
+}
+.sidebar-genre-list__toggle:hover {
+    text-decoration: underline;
 }
 
 /* --- Work List --- */
@@ -1682,6 +1734,12 @@ p > .article-inline-img {
         grid-template-columns: repeat(3, 1fr);
         gap: 16px;
     }
+    .genre-grid--collapsible:not(.is-expanded) > :nth-child(n+7) {
+        display: block;
+    }
+    .genre-grid--collapsible:not(.is-expanded) > :nth-child(n+10) {
+        display: none;
+    }
     .similar-actress-grid {
         grid-template-columns: repeat(5, 1fr);
         gap: 16px;
@@ -1788,6 +1846,12 @@ p > .article-inline-img {
     .genre-grid {
         grid-template-columns: repeat(4, 1fr);
         gap: 16px;
+    }
+    .genre-grid--collapsible:not(.is-expanded) > :nth-child(n+10) {
+        display: block;
+    }
+    .genre-grid--collapsible:not(.is-expanded) > :nth-child(n+13) {
+        display: none;
     }
     .work-list {
         grid-template-columns: repeat(4, 1fr);

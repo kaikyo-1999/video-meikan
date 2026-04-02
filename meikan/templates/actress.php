@@ -56,11 +56,14 @@ $hasProfile = !empty($actress['bust']) || !empty($actress['height']) || !empty($
 <h2 class="section-title">ジャンル別作品</h2>
 
 <?php $actressSlug = $actress['slug']; ?>
-<div class="genre-grid">
+<div class="genre-grid genre-grid--collapsible<?= count($genres) > 6 ? '' : ' is-expanded' ?>">
     <?php foreach ($genres as $genre): ?>
         <?php require TEMPLATE_DIR . '/partials/genre-card.php'; ?>
     <?php endforeach; ?>
 </div>
+<?php if (count($genres) > 6): ?>
+<button class="genre-grid__toggle" type="button">もっと見る</button>
+<?php endif; ?>
 <?php endif; ?>
 
 <?php if (!empty($works)): ?>
@@ -91,9 +94,9 @@ $hasProfile = !empty($actress['bust']) || !empty($actress['height']) || !empty($
         <?php if (!empty($genres)): ?>
         <div class="sidebar-section">
             <h3 class="sidebar-section__title">ジャンル</h3>
-            <ul class="sidebar-section__list">
-                <?php foreach ($genres as $g): ?>
-                <li>
+            <ul class="sidebar-section__list sidebar-genre-list">
+                <?php foreach ($genres as $_i => $g): ?>
+                <li<?= $_i >= 8 ? ' class="sidebar-genre-list__extra"' : '' ?>>
                     <a href="<?= h(url($actress['slug'] . '/' . $g['slug'] . '/')) ?>" class="sidebar-section__link">
                         <?= h($g['name']) ?>
                         <span class="sidebar-section__count"><?= (int)$g['work_count'] ?></span>
@@ -101,6 +104,9 @@ $hasProfile = !empty($actress['bust']) || !empty($actress['height']) || !empty($
                 </li>
                 <?php endforeach; ?>
             </ul>
+            <?php if (count($genres) > 8): ?>
+            <button class="sidebar-genre-list__toggle" type="button">もっと見る（残り<?= count($genres) - 8 ?>件）</button>
+            <?php endif; ?>
         </div>
         <?php endif; ?>
 

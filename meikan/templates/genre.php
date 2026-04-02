@@ -25,9 +25,9 @@
         <?php if (!empty($allGenres) && count($allGenres) > 1): ?>
         <div class="sidebar-section">
             <h3 class="sidebar-section__title">ジャンル</h3>
-            <ul class="sidebar-section__list">
-                <?php foreach ($allGenres as $g): ?>
-                <li>
+            <ul class="sidebar-section__list sidebar-genre-list">
+                <?php foreach ($allGenres as $_i => $g): ?>
+                <li<?= $_i >= 8 ? ' class="sidebar-genre-list__extra"' : '' ?>>
                     <a href="<?= h(url($actress['slug'] . '/' . $g['slug'] . '/')) ?>" class="sidebar-section__link<?= $g['slug'] === $genre['slug'] ? ' is-active' : '' ?>">
                         <?= h($g['name']) ?>
                         <span class="sidebar-section__count"><?= (int)$g['work_count'] ?></span>
@@ -35,6 +35,9 @@
                 </li>
                 <?php endforeach; ?>
             </ul>
+            <?php if (count($allGenres) > 8): ?>
+            <button class="sidebar-genre-list__toggle" type="button">もっと見る（残り<?= count($allGenres) - 8 ?>件）</button>
+            <?php endif; ?>
         </div>
         <?php endif; ?>
 
