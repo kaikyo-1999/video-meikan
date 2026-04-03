@@ -5,9 +5,11 @@
 <section class="top-section">
     <h2 class="top-section__title"><?= h($debutMonthLabel) ?>デビューの新人女優</h2>
     <div class="actress-grid actress-grid--6">
+        <?php $lazy = false; ?>
         <?php foreach ($debutActresses as $actress): ?>
             <?php require TEMPLATE_DIR . '/partials/actress-card.php'; ?>
         <?php endforeach; ?>
+        <?php $lazy = true; ?>
     </div>
     <?php if ($debutArticleSlug): ?>
         <a href="<?= h(url('article/' . $debutArticleSlug . '/')) ?>" class="top-section__more">もっと見る</a>

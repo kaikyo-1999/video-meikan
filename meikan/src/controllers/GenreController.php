@@ -25,14 +25,16 @@ class GenreController
         }
 
         $page = currentPage();
-        $totalWorks = Work::countByActressAndGenre($actress['id'], $genre['id']);
+        $totalWorksAll = Work::countByActressAndGenre($actress['id'], $genre['id']);
 
-        if ($totalWorks === 0) {
+        if ($totalWorksAll === 0) {
             http_response_code(404);
             render('404', ['pageTitle' => 'ページが見つかりません | ' . SITE_NAME]);
             return;
         }
 
+        // デフォルト: 単体作品のみ・人気順
+        $totalWorks = Work::countSingleByActressAndGenre($actress['id'], $genre['id']);
         $pagination = paginate($totalWorks, ITEMS_PER_PAGE, $page);
         $works = Work::findByActressAndGenre($actress['id'], $genre['id'], ITEMS_PER_PAGE, $pagination['offset']);
         $workIds = array_column($works, 'id');
@@ -44,7 +46,7 @@ class GenreController
             '@context' => 'https://schema.org',
             '@type' => 'ItemList',
             'name' => $actress['name'] . 'の' . $genre['name'] . '作品一覧',
-            'numberOfItems' => $totalWorks,
+            'numberOfItems' => $totalWorksAll,
             'itemListElement' => [],
         ];
 
@@ -59,7 +61,7 @@ class GenreController
 
         render('genre', [
             'pageTitle' => $actress['name'] . 'の' . $genre['name'] . '作品一覧 | ' . SITE_NAME,
-            'metaDescription' => $actress['name'] . 'の' . $genre['name'] . '作品を一覧表示。全' . $totalWorks . '作品。',
+            'metaDescription' => $actress['name'] . 'の' . $genre['name'] . '作品を一覧表示。全' . $totalWorksAll . '作品。',
             'breadcrumbs' => [
                 ['label' => 'TOP', 'url' => ''],
                 ['label' => $actress['name'], 'url' => $actress['slug'] . '/'],

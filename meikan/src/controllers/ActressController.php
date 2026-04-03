@@ -32,9 +32,9 @@ class ActressController
             }
         }
 
-        // 作品一覧を表示（多い場合はページネーション付き）
+        // 作品一覧を表示（デフォルト: 単体作品のみ・人気順）
         $worksPage = currentPage();
-        $totalWorks = $workCount;
+        $totalWorks = Work::countSingleByActress($actress['id']);
         $worksPagination = paginate($totalWorks, ITEMS_PER_PAGE, $worksPage);
         $works = Work::findByActressPaginated($actress['id'], ITEMS_PER_PAGE, $worksPagination['offset']);
 

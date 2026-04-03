@@ -24,9 +24,9 @@
     var vrContainer = document.getElementById('workVr');
     var totalCountEl = document.getElementById('workTotalCount');
 
-    var currentSort = '';
+    var currentSort = 'rank';
     var currentQuery = '';
-    var currentSingle = false;
+    var currentSingle = true;
     var currentVr = '';
 
     // --- API呼び出し ---

@@ -45,17 +45,22 @@ class Work
     public static function findByActressPaginated(
         int $actressId,
         int $limit = ITEMS_PER_PAGE,
-        int $offset = 0
+        int $offset = 0,
+        bool $singleOnly = true
     ): array {
         $db = Database::getInstance();
-        $stmt = $db->prepare('
+        $where = 'aw.actress_id = ?';
+        if ($singleOnly) {
+            $where .= ' AND (SELECT COUNT(*) FROM actress_work aw2 WHERE aw2.work_id = w.id) = 1';
+        }
+        $stmt = $db->prepare("
             SELECT w.*
             FROM works w
             INNER JOIN actress_work aw ON w.id = aw.work_id
-            WHERE aw.actress_id = ?
-            ORDER BY w.release_date DESC, w.id DESC
+            WHERE {$where}
+            ORDER BY w.review_count DESC, w.release_date DESC, w.id DESC
             LIMIT ? OFFSET ?
-        ');
+        ");
         $stmt->execute([$actressId, $limit, $offset]);
         return $stmt->fetchAll();
     }
@@ -64,20 +69,68 @@ class Work
         int $actressId,
         int $genreId,
         int $limit = ITEMS_PER_PAGE,
-        int $offset = 0
+        int $offset = 0,
+        bool $singleOnly = true
     ): array {
         $db = Database::getInstance();
-        $stmt = $db->prepare('
+        $where = 'aw.actress_id = ? AND wg.genre_id = ?';
+        if ($singleOnly) {
+            $where .= ' AND (SELECT COUNT(*) FROM actress_work aw2 WHERE aw2.work_id = w.id) = 1';
+        }
+        $stmt = $db->prepare("
             SELECT w.*
             FROM works w
             INNER JOIN actress_work aw ON w.id = aw.work_id
             INNER JOIN work_genre wg ON w.id = wg.work_id
-            WHERE aw.actress_id = ? AND wg.genre_id = ?
-            ORDER BY w.release_date DESC, w.id DESC
+            WHERE {$where}
+            ORDER BY w.review_count DESC, w.release_date DESC, w.id DESC
             LIMIT ? OFFSET ?
-        ');
+        ");
         $stmt->execute([$actressId, $genreId, $limit, $offset]);
         return $stmt->fetchAll();
+    }
+
+    public static function countSingleByActress(int $actressId): int
+    {
+        $cacheKey = "single_work_count_{$actressId}";
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return $cached;
+
+        $db = Database::getInstance();
+        $stmt = $db->prepare('
+            SELECT COUNT(DISTINCT w.id)
+            FROM works w
+            INNER JOIN actress_work aw ON w.id = aw.work_id
+            WHERE aw.actress_id = ?
+              AND (SELECT COUNT(*) FROM actress_work aw2 WHERE aw2.work_id = w.id) = 1
+        ');
+        $stmt->execute([$actressId]);
+        $result = (int)$stmt->fetchColumn();
+
+        Cache::set($cacheKey, $result);
+        return $result;
+    }
+
+    public static function countSingleByActressAndGenre(int $actressId, int $genreId): int
+    {
+        $cacheKey = "single_work_count_{$actressId}_{$genreId}";
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return $cached;
+
+        $db = Database::getInstance();
+        $stmt = $db->prepare('
+            SELECT COUNT(DISTINCT w.id)
+            FROM works w
+            INNER JOIN actress_work aw ON w.id = aw.work_id
+            INNER JOIN work_genre wg ON w.id = wg.work_id
+            WHERE aw.actress_id = ? AND wg.genre_id = ?
+              AND (SELECT COUNT(*) FROM actress_work aw2 WHERE aw2.work_id = w.id) = 1
+        ');
+        $stmt->execute([$actressId, $genreId]);
+        $result = (int)$stmt->fetchColumn();
+
+        Cache::set($cacheKey, $result);
+        return $result;
     }
 
     public static function countByActressAndGenre(int $actressId, int $genreId): int

@@ -109,7 +109,7 @@ $recommendActresses = !empty($similarActresses) ? $similarActresses : (!empty($r
         <div class="sidebar-section">
             <h3 class="sidebar-section__title">出演形態</h3>
             <label class="work-controls__checkbox">
-                <input type="checkbox" id="workSingle">
+                <input type="checkbox" id="workSingle" checked>
                 <span>単体作品のみ</span>
             </label>
         </div>
@@ -149,8 +149,8 @@ $recommendActresses = !empty($similarActresses) ? $similarActresses : (!empty($r
         <div class="sort-header">
             <p class="sort-header__count">対象作品：<strong id="workTotalCount"><?= $totalWorks ?></strong> 件</p>
             <div class="sort-header__tabs" id="workSort" role="radiogroup" aria-label="並び替え">
-                <button class="sort-header__tab is-active" data-sort="" type="button">新着順</button>
-                <button class="sort-header__tab" data-sort="rank" type="button">人気順</button>
+                <button class="sort-header__tab" data-sort="" type="button">新着順</button>
+                <button class="sort-header__tab is-active" data-sort="rank" type="button">人気順</button>
                 <button class="sort-header__tab" data-sort="review" type="button">評価順</button>
                 <button class="sort-header__tab" data-sort="-date" type="button">古い順</button>
             </div>
