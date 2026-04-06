@@ -20,6 +20,21 @@ $db = Database::getInstance();
 $allSlugs = $db->query('SELECT slug FROM actresses')->fetchAll(PDO::FETCH_COLUMN);
 $slugSet = array_flip($allSlugs);
 
+// 全ジャンルslugを取得（内部リンクチェック用）
+$allGenreSlugs = $db->query('SELECT slug FROM genres')->fetchAll(PDO::FETCH_COLUMN);
+$genreSlugSet = array_flip($allGenreSlugs);
+
+// 全記事slugを取得（内部リンクチェック用）
+$articleSlugs = [];
+foreach (glob($articlesDir . '/*.md') as $f) {
+    $articleSlugs[pathinfo($f, PATHINFO_FILENAME)] = true;
+}
+
+// slugリダイレクトマップ（リダイレクト先が存在すれば有効とみなす）
+$slugRedirects = file_exists(ROOT_DIR . '/config/slug_redirects.php')
+    ? require ROOT_DIR . '/config/slug_redirects.php'
+    : [];
+
 // 全作品source_idを取得
 $allCids = $db->query("SELECT source_id FROM works WHERE source = 'fanza'")->fetchAll(PDO::FETCH_COLUMN);
 $cidSet = array_flip($allCids);
@@ -160,6 +175,48 @@ foreach ($files as $file) {
         if (preg_match('/^@actress\[(.+)\]$/', $trimmed, $rawM)) {
             if (!preg_match('/^[a-z0-9-]+$/', $rawM[1])) {
                 $errors[] = "L{$num}: @actress[{$rawM[1]}] — slug形式が不正（小文字英数字とハイフンのみ許可）";
+            }
+        }
+
+        // 6. 内部リンク404チェック
+        // [text](/path/) 形式のリンクを抽出（外部URLとアンカーリンクは除外）
+        if (preg_match_all('/\[.+?\]\((\/[^)]+)\)/', $trimmed, $linkMatches)) {
+            foreach ($linkMatches[1] as $linkPath) {
+                $path = trim($linkPath, '/');
+                // 自記事アンカーリンクはスキップ
+                if (str_starts_with($linkPath, '#')) continue;
+                // アンカー付きリンクのパス部分のみ取得
+                $path = explode('#', $path)[0];
+                $path = trim($path, '/');
+                if (!$path) continue;
+
+                $parts = explode('/', $path);
+
+                if ($parts[0] === 'article' && isset($parts[1])) {
+                    // /article/{slug}/ → 記事ファイルが存在するか
+                    if (!isset($articleSlugs[$parts[1]])) {
+                        $errors[] = "L{$num}: 内部リンク /article/{$parts[1]}/ — 記事ファイルが存在しません";
+                    }
+                } elseif ($parts[0] === 'meikan' || $parts[0] === 'author' || $parts[0] === 'sitemap.xml' || $parts[0] === 'public') {
+                    // 静的パス・固定ルートはスキップ
+                    continue;
+                } elseif (count($parts) === 2) {
+                    // /{actress_slug}/{genre_slug}/ → 女優+ジャンルが存在するか
+                    $aSlug = $parts[0];
+                    $gSlug = $parts[1];
+                    $aExists = isset($slugSet[$aSlug]) || isset($slugRedirects[$aSlug]);
+                    if (!$aExists) {
+                        $errors[] = "L{$num}: 内部リンク /{$aSlug}/{$gSlug}/ — 女優slug '{$aSlug}' がDBに存在しません";
+                    } elseif (!isset($genreSlugSet[$gSlug])) {
+                        $errors[] = "L{$num}: 内部リンク /{$aSlug}/{$gSlug}/ — ジャンルslug '{$gSlug}' がDBに存在しません";
+                    }
+                } elseif (count($parts) === 1 && preg_match('/^[a-z0-9][a-z0-9-]*$/', $parts[0])) {
+                    // /{actress_slug}/ → 女優が存在するか
+                    $aSlug = $parts[0];
+                    if (!isset($slugSet[$aSlug]) && !isset($slugRedirects[$aSlug]) && !isset($articleSlugs[$aSlug])) {
+                        $warnings[] = "L{$num}: 内部リンク /{$aSlug}/ — 女優slugがDBに存在しません（リダイレクトもなし）";
+                    }
+                }
             }
         }
     }

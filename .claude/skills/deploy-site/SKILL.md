@@ -90,6 +90,38 @@ git diff HEAD~1 -- meikan/src/Router.php meikan/index.php meikan/config/slug_red
 
 ---
 
+## Step 2.6: 記事の@actressタグ 本番DB検証（記事変更時のみ）
+
+記事ファイルに変更がある場合、記事内の `@actress[slug]` タグが **本番DB** に存在するか検証する。
+ローカルDBと本番DBでslugが異なるケースがあるため、本番DBに対してチェックすることが重要。
+
+```bash
+# 1. 変更された記事から@actressタグを抽出
+git diff HEAD~1 --name-only -- meikan/content/articles/ | while read f; do
+  grep -oE '@actress\[[a-z0-9-]+\]' "$f" 2>/dev/null
+done | sort -u | sed 's/@actress\[//;s/\]//' > /tmp/article_slugs.txt
+
+# 2. 本番DBの女優slugリストを取得
+ssh -i ~/.ssh/shinserver_rsa -p 10022 wp2026@sv6810.wpx.ne.jp "php -r \"
+define('ROOT_DIR', '/home/wp2026/av-hakase.com/public_html');
+require_once ROOT_DIR . '/config/database.php';
+\\\$pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4', DB_USER, DB_PASS);
+\\\$stmt = \\\$pdo->query('SELECT slug FROM actresses');
+while(\\\$r = \\\$stmt->fetch(PDO::FETCH_NUM)) echo \\\$r[0] . PHP_EOL;
+\"" > /tmp/prod_slugs.txt
+
+# 3. 差分チェック: 記事にあるが本番DBにないslug
+comm -23 /tmp/article_slugs.txt /tmp/prod_slugs.txt
+```
+
+**本番DBに存在しないslugが検出された場合:**
+
+1. 本番でバッチ実行が必要か確認（新規女優の場合）
+2. slug不一致の場合は記事の@actressタグを本番slugに修正
+3. 必要に応じて `config/slug_redirects.php` にリダイレクトを追加
+
+---
+
 ## Step 3: 本番サーバーにrsyncでデプロイ
 
 ```bash
