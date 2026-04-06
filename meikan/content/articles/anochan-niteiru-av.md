@@ -37,6 +37,8 @@ av女優博士です。90年代のVHS時代から現代まで100万本以上のA
 
 ### 七海ゆあ
 
+@actress[nanami-yua]
+
 ![七海ゆあのサンプル](https://pics.dmm.co.jp/digital/video/1mmgh00125/1mmgh00125jp-8.jpg)
 
 | 項目 | 詳細 |
@@ -138,6 +140,8 @@ https://pics.dmm.co.jp/digital/video/mdte00020/mdte00020jp-8.jpg
 :::
 
 ### 中谷美結
+
+@actress[nakatani-miyu]
 
 ![中谷美結のサンプル](https://pics.dmm.co.jp/digital/video/12ala00015/12ala00015jp-5.jpg)
 

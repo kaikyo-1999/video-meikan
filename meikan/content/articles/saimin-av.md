@@ -118,6 +118,8 @@ updated_at: 2026-03-30
 
 ### ⑤催●種付け プロポーズ 由良かな
 
+@actress[yura-kana]
+
 ![催眠AVおすすめ](https://hpkenkyu.mixh.jp/wp-content/uploads/2024/04/mudr00217pl.webp)
 [催眠AVおすすめ](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dmudr00217%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
@@ -170,6 +172,8 @@ updated_at: 2026-03-30
 
 ### ⑦レ●プのたびに催●術で記憶を消され 日泉舞香
 
+@actress[hiizumi-maika]
+
 ![催眠AVおすすめ](https://hpkenkyu.mixh.jp/wp-content/uploads/2024/04/IMG_7341.webp)
 [催眠AVおすすめ](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Ddvaj00610%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
@@ -196,6 +200,8 @@ updated_at: 2026-03-30
 
 ### ⑧じんかくそうさ洗脳催● 田中ねね
 
+@actress[tanaka-nene]
+
 ![催眠AVおすすめ](https://hpkenkyu.mixh.jp/wp-content/uploads/2024/04/IMG_7378.webp)
 [催眠AVおすすめ](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dsora00490%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
@@ -221,6 +227,8 @@ updated_at: 2026-03-30
 [サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dsora00490%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ### ⑨hypno-document 催●術でキメられて 富井美帆
+
+@actress[tomii-miho]
 
 ![催眠AVおすすめ](https://hpkenkyu.mixh.jp/wp-content/uploads/2024/04/IMG_7348.webp)
 [催眠AVおすすめ](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dsrmc00050%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
@@ -406,6 +414,8 @@ updated_at: 2026-03-30
 
 ### 【姉×催眠】デススプレー 富井美帆
 
+@actress[tomii-miho]
+
 ![催眠AVおすすめ](https://hpkenkyu.mixh.jp/wp-content/uploads/2024/04/IMG_7413.webp)
 [催眠AVおすすめ](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Ddvrt00013%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
@@ -432,6 +442,8 @@ updated_at: 2026-03-30
 
 ### 【義母×催眠】近親催●相姦 小早川怜子
 
+@actress[kobayakawa-reiko]
+
 ![催眠AVおすすめ](https://hpkenkyu.mixh.jp/wp-content/uploads/2024/04/IMG_7420.webp)
 [催眠AVおすすめ](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dvenu00374%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
@@ -457,6 +469,8 @@ updated_at: 2026-03-30
 [サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dvenu00374%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ### 【放尿×催眠】the催● 鳴月らん
+
+@actress[narutsuki-ran]
 
 ![催眠AVおすすめ](https://hpkenkyu.mixh.jp/wp-content/uploads/2024/04/IMG_7427.webp)
 
@@ -507,6 +521,8 @@ updated_at: 2026-03-30
 [サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3D1rctd00479%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ### 【ニューハーフ×催眠】催●術で全身が亀頭状態 橘芹那
+
+@actress[tachibana-serina]
 
 ![催眠AVおすすめ](https://hpkenkyu.mixh.jp/wp-content/uploads/2024/04/IMG_7355.webp)
 
