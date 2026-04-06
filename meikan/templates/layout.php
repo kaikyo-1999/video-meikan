@@ -28,6 +28,8 @@
     <meta property="og:image" content="<?= h($ogImage) ?>">
     <?php endif; ?>
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://pics.dmm.co.jp" crossorigin>
+    <link rel="dns-prefetch" href="https://pics.dmm.co.jp">
     <link rel="stylesheet" href="<?= asset('css/style.css') ?>">
     <?php if (!empty($jsonLd)): ?>
     <?= jsonLd($jsonLd) ?>
@@ -51,10 +53,10 @@
     <?php require TEMPLATE_DIR . '/partials/footer.php'; ?>
 
     <script>var BASE_URL = '<?= url() ?>';</script>
-    <script src="<?= asset('js/app.js') ?>"></script>
+    <script src="<?= asset('js/app.js') ?>" defer></script>
     <?php if (!empty($genre) || !empty($works)): ?>
-    <script src="<?= asset('js/genre.js') ?>"></script>
+    <script src="<?= asset('js/genre.js') ?>" defer></script>
     <?php endif; ?>
-    <script src="<?= asset('js/carousel.js') ?>"></script>
+    <script src="<?= asset('js/carousel.js') ?>" defer></script>
 </body>
 </html>
