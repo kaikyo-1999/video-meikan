@@ -37,7 +37,6 @@ av女優博士です。90年代のVHS時代から現代まで100万本以上のA
 
 ### 七海ゆあ
 
-@actress[nanami-yua]
 
 ![七海ゆあのサンプル](https://pics.dmm.co.jp/digital/video/1mmgh00125/1mmgh00125jp-8.jpg)
 
@@ -73,6 +72,7 @@ https://pics.dmm.co.jp/digital/video/1mmgh00125/1mmgh00125jp-10.jpg
 アイドルの追っかけをしている素人設定の七海ゆあが、イラマ、ハードピストン、顔射とメチャクチャにされる作品。**==あのちゃんをかなり意識して作られているせいか、どのAV作品よりも激似です。==**地雷系、メンヘラ系な女の子が好きなには強くおすすめします。
 :::
 
+@actress[nanami-yua]
 ### 花狩まい
 
 ![花狩まいのサンプル](https://pics.dmm.co.jp/digital/video/1moon00023/1moon00023jp-7.jpg)
@@ -141,7 +141,6 @@ https://pics.dmm.co.jp/digital/video/mdte00020/mdte00020jp-8.jpg
 
 ### 中谷美結
 
-@actress[nakatani-miyu]
 
 ![中谷美結のサンプル](https://pics.dmm.co.jp/digital/video/12ala00015/12ala00015jp-5.jpg)
 
@@ -169,6 +168,7 @@ https://pics.dmm.co.jp/digital/video/12ala00015/12ala00015jp-2.jpg
 https://pics.dmm.co.jp/digital/video/12ala00015/12ala00015jp-7.jpg
 :::
 
+@actress[nakatani-miyu]
 ### 天馬ゆい
 
 ![天馬ゆいのサンプル](https://pics.dmm.co.jp/digital/video/miaa00608/miaa00608jp-7.jpg)
