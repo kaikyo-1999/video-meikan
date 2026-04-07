@@ -37,7 +37,7 @@ updated_at: 2026-03-30
 
 本当にかかるのか分からない催眠術を女性に試したら、本当にかかってしまったという作品。**催眠状態にかかった女性の胸を触り、乳首を吸って最終的には挿入も。**催眠状態にかかってエロくなった女性がいやらしく喘ぐ様子を長く楽しみたいなら、この作品がおすすめ。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Drexd00372%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Drexd00372%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ### ②催●術ってすごい！ 原作:Fatalpulse 朝凪 累計4万部の怪作実写化！
 
@@ -62,7 +62,7 @@ updated_at: 2026-03-30
 
 大人気催眠アダルトコミックの実写化作品。**自分を虐げていた妹とその友人を、催眠アプリを使っていやらしく洗脳していく様子はまさに男の夢。**意のままにムチムチロリ顔の女性に突っ込んで中出ししたい願望があるなら見るべき作品だ。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dmimk00134%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dmimk00134%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ### ③催●術でご近所の巨乳妻を90日間にわたってオーガズム洗脳
 
@@ -88,7 +88,7 @@ updated_at: 2026-03-30
 
 近所に住む巨乳の人妻を洗脳して、**旦那のいる前でフェラをさせたりアソコに突っ込んだりとやりたい放題。**寝取りものと催眠ものを同時に味わえる正に至高の作品。アヘ顔好きも必見の作品だ。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Ddvdms00437%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Ddvdms00437%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ### ④催●マニヤ
 
@@ -114,7 +114,7 @@ updated_at: 2026-03-30
 
 桜木優希音や蓮実クレアなど有名女優がいやらしい催眠にかけられる！**催眠術師が指示するままにフェラをしたりクンニをされる様子がたまらなくエロい。**三方向からの複数フェラなどの抜きどころ満載の作品だ。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Danx00075%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Danx00075%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ### ⑤催●種付け プロポーズ 由良かな
 
@@ -141,7 +141,7 @@ updated_at: 2026-03-30
 
 人気エロ漫画の実写系AV作品。**Aカップのロリ系女優の由良かなが、汚いおっさんに催眠をかけられ種付けされる。**シリーズ揃ってFANZAでの評価が高い名作だ。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dmudr00217%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dmudr00217%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 @actress[kana]
 ### ⑥えっ！？本当に？演技でしょ… 催●術教室
@@ -168,7 +168,7 @@ updated_at: 2026-03-30
 
 ある催眠教室で開かれた秘密の行為。**催眠でされるがままに犯される女性達だが、催眠術師のチ◯ポを求めていやらしく腰をくねらせる！**女性の体を好き放題撫でまわし、いやらしい穴に突っ込みたい願望を持った人におすすめだ。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Drexd00495%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Drexd00495%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ### ⑦レ●プのたびに催●術で記憶を消され 日泉舞香
 
@@ -195,7 +195,7 @@ updated_at: 2026-03-30
 
 **ロリ顔とムチムチボディが素晴らしい日泉舞香が学生に！**最低最悪の叔父に催眠術にかけられて毎晩犯される。学生と激しいエッチをして無責任に中出ししたいというアダルトな欲求を持っている人にぜひ見てほしい作品。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Ddvaj00610%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Ddvaj00610%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 @actress[hiizumimaika]
 ### ⑧じんかくそうさ洗脳催● 田中ねね
@@ -223,7 +223,7 @@ updated_at: 2026-03-30
 
 豊満な体とロリ系の顔がたまらない田中ねねが巨乳OLに！**催眠術をかけられて会社でパイズリをしたりデスクの上で中出しされる姿はエロいの一言。**田中ねねファンにはもちろん、OLが催眠にかけられる作品が見たい人にもおすすめだ。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dsora00490%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dsora00490%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 @actress[nene]
 ### ⑨hypno-document 催●術でキメられて 富井美帆
@@ -251,7 +251,7 @@ updated_at: 2026-03-30
 
 形が良くしゃぶりつきたくなる尻の持ち主、富井美帆がエッチな催眠をかけられて、様々なエッチに体をくねらせる作品。**巨尻を揺らしながら腰を振ったりフェラをしたり。**富井美帆ファンに送る珠玉の一作を要チェック。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dsrmc00050%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dsrmc00050%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 @actress[tomii-miho]
 ### ⑩うちのエリート家族に催●術が効きすぎたから子作り
@@ -278,7 +278,7 @@ updated_at: 2026-03-30
 
 あべみかこや佐々木あきが催眠術で淫らに変わる。完璧な母、妹、姉に日々叱られていた主人公の一人称視点の作品。**エロい催眠術を使って美人な母や姉や妹にフェラをさせたりガン突きしたりと好き放題できるシーンは大興奮。**
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dzuko00119%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dzuko00119%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ## ジャンル別でおすすめの催眠AV作品10選
 
@@ -306,7 +306,7 @@ updated_at: 2026-03-30
 
 クラスの可愛い女子達に催眠術をかけて自分好みの女に作り変えていく。**お互いに手マンをし合ったりガン突きされて喘ぐ制服姿の美少女達。**いやらしく過激な青春時代をこの作品で取り戻せること間違いなし。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dhuntb00594%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dhuntb00594%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ### 【乱交×催眠】催●支配アプリ ヒプクル
 
@@ -332,7 +332,7 @@ updated_at: 2026-03-30
 
 コンビニで催眠アプリを使ったら横山夏希や神楽アイネを好き放題できてしまった！**パンツを顔に被って下品に踊らせたりディルドでアヘ顔オナニーさせるなどやりたい放題。**複数の美女が催眠にかかり下品な姿をさらしていく作品が好きな人は要チェック。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3D1rctd00014%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3D1rctd00014%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ### 【寝取られ×催眠】催●光線で支配された婚約者
 
@@ -358,7 +358,7 @@ updated_at: 2026-03-30
 
 美人な社長令嬢と結ばれ、幸せな結婚生活を送るはずだった。**しかし、催眠光線によって僕の妻は他の男に中出しされて寝取られる。**寝取りと催眠が組み合わさった珠玉の一作。「催眠光線で支配された」シリーズが好きな人は必見だ。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3D1sdde00587%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3D1sdde00587%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ### 【レズ×催眠】催●審査-分別-
 
@@ -384,7 +384,7 @@ updated_at: 2026-03-30
 
 笑顔がキュートな星空もあ、ギャル系の小宮るな、クールな小澤ゆうきがいやらしい催眠にかけられてレズる。**3人で同時にキスをしたり貝合わせをしながら喘ぐ彼女達。**そんな3人のいやらしい姿にシコる手が止まらなくなること間違いなし。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Danx00070%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Danx00070%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ### 【人妻×催眠】催●中毒 人妻しほり35才
 
@@ -410,7 +410,7 @@ updated_at: 2026-03-30
 
 清楚な美女人妻の遠藤しほりが催眠にかけられ、豊満な体を他人にもてあそばれる！**バニーガール姿でガン突きされながらフェラをする、アヘ顔になりながら喘ぐなど、清楚な人妻が普段見せない姿はたまらない。**遠藤しほりの魅力がこれでもかと引き出されている見どころしかない作品。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dh_443hpn00015%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dh_443hpn00015%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ### 【姉×催眠】デススプレー 富井美帆
 
@@ -437,7 +437,7 @@ updated_at: 2026-03-30
 
 顔が可愛くスタイルもいいのに性格が最悪な姉をスプレーで催眠状態にする！**ダイニングでオナニーさせたり手マンしたり、洗ってないチ◯ポをフェラさせる。**生意気な姉を体当たりで演じる富井美帆が見たい人におすすめ。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Ddvrt00013%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Ddvrt00013%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 @actress[tomii-miho]
 ### 【義母×催眠】近親催●相姦 小早川怜子
@@ -465,7 +465,7 @@ updated_at: 2026-03-30
 
 スレンダーな美人、小早川怜子が艶かしい義母に！催眠状態にすると形のいい尻を振って義理の息子のチ◯ポをいやらしくねだる。**バックで激しくガン突きされながら喘ぐ義母に腰が止まらない。**尻を鷲掴みしながらガン突きしたいと思わせられる。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dvenu00374%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dvenu00374%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 @actress[kobayakawareiko]
 ### 【放尿×催眠】the催● 鳴月らん
@@ -492,7 +492,7 @@ updated_at: 2026-03-30
 
 鳴月らんが放尿しながら可愛く喘ぐ姿を見たい人は必見！**しなやかな体を生かし、180度足を開いたらチ◯ポを突っ込まれる。**上からも下からもガン突きされながらヨガる鳴月らんに放尿が合わさって正に珠玉の作品。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3D13mvg00015%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3D13mvg00015%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 @actress[narutsuki-ran]
 ### 【巨乳×催眠】エロ標識～催●注意～
@@ -518,7 +518,7 @@ updated_at: 2026-03-30
 
 標識を見ただけで女達は外でも構わず淫らになる。**エロ標識で催眠状態にかかった白石みきと広瀬結香が豊満な体を揺らしながら、野外でパイズリをしたり中出しされる最高の作品。**2人のアヘ顔に釘付けになること間違いなしだ。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3D1rctd00479%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3D1rctd00479%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 ### 【ニューハーフ×催眠】催●術で全身が亀頭状態 橘芹那
 
@@ -544,6 +544,6 @@ updated_at: 2026-03-30
 
 橘芹那がエロい催眠をかけられて射精する！**日本一可愛い橘芹那が全身敏感になる催眠をかけられてチ◯ポを勃てる姿に興奮すること間違いなしだ。**そんな刺激的な作品を見たい人におすすめ。
 
-[サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dh_995bokd00154%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
+[btn サンプル動画を見る](https://al.dmm.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Fdetail%2F%3D%2Fcid%3Dh_995bokd00154%2F&af_id=sukebe7-003&ch=toolbar&ch_id=text)
 
 @actress[tachibana-serina]
