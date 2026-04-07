@@ -93,6 +93,24 @@ foreach ($actresses as $actress) {
             $reviewCount = isset($item['review']['count']) ? (int)$item['review']['count'] : null;
             $reviewAverage = isset($item['review']['average']) ? (float)$item['review']['average'] : null;
 
+            // 価格情報を抽出（downloadタイプを優先、なければトップレベル）
+            $price = null;
+            $listPrice = null;
+            if (!empty($item['prices'])) {
+                $deliveries = $item['prices']['deliveries']['delivery'] ?? [];
+                foreach ($deliveries as $d) {
+                    if (($d['type'] ?? '') === 'download') {
+                        $price = (int)preg_replace('/[^0-9]/', '', $d['price']);
+                        $listPrice = (int)preg_replace('/[^0-9]/', '', $d['list_price']);
+                        break;
+                    }
+                }
+                if ($price === null && isset($item['prices']['price'])) {
+                    $price = (int)preg_replace('/[^0-9]/', '', $item['prices']['price']);
+                    $listPrice = (int)preg_replace('/[^0-9]/', '', $item['prices']['list_price'] ?? '');
+                }
+            }
+
             // サンプル動画URL（最大サイズを優先）
             $sampleMovieUrl = null;
             if (!empty($item['sampleMovieURL'])) {
@@ -123,8 +141,8 @@ foreach ($actresses as $actress) {
                 }
 
                 $stmt = $db->prepare('
-                    INSERT INTO works (title, thumbnail_url, release_date, label, affiliate_url, review_count, review_average, sample_movie_url, source, source_id)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    INSERT INTO works (title, thumbnail_url, release_date, label, affiliate_url, review_count, review_average, sample_movie_url, price, list_price, price_updated_at, source, source_id)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?)
                 ');
                 $stmt->execute([
                     $item['title'] ?? '',
@@ -135,15 +153,17 @@ foreach ($actresses as $actress) {
                     $reviewCount,
                     $reviewAverage,
                     $sampleMovieUrl,
+                    $price,
+                    $listPrice,
                     'fanza',
                     $sourceId,
                 ]);
                 $workId = $db->lastInsertId();
                 $totalFetched++;
             } else {
-                // 既存レコードのレビュー・動画情報を更新
-                $db->prepare('UPDATE works SET review_count = COALESCE(?, review_count), review_average = COALESCE(?, review_average), sample_movie_url = COALESCE(?, sample_movie_url) WHERE id = ?')
-                   ->execute([$reviewCount, $reviewAverage, $sampleMovieUrl, $workId]);
+                // 既存レコードのレビュー・動画・価格情報を更新
+                $db->prepare('UPDATE works SET review_count = COALESCE(?, review_count), review_average = COALESCE(?, review_average), sample_movie_url = COALESCE(?, sample_movie_url), price = ?, list_price = ?, price_updated_at = NOW() WHERE id = ?')
+                   ->execute([$reviewCount, $reviewAverage, $sampleMovieUrl, $price, $listPrice, $workId]);
             }
 
             // サンプル画像の保存

@@ -74,6 +74,12 @@ $hasCarousel = $totalSlides > 1;
         <?php if (!empty($work['release_date'])): ?>
             <p class="work-card-v2__date">配信開始日：<?= h($work['release_date']) ?></p>
         <?php endif; ?>
+        <?php if (!empty($work['price']) && !empty($work['list_price']) && (int)$work['price'] < (int)$work['list_price']): ?>
+        <div class="work-card-v2__sale">
+            <?php $discountRate = round((1 - (int)$work['price'] / (int)$work['list_price']) * 100); ?>
+            <span class="work-card-v2__sale-badge">セール中 <?= $discountRate ?>%OFF</span>
+        </div>
+        <?php endif; ?>
         <?php if (!empty($work['affiliate_url'])): ?>
         <a class="work-card-v2__cta" href="<?= h($work['affiliate_url']) ?>" target="_blank" rel="nofollow noopener">高画質フル動画をダウンロード &rarr;</a>
         <?php endif; ?>

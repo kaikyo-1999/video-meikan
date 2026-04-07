@@ -2630,6 +2630,34 @@ p > .article-inline-img {
     font-size: 13px;
     color: var(--color-text-sub);
 }
+.work-card-v2__sale {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: center;
+    margin-top: 4px;
+}
+.work-card-v2__sale-badge {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    background: #e53935;
+    border-radius: 6px;
+    padding: 6px 16px;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+}
+.work-card-v2__sale-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #e53935;
+}
+.work-card-v2__list-price {
+    font-size: 14px;
+    color: var(--color-text-sub);
+    text-decoration: line-through;
+}
 .work-card-v2__cta {
     display: inline-block;
     font-size: 14px;
