@@ -22,7 +22,7 @@ class Actress
         ');
         $result = $stmt->fetchAll();
 
-        Cache::set($cacheKey, $result);
+        Cache::set($cacheKey, $result, 86400 * 30);
         return $result;
     }
 

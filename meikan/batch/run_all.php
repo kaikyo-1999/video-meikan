@@ -32,6 +32,7 @@ $batches = [
     'calculate_similar_actresses.php',
     'calculate_related_actresses.php',
     'clear_cache.php',
+    'warm_cache.php',
 ];
 
 $jsonArg = $argv[1] ?? null;
