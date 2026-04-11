@@ -9,5 +9,9 @@
             <a href="<?= url('article/') ?>" class="header__nav-link">記事一覧</a>
             <a href="<?= url('author/') ?>" class="header__nav-link">運営者</a>
         </nav>
+        <form class="header__search" action="<?= url('meikan/') ?>" method="get" role="search">
+            <input type="search" name="q" class="header__search-input" placeholder="フリーワード" value="<?= isset($_GET['q']) ? h($_GET['q']) : '' ?>">
+            <button type="submit" class="header__search-btn">検索</button>
+        </form>
     </div>
 </header>
