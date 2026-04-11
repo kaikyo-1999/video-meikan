@@ -15,8 +15,12 @@ $bcJsonLd = [
             'name' => $bc['label'],
         ];
         $isLast = ($i === count($breadcrumbs) - 1);
-        if (!$isLast) {
+        if (!empty($bc['url'])) {
             $element['item'] = fullUrl($bc['url']);
+        } elseif ($isLast) {
+            $element['item'] = fullUrl(strtok($_SERVER['REQUEST_URI'], '?'));
+        } else {
+            $element['item'] = fullUrl('');
         }
         $bcJsonLd['itemListElement'][] = $element;
         ?>
