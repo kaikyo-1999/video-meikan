@@ -111,6 +111,15 @@ foreach ($actresses as $actress) {
                 }
             }
 
+            // キャンペーン（セール）情報を抽出
+            $saleEndAt = null;
+            $campaignTitle = null;
+            if (!empty($item['campaign'])) {
+                $campaign = $item['campaign'][0] ?? $item['campaign'];
+                $saleEndAt = !empty($campaign['date_end']) ? date('Y-m-d H:i:s', strtotime($campaign['date_end'])) : null;
+                $campaignTitle = $campaign['title'] ?? null;
+            }
+
             // サンプル動画URL（最大サイズを優先）
             $sampleMovieUrl = null;
             if (!empty($item['sampleMovieURL'])) {
@@ -141,8 +150,8 @@ foreach ($actresses as $actress) {
                 }
 
                 $stmt = $db->prepare('
-                    INSERT INTO works (title, thumbnail_url, release_date, label, affiliate_url, review_count, review_average, sample_movie_url, price, list_price, price_updated_at, source, source_id)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?)
+                    INSERT INTO works (title, thumbnail_url, release_date, label, affiliate_url, review_count, review_average, sample_movie_url, price, list_price, sale_end_at, campaign_title, price_updated_at, source, source_id)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?)
                 ');
                 $stmt->execute([
                     $item['title'] ?? '',
@@ -155,6 +164,8 @@ foreach ($actresses as $actress) {
                     $sampleMovieUrl,
                     $price,
                     $listPrice,
+                    $saleEndAt,
+                    $campaignTitle,
                     'fanza',
                     $sourceId,
                 ]);
@@ -162,8 +173,8 @@ foreach ($actresses as $actress) {
                 $totalFetched++;
             } else {
                 // 既存レコードのレビュー・動画・価格情報を更新
-                $db->prepare('UPDATE works SET review_count = COALESCE(?, review_count), review_average = COALESCE(?, review_average), sample_movie_url = COALESCE(?, sample_movie_url), price = ?, list_price = ?, price_updated_at = NOW() WHERE id = ?')
-                   ->execute([$reviewCount, $reviewAverage, $sampleMovieUrl, $price, $listPrice, $workId]);
+                $db->prepare('UPDATE works SET review_count = COALESCE(?, review_count), review_average = COALESCE(?, review_average), sample_movie_url = COALESCE(?, sample_movie_url), price = ?, list_price = ?, sale_end_at = ?, campaign_title = ?, price_updated_at = NOW() WHERE id = ?')
+                   ->execute([$reviewCount, $reviewAverage, $sampleMovieUrl, $price, $listPrice, $saleEndAt, $campaignTitle, $workId]);
             }
 
             // サンプル画像の保存

@@ -77,7 +77,13 @@ $hasCarousel = $totalSlides > 1;
         <?php if (!empty($work['price']) && !empty($work['list_price']) && (int)$work['price'] < (int)$work['list_price']): ?>
         <div class="work-card-v2__sale">
             <?php $discountRate = round((1 - (int)$work['price'] / (int)$work['list_price']) * 100); ?>
-            <span class="work-card-v2__sale-badge">セール中 <?= $discountRate ?>%OFF</span>
+            <?php
+                $saleLabel = 'セール中 ' . $discountRate . '%OFF';
+                if (!empty($work['sale_end_at'])) {
+                    $saleLabel .= ' ' . date('n/j', strtotime($work['sale_end_at'])) . 'まで！';
+                }
+            ?>
+            <span class="work-card-v2__sale-badge"><?= h($saleLabel) ?></span>
         </div>
         <?php endif; ?>
         <?php if (!empty($work['affiliate_url'])): ?>
