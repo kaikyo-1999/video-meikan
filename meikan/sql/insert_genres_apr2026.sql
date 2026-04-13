@@ -1,0 +1,37 @@
+-- 2026-04 検索ランキング上位ジャンル追加（新人・sod女子社員を除く）
+INSERT IGNORE INTO genres (name, slug) VALUES
+('レズ', 'rezu'),
+('ニューハーフ', 'newhalf'),
+('マジックミラー号', 'magic-mirror'),
+('爆乳', 'bakunyu'),
+('母乳', 'bonyuu'),
+('ハーレム', 'harem'),
+('素人', 'shiroto'),
+('電車', 'densha'),
+('オナニー', 'onani'),
+('剛毛', 'goumou'),
+('洗脳', 'sennou'),
+('メンズエステ', 'mens-esthe'),
+('媚薬', 'biyaku'),
+('クンニ', 'cunni'),
+('マッサージ', 'massage'),
+('温泉', 'onsen'),
+('時間停止', 'jikanteishi'),
+('ぽっちゃり', 'pocchari'),
+('パンスト', 'pansuto'),
+('黒人', 'kokujin'),
+('デビュー', 'debut'),
+('ごっくん', 'gokkun'),
+('パンチラ', 'panchira'),
+('黒ギャル', 'kuro-gal'),
+('レ●プ', 'reipu'),
+('ソープ', 'soap'),
+('パイズリ', 'paizuri'),
+('ボーイッシュ', 'boyish'),
+('アヘ顔', 'ahegao'),
+('おばさん', 'obasan'),
+('五十路', 'isoji'),
+('童貞', 'dotei');
+
+-- TODO: genre_fanza_mapping への FANZA genre_id 紐付けは別途追加
+-- assign_title_genres.php でのジャンル自動付与に必要
