@@ -45,6 +45,8 @@ if ($dbAvailable) {
     require_once __DIR__ . '/src/controllers/GenreController.php';
     require_once __DIR__ . '/src/controllers/SitemapController.php';
     require_once __DIR__ . '/src/controllers/ApiController.php';
+    require_once __DIR__ . '/src/models/Fc2Work.php';
+    require_once __DIR__ . '/src/controllers/Fc2RankingController.php';
 }
 
 $router = new Router();
@@ -60,6 +62,9 @@ if ($dbAvailable) {
     $router->add('meikan/', 'TopController@index');
     $router->add('api/works/', 'ApiController@works');
     $router->add('sitemap.xml', 'SitemapController@index');
+    $router->add('fc2/', 'Fc2RankingController@index');
+    $router->add('fc2/submit/', 'Fc2RankingController@submit');
+    $router->add('fc2/vote/', 'Fc2RankingController@vote');
     $router->add('{actress_slug}/', 'ActressController@show');
     $router->add('{actress_slug}/{genre_slug}/', 'GenreController@show');
 } else {

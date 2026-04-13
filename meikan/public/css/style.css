@@ -2744,3 +2744,285 @@ p > .article-inline-img {
         padding: 14px 32px;
     }
 }
+
+/* ============================================
+   FC2 Ranking
+   ============================================ */
+
+/* --- FC2 ランキングページ --- */
+.fc2-ranking {
+    padding: 24px 0 40px;
+}
+.fc2-ranking__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+.fc2-ranking__periods {
+    display: flex;
+    gap: 6px;
+}
+.fc2-ranking__period-btn {
+    display: inline-block;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    color: var(--color-text);
+    text-decoration: none;
+    background: var(--color-bg);
+    transition: background 0.15s, color 0.15s;
+}
+.fc2-ranking__period-btn:hover {
+    background: var(--color-card);
+}
+.fc2-ranking__period-btn.is-active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+}
+.fc2-ranking__submit-btn {
+    display: inline-block;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--color-header-bg);
+    color: #fff;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: opacity 0.15s;
+}
+.fc2-ranking__submit-btn:hover { opacity: 0.85; }
+.fc2-ranking__empty {
+    text-align: center;
+    color: var(--color-text-sub);
+    padding: 48px 0;
+}
+
+/* --- FC2 作品リスト --- */
+.fc2-work-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+    margin: 0 0 32px;
+    padding: 0;
+}
+
+/* --- FC2 作品カード --- */
+.fc2-work-card {
+    display: grid;
+    grid-template-columns: 44px 100px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    background: var(--color-card);
+    border-radius: var(--radius);
+    padding: 12px;
+    box-shadow: var(--shadow);
+}
+.fc2-work-card__rank {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-text-sub);
+    text-align: center;
+    line-height: 1;
+}
+.fc2-work-card__rank--top {
+    color: var(--color-accent);
+    font-size: 26px;
+}
+.fc2-work-card__media {
+    width: 100px;
+    flex-shrink: 0;
+}
+.fc2-work-card__media a {
+    display: block;
+}
+.fc2-work-card__media img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: var(--radius);
+    display: block;
+}
+.fc2-work-card__no-image {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--color-border);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--color-text-sub);
+}
+.fc2-work-card__info {
+    overflow: hidden;
+}
+.fc2-work-card__title {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+    text-decoration: none;
+    margin-bottom: 6px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+}
+.fc2-work-card__title:hover { color: var(--color-accent); }
+.fc2-work-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--color-text-sub);
+}
+.fc2-work-card__price {
+    font-weight: 600;
+    color: var(--color-text);
+}
+.fc2-work-card__vote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+/* --- 投票ボタン --- */
+.fc2-vote-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    background: none;
+    border: 2px solid var(--color-accent);
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    color: var(--color-accent);
+    min-width: 54px;
+}
+.fc2-vote-btn:hover:not(:disabled) {
+    background: var(--color-accent);
+    color: #fff;
+}
+.fc2-vote-btn.is-voted,
+.fc2-vote-btn:disabled {
+    border-color: var(--color-border);
+    color: var(--color-text-sub);
+    cursor: default;
+    opacity: 0.7;
+}
+.fc2-vote-btn__icon {
+    font-size: 18px;
+    line-height: 1;
+}
+.fc2-vote-btn__count {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+}
+.fc2-vote-btn__label {
+    font-size: 11px;
+    color: var(--color-text-sub);
+}
+
+/* --- FC2 投稿フォーム --- */
+.fc2-submit {
+    max-width: 560px;
+    margin: 32px auto;
+}
+.fc2-submit__message {
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+.fc2-submit__message--success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+.fc2-submit__message--error {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+.fc2-submit__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+}
+.fc2-submit__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.fc2-submit__label {
+    font-size: 14px;
+    font-weight: 600;
+}
+.fc2-submit__input {
+    height: 44px;
+    padding: 0 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    font-size: 16px;
+    width: 100%;
+    background: var(--color-bg);
+    color: var(--color-text);
+}
+.fc2-submit__input:focus {
+    outline: 2px solid var(--color-accent);
+    border-color: var(--color-accent);
+}
+.fc2-submit__hint {
+    font-size: 12px;
+    color: var(--color-text-sub);
+    line-height: 1.6;
+}
+.fc2-submit__hint code {
+    font-family: monospace;
+    background: var(--color-card);
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+.fc2-submit__submit {
+    height: 48px;
+    background: var(--color-accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.fc2-submit__submit:hover { background: var(--color-accent-hover); }
+.fc2-submit__back {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* --- PC: FC2カード横幅拡大 --- */
+@media (min-width: 768px) {
+    .fc2-work-card {
+        grid-template-columns: 56px 140px 1fr auto;
+        gap: 16px;
+        padding: 16px;
+    }
+    .fc2-work-card__rank { font-size: 28px; }
+    .fc2-work-card__rank--top { font-size: 34px; }
+    .fc2-work-card__media { width: 140px; }
+    .fc2-work-card__title { font-size: 15px; }
+}

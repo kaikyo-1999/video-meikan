@@ -71,5 +71,8 @@
     <script src="<?= asset('js/genre.js') ?>" defer></script>
     <?php endif; ?>
     <script src="<?= asset('js/carousel.js') ?>" defer></script>
+    <?php if (!empty($fc2Page)): ?>
+    <script src="<?= asset('js/fc2.js') ?>" defer></script>
+    <?php endif; ?>
 </body>
 </html>
