@@ -25,7 +25,7 @@ class TopController
 
         render('top', [
             'pageTitle' => SITE_TITLE . ' | ' . SITE_NAME,
-            'metaDescription' => '人気AV女優のジャンル別作品データベース。女優名×ジャンルで作品を探せます。',
+            'metaDescription' => 'AV女優' . count($actresses) . '人をジャンル別に検索できる名鑑。巨乳・痴女・素人など多数のジャンルから好みの作品を探せます。',
             'breadcrumbs' => [
                 ['label' => 'TOP', 'url' => ''],
                 ['label' => '名鑑TOP', 'url' => ''],

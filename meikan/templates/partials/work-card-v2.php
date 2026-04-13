@@ -89,7 +89,7 @@ $hasCarousel = $totalSlides > 1;
         </div>
         <?php endif; ?>
         <?php if (!empty($work['affiliate_url'])): ?>
-        <a class="work-card-v2__cta" href="<?= h($work['affiliate_url']) ?>" target="_blank" rel="nofollow noopener">高画質フル動画をダウンロード &rarr;</a>
+        <a class="work-card-v2__cta" href="<?= h($work['affiliate_url']) ?>" target="_blank" rel="nofollow noopener">続きを見る &rarr;</a>
         <?php endif; ?>
     </div>
 </div>

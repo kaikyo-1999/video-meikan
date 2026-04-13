@@ -58,7 +58,7 @@ class Work
             FROM works w
             INNER JOIN actress_work aw ON w.id = aw.work_id
             WHERE {$where}
-            ORDER BY w.review_count DESC, w.release_date DESC, w.id DESC
+            ORDER BY CASE WHEN w.price IS NOT NULL AND w.list_price IS NOT NULL AND w.price < w.list_price THEN 0 ELSE 1 END, w.review_count DESC, w.release_date DESC, w.id DESC
             LIMIT ? OFFSET ?
         ");
         $stmt->execute([$actressId, $limit, $offset]);
@@ -83,7 +83,7 @@ class Work
             INNER JOIN actress_work aw ON w.id = aw.work_id
             INNER JOIN work_genre wg ON w.id = wg.work_id
             WHERE {$where}
-            ORDER BY w.review_count DESC, w.release_date DESC, w.id DESC
+            ORDER BY CASE WHEN w.price IS NOT NULL AND w.list_price IS NOT NULL AND w.price < w.list_price THEN 0 ELSE 1 END, w.review_count DESC, w.release_date DESC, w.id DESC
             LIMIT ? OFFSET ?
         ");
         $stmt->execute([$actressId, $genreId, $limit, $offset]);
@@ -201,7 +201,7 @@ class Work
         }
 
         $orderBy = match ($sort) {
-            'rank'    => 'w.review_count DESC, w.release_date DESC, w.id DESC',
+            'rank'    => 'CASE WHEN w.price IS NOT NULL AND w.list_price IS NOT NULL AND w.price < w.list_price THEN 0 ELSE 1 END, w.review_count DESC, w.release_date DESC, w.id DESC',
             'review'  => 'w.review_average DESC, w.release_date DESC, w.id DESC',
             '-date'   => 'w.release_date ASC, w.id ASC',
             default   => 'w.release_date DESC, w.id DESC',
@@ -324,7 +324,7 @@ class Work
         }
 
         $orderBy = match ($sort) {
-            'rank'    => 'w.review_count DESC, w.release_date DESC, w.id DESC',
+            'rank'    => 'CASE WHEN w.price IS NOT NULL AND w.list_price IS NOT NULL AND w.price < w.list_price THEN 0 ELSE 1 END, w.review_count DESC, w.release_date DESC, w.id DESC',
             'review'  => 'w.review_average DESC, w.release_date DESC, w.id DESC',
             '-date'   => 'w.release_date ASC, w.id ASC',
             default   => 'w.release_date DESC, w.id DESC',

@@ -154,7 +154,7 @@ class Fc2RankingController
             'thumbnail_url' => $meta['thumbnail_url'],
             'price'         => $meta['price'] ?? 0,
             'duration'      => $meta['duration'] ?? null,
-            'is_approved'   => 0, // 管理者承認待ち
+            'is_approved'   => 1,
             'submitted_ip'  => $this->getClientIp(),
         ]);
 
@@ -165,7 +165,7 @@ class Fc2RankingController
                 ['label' => 'FC2ランキング', 'url' => 'fc2/'],
                 ['label' => '作品を投稿', 'url' => ''],
             ],
-            'success' => '投稿を受け付けました。承認後にランキングに表示されます。',
+            'success' => '投稿を受け付けました。ランキングに追加されました。',
             'noindex' => true,
         ]);
     }
@@ -185,6 +185,9 @@ class Fc2RankingController
 
         $html = @file_get_contents($url, false, $ctx);
         if ($html === false) return null;
+
+        // 商品なしページの検出
+        if (strpos($html, 'お探しの商品が見つかりませんでした') !== false) return null;
 
         // タイトル
         if (!preg_match('/<title[^>]*>([^<]+)</i', $html, $m)) return null;

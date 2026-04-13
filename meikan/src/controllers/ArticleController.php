@@ -12,7 +12,7 @@ class ArticleController
 
         render('articles/index', [
             'pageTitle' => '記事一覧 | ' . SITE_NAME,
-            'metaDescription' => 'AV女優に関するまとめ記事・コラムの一覧です。',
+            'metaDescription' => 'AV女優のおすすめランキング・新人デビュー情報・ジャンル解説など' . count($articles) . '本以上のまとめ記事を公開中。',
             'breadcrumbs' => [
                 ['label' => 'TOP', 'url' => ''],
                 ['label' => '記事一覧', 'url' => ''],

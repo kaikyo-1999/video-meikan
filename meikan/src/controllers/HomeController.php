@@ -62,9 +62,11 @@ class HomeController
             'description' => SITE_DESCRIPTION,
         ];
 
+        $actressCount = count(Actress::all());
+
         render('home', [
             'pageTitle' => SITE_NAME . ' | ' . SITE_DESCRIPTION,
-            'metaDescription' => SITE_DESCRIPTION,
+            'metaDescription' => '人気AV女優' . $actressCount . '人以上のジャンル別作品データベース。新人デビュー情報・ジャンル別おすすめ女優・最新コラムを毎月更新中。',
             'jsonLd' => $jsonLd,
             'debutActresses' => $debutActresses,
             'debutMonthLabel' => $debutMonthLabel,

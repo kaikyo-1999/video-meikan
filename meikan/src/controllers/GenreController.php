@@ -83,7 +83,7 @@ class GenreController
 
         render('genre', [
             'pageTitle' => $actress['name'] . 'の' . $genre['name'] . '作品一覧 | ' . SITE_NAME,
-            'metaDescription' => $actress['name'] . 'の' . $genre['name'] . '作品を一覧表示。全' . $totalWorksAll . '作品。',
+            'metaDescription' => $actress['name'] . 'の' . $genre['name'] . '作品' . $totalWorksAll . '本を人気順・新着順で一覧。サンプル画像・レビュー評価付きで好みの作品が見つかる。' . date('Y') . '年最新作も随時更新。',
             'breadcrumbs' => [
                 ['label' => 'TOP', 'url' => ''],
                 ['label' => $actress['name'], 'url' => $actress['slug'] . '/'],

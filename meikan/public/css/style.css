@@ -2816,7 +2816,7 @@ p > .article-inline-img {
 /* --- FC2 作品カード --- */
 .fc2-work-card {
     display: grid;
-    grid-template-columns: 44px 100px 1fr auto;
+    grid-template-columns: 44px 100px 1fr;
     gap: 12px;
     align-items: center;
     background: var(--color-card);
@@ -2836,22 +2836,22 @@ p > .article-inline-img {
     font-size: 26px;
 }
 .fc2-work-card__media {
-    width: 100px;
-    flex-shrink: 0;
+    min-width: 0;
 }
 .fc2-work-card__media a {
     display: block;
 }
 .fc2-work-card__media img {
     width: 100%;
-    aspect-ratio: 16/9;
+    aspect-ratio: 1/1;
     object-fit: cover;
+    object-position: top;
     border-radius: var(--radius);
     display: block;
 }
 .fc2-work-card__no-image {
     width: 100%;
-    aspect-ratio: 16/9;
+    aspect-ratio: 1/1;
     background: var(--color-border);
     border-radius: var(--radius);
     display: flex;
@@ -2860,80 +2860,78 @@ p > .article-inline-img {
     font-size: 11px;
     color: var(--color-text-sub);
 }
-.fc2-work-card__info {
-    overflow: hidden;
+.fc2-work-card__body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-width: 0;
 }
-.fc2-work-card__title {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
+.fc2-work-card__cid-num {
+    font-size: 20px;
+    font-weight: 700;
     color: var(--color-text);
     text-decoration: none;
-    margin-bottom: 6px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    line-clamp: 2;
-}
-.fc2-work-card__title:hover { color: var(--color-accent); }
-.fc2-work-card__meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    font-size: 12px;
-    color: var(--color-text-sub);
-}
-.fc2-work-card__price {
-    font-weight: 600;
-    color: var(--color-text);
-}
-.fc2-work-card__vote {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
+    letter-spacing: 0.03em;
     flex-shrink: 0;
 }
-
-/* --- 投票ボタン --- */
-.fc2-vote-btn {
+.fc2-work-card__cid-num:hover { color: var(--color-accent); }
+.fc2-work-card__actions {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 2px;
-    background: none;
-    border: 2px solid var(--color-accent);
-    border-radius: 8px;
-    padding: 8px 14px;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s;
-    color: var(--color-accent);
-    min-width: 54px;
+    gap: 6px;
+    flex-shrink: 0;
 }
-.fc2-vote-btn:hover:not(:disabled) {
-    background: var(--color-accent);
-    color: #fff;
-}
-.fc2-vote-btn.is-voted,
-.fc2-vote-btn:disabled {
-    border-color: var(--color-border);
-    color: var(--color-text-sub);
-    cursor: default;
-    opacity: 0.7;
-}
-.fc2-vote-btn__icon {
-    font-size: 18px;
-    line-height: 1;
-}
-.fc2-vote-btn__count {
+.fc2-work-card__vote-count {
     font-size: 13px;
     font-weight: 700;
-    line-height: 1;
+    color: var(--color-accent);
+    min-width: 32px;
+    text-align: right;
 }
-.fc2-vote-btn__label {
-    font-size: 11px;
+
+/* --- アクションボタン共通 --- */
+.fc2-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
     color: var(--color-text-sub);
+    line-height: 1;
+    padding: 0;
+}
+.fc2-action-btn:hover {
+    background: var(--color-card);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+/* お気に入り */
+.fc2-fav-btn.is-faved {
+    color: #f5a623;
+    border-color: #f5a623;
+}
+
+/* コピー */
+.fc2-copy-btn.is-copied {
+    color: #4caf50;
+    border-color: #4caf50;
+}
+
+/* いいね（投票） */
+.fc2-vote-btn.is-voted,
+.fc2-vote-btn:disabled {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    cursor: default;
+    opacity: 0.6;
 }
 
 /* --- FC2 投稿フォーム --- */
@@ -3023,6 +3021,22 @@ p > .article-inline-img {
     }
     .fc2-work-card__rank { font-size: 28px; }
     .fc2-work-card__rank--top { font-size: 34px; }
-    .fc2-work-card__media { width: 140px; }
-    .fc2-work-card__title { font-size: 15px; }
+    .fc2-work-card { grid-template-columns: 44px 140px 1fr; }
+    .fc2-work-card__cid-num { font-size: 22px; }
+}
+@media (max-width: 600px) {
+    .fc2-work-card {
+        grid-template-columns: 32px 80px 1fr;
+        gap: 8px;
+        padding: 10px;
+    }
+    .fc2-work-card__rank { font-size: 18px; }
+    .fc2-work-card__rank--top { font-size: 22px; }
+    .fc2-work-card__body {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .fc2-work-card__cid-num { font-size: 18px; }
+    .fc2-action-btn { width: 32px; height: 32px; font-size: 16px; }
 }
