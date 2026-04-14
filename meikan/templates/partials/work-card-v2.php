@@ -64,28 +64,47 @@ $hasCarousel = $totalSlides > 1;
         <?php if (!empty($work['label'])): ?>
             <p class="work-card-v2__description"><?= h($work['label']) ?></p>
         <?php endif; ?>
-        <div class="work-card-v2__meta">
-            <?php if (!empty($work['review_average']) && !empty($work['review_count'])): ?>
-            <div class="work-card-v2__rating">
-                <span class="work-card-v2__stars" style="--rating: <?= number_format((float)$work['review_average'], 1) ?>;">★★★★★</span>
-                <span class="work-card-v2__review-score"><?= number_format((float)$work['review_average'], 2) ?></span>
-                <span class="work-card-v2__review-count">(<?= (int)$work['review_count'] ?>件)</span>
-            </div>
-            <?php endif; ?>
-            <?php if (!empty($work['release_date'])): ?>
-                <p class="work-card-v2__date"><?= h($work['release_date']) ?></p>
-            <?php endif; ?>
-        </div>
-        <?php if (!empty($work['price']) && !empty($work['list_price']) && (int)$work['price'] < (int)$work['list_price']): ?>
-        <div class="work-card-v2__sale">
-            <?php $discountRate = round((1 - (int)$work['price'] / (int)$work['list_price']) * 100); ?>
-            <?php
-                $saleLabel = 'セール中 ' . $discountRate . '%OFF';
-                if (!empty($work['sale_end_at'])) {
-                    $saleLabel .= ' ' . date('n/j', strtotime($work['sale_end_at'])) . 'まで！';
+        <?php
+        // レンタル価格優先、なければダウンロード価格
+        $displayPrice = null;
+        $displayListPrice = null;
+        if (!empty($work['rental_price']) && (int)$work['rental_price'] > 0) {
+            $displayPrice = (int)$work['rental_price'];
+            $displayListPrice = !empty($work['rental_list_price']) ? (int)$work['rental_list_price'] : null;
+        } elseif (!empty($work['price']) && (int)$work['price'] > 0) {
+            $displayPrice = (int)$work['price'];
+            $displayListPrice = !empty($work['list_price']) ? (int)$work['list_price'] : null;
+        }
+        $isSale = $displayPrice !== null && $displayListPrice !== null && $displayPrice < $displayListPrice;
+
+        // セール期間ラベルを計算（JST基準）
+        $salePeriodLabel = null;
+        if ($isSale) {
+            if (!empty($work['sale_end_at'])) {
+                $jst = new DateTimeZone('Asia/Tokyo');
+                $today = new DateTime('today', $jst);
+                $endDay = new DateTime(date('Y-m-d', strtotime($work['sale_end_at'])), $jst);
+                $daysLeft = (int)$today->diff($endDay)->days * ($endDay >= $today ? 1 : -1);
+                if ($daysLeft < 0) {
+                    $isSale = false; // セール終了済み → バッジ非表示
+                } elseif ($daysLeft === 0) {
+                    $salePeriodLabel = '本日まで';
+                } else {
+                    $salePeriodLabel = '残り' . $daysLeft . '日';
                 }
-            ?>
-            <span class="work-card-v2__sale-badge"><?= h($saleLabel) ?></span>
+            } else {
+                $salePeriodLabel = '期間限定';
+            }
+        }
+        ?>
+        <?php if ($displayPrice !== null): ?>
+        <div class="work-card-v2__sale">
+            <span class="work-card-v2__sale-price"><?= number_format($displayPrice) ?>円</span>
+            <?php if ($isSale): ?>
+            <span class="work-card-v2__list-price"><?= number_format($displayListPrice) ?>円</span>
+            <?php $discountRate = round((1 - $displayPrice / $displayListPrice) * 100); ?>
+            <span class="work-card-v2__sale-badge"><?= $discountRate ?>%OFF <?= h($salePeriodLabel) ?></span>
+            <?php endif; ?>
         </div>
         <?php endif; ?>
         <?php if (!empty($work['affiliate_url'])): ?>

@@ -93,16 +93,27 @@ foreach ($actresses as $actress) {
             $reviewCount = isset($item['review']['count']) ? (int)$item['review']['count'] : null;
             $reviewAverage = isset($item['review']['average']) ? (float)$item['review']['average'] : null;
 
-            // 価格情報を抽出（downloadタイプを優先、なければトップレベル）
+            // 価格情報を抽出
+            // price/list_price: downloadタイプ（購入）
+            // rental_price/rental_list_price: 全deliveryの最安値（stream等）
             $price = null;
             $listPrice = null;
+            $rentalPrice = null;
+            $rentalListPrice = null;
             if (!empty($item['prices'])) {
                 $deliveries = $item['prices']['deliveries']['delivery'] ?? [];
                 foreach ($deliveries as $d) {
-                    if (($d['type'] ?? '') === 'download') {
-                        $price = (int)preg_replace('/[^0-9]/', '', $d['price']);
-                        $listPrice = (int)preg_replace('/[^0-9]/', '', $d['list_price']);
-                        break;
+                    $type = $d['type'] ?? '';
+                    $dPrice = (int)preg_replace('/[^0-9]/', '', $d['price'] ?? '0');
+                    $dListPrice = (int)preg_replace('/[^0-9]/', '', $d['list_price'] ?? '0') ?: $dPrice;
+                    if ($type === 'download' && $dPrice > 0) {
+                        $price = $dPrice;
+                        $listPrice = $dListPrice;
+                    }
+                    // 全typeの中で最安値を追跡
+                    if ($dPrice > 0 && ($rentalPrice === null || $dPrice < $rentalPrice)) {
+                        $rentalPrice = $dPrice;
+                        $rentalListPrice = $dListPrice;
                     }
                 }
                 if ($price === null && isset($item['prices']['price'])) {
@@ -150,8 +161,8 @@ foreach ($actresses as $actress) {
                 }
 
                 $stmt = $db->prepare('
-                    INSERT INTO works (title, thumbnail_url, release_date, label, affiliate_url, review_count, review_average, sample_movie_url, price, list_price, sale_end_at, campaign_title, price_updated_at, source, source_id)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?)
+                    INSERT INTO works (title, thumbnail_url, release_date, label, affiliate_url, review_count, review_average, sample_movie_url, price, list_price, sale_end_at, campaign_title, rental_price, rental_list_price, price_updated_at, source, source_id)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?)
                 ');
                 $stmt->execute([
                     $item['title'] ?? '',
@@ -166,6 +177,8 @@ foreach ($actresses as $actress) {
                     $listPrice,
                     $saleEndAt,
                     $campaignTitle,
+                    $rentalPrice,
+                    $rentalListPrice,
                     'fanza',
                     $sourceId,
                 ]);
@@ -173,8 +186,8 @@ foreach ($actresses as $actress) {
                 $totalFetched++;
             } else {
                 // 既存レコードのレビュー・動画・価格情報を更新
-                $db->prepare('UPDATE works SET review_count = COALESCE(?, review_count), review_average = COALESCE(?, review_average), sample_movie_url = COALESCE(?, sample_movie_url), price = ?, list_price = ?, sale_end_at = ?, campaign_title = ?, price_updated_at = NOW() WHERE id = ?')
-                   ->execute([$reviewCount, $reviewAverage, $sampleMovieUrl, $price, $listPrice, $saleEndAt, $campaignTitle, $workId]);
+                $db->prepare('UPDATE works SET review_count = COALESCE(?, review_count), review_average = COALESCE(?, review_average), sample_movie_url = COALESCE(?, sample_movie_url), price = ?, list_price = ?, sale_end_at = ?, campaign_title = ?, rental_price = ?, rental_list_price = ?, price_updated_at = NOW() WHERE id = ?')
+                   ->execute([$reviewCount, $reviewAverage, $sampleMovieUrl, $price, $listPrice, $saleEndAt, $campaignTitle, $rentalPrice, $rentalListPrice, $workId]);
             }
 
             // サンプル画像の保存

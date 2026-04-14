@@ -2730,8 +2730,9 @@ p > .article-inline-img {
     display: inline-block;
     font-size: 13px;
     font-weight: 700;
-    color: #fff;
-    background: #e53935;
+    color: #e53935;
+    background: transparent;
+    border: 1.5px solid #e53935;
     border-radius: 6px;
     padding: 3px 10px;
     line-height: 1.4;
