@@ -26,8 +26,8 @@ class Fc2RankingController
 
         render('fc2_ranking', [
             'fc2Page'         => true,
-            'pageTitle'       => 'FC2おすすめの7桁｜' . date('Y') . '年最新ランキング | ' . SITE_NAME,
-            'metaDescription' => date('Y') . '年最新のFC2 7桁の数字おすすめランキング。ユーザー投票で選ばれた人気のFC2作品（7桁CID）を紹介。fc2 おすすめの7桁を探している方はこのページで確認できます。',
+            'pageTitle'       => 'FC2おすすめの7桁｜' . date('Y') . '年' . date('n') . '月最新ランキング | ' . SITE_NAME,
+            'metaDescription' => date('Y') . '年' . date('n') . '月最新のFC2 7桁の数字おすすめランキング。ユーザー投票で選ばれた人気のFC2作品（7桁CID）を紹介。fc2 おすすめの7桁を探している方はこのページで確認できます。',
             'breadcrumbs'     => [
                 ['label' => 'TOP', 'url' => ''],
                 ['label' => 'FC2ランキング', 'url' => ''],

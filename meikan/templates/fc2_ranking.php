@@ -1,5 +1,5 @@
 <div class="fc2-ranking">
-    <h1 class="page-title">FC2おすすめの7桁｜<?= date('Y') ?>年最新ランキング</h1>
+    <h1 class="page-title">FC2おすすめの7桁｜<?= date('Y') ?>年<?= date('n') ?>月最新ランキング</h1>
 
     <section class="fc2-about">
         <h2 class="fc2-about__title">FC2 7桁の数字とは？</h2>

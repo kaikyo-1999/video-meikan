@@ -73,6 +73,14 @@ FANZA_AFFILIATE_ID          — API用アフィリエイトID
 FANZA_DISPLAY_AFFILIATE_ID  — 表示用アフィリエイトID
 ```
 
+## GA4 / アナリティクス
+
+- **Measurement ID**: `G-XP1BJTKX3S`
+- **Property ID**: `529336238`（GA4 Data API用）
+- **サービスアカウントキー**: `marke-analytics-fa4cf49cfeef.json`（リポジトリルート）
+- **カスタムイベント**: `fanza_click`（`data-fanza-cid` 属性付きリンクのクリック）
+- **GA4レポートスクリプト**: `ga4/daily_report.py`
+
 読み込み優先順位: `.env.local` > `.env`
 
 ## 記事システム
