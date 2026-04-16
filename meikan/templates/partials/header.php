@@ -7,6 +7,7 @@
         <nav class="header__nav" id="globalNav">
             <a href="<?= url('meikan/') ?>" class="header__nav-link">名鑑</a>
             <a href="<?= url('article/') ?>" class="header__nav-link">記事一覧</a>
+            <a href="<?= url('fc2/') ?>" class="header__nav-link">魔法の7桁ランキング</a>
             <a href="<?= url('author/') ?>" class="header__nav-link">運営者</a>
         </nav>
     </div>

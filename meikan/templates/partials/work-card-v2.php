@@ -97,14 +97,12 @@ $hasCarousel = $totalSlides > 1;
             }
         }
         ?>
-        <?php if ($displayPrice !== null): ?>
+        <?php if ($isSale): ?>
         <div class="work-card-v2__sale">
             <span class="work-card-v2__sale-price"><?= number_format($displayPrice) ?>円</span>
-            <?php if ($isSale): ?>
             <span class="work-card-v2__list-price"><?= number_format($displayListPrice) ?>円</span>
             <?php $discountRate = round((1 - $displayPrice / $displayListPrice) * 100); ?>
             <span class="work-card-v2__sale-badge"><?= $discountRate ?>%OFF <?= h($salePeriodLabel) ?></span>
-            <?php endif; ?>
         </div>
         <?php endif; ?>
         <?php if (!empty($work['affiliate_url'])): ?>
