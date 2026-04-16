@@ -86,22 +86,5 @@
     <script src="<?= asset('js/fc2.js') ?>" defer></script>
     <?php endif; ?>
 
-    <!-- SP浮遊バナー（下固定・10秒ローテーション） -->
-    <div id="spFloatingBanner" class="sp-floating-banner">
-        <div class="sp-banner-slot"><ins class="widget-banner"></ins><script class="widget-banner-script" src="https://widget-view.dmm.co.jp/js/banner_placement.js?affiliate_id=avhakase2026-001&banner_id=1828_640_100"></script></div>
-        <div class="sp-banner-slot sp-banner-slot--zoom" style="display:none"><ins class="widget-banner"></ins><script class="widget-banner-script" src="https://widget-view.dmm.co.jp/js/banner_placement.js?affiliate_id=avhakase2026-001&banner_id=1701_640_200"></script></div>
-    </div>
-    <script>
-    !function(){
-        if (window.innerWidth >= 1024) return;
-        var slots = document.querySelectorAll('#spFloatingBanner .sp-banner-slot');
-        var cur = 0;
-        setInterval(function(){
-            slots[cur].style.display = 'none';
-            cur = (cur + 1) % slots.length;
-            slots[cur].style.display = 'block';
-        }, 10000);
-    }();
-    </script>
 </body>
 </html>

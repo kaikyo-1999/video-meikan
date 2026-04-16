@@ -138,11 +138,4 @@
         </div>
     </div>
 
-    <!-- 右サイドバー: バナー広告（PC表示のみ） -->
-    <aside class="page-layout__ad-sidebar">
-        <div class="page-layout__ad-sticky">
-            <iframe frameborder="0" scrolling="no" width="300" height="250" src="https://www.dmm.co.jp/live/api/-/online-banner/?size=300_250&type=avevent&design=B&af_id=avhakase2026-001"></iframe>
-            <iframe frameborder="0" scrolling="no" width="300" height="250" src="https://livechat.dmm.co.jp/publicads?&size=S&design=B&affiliate_id=avhakase2026-001"></iframe>
-        </div>
-    </aside>
 </div>
