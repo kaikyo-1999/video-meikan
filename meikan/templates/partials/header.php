@@ -8,7 +8,7 @@
             <a href="<?= url('meikan/') ?>" class="header__nav-link">名鑑</a>
             <a href="<?= url('article/') ?>" class="header__nav-link">記事一覧</a>
             <a href="<?= url() ?>" class="header__nav-link">魔法の7桁ランキング</a>
-            <a href="<?= url('favorites/') ?>" class="header__nav-link header__nav-link--fav">お気に入り</a>
+            <a href="<?= url('favorites/') ?>" class="header__nav-link header__nav-link--fav">お気に入り<span class="header__fav-badge" data-fav-badge data-count="0">0</span></a>
             <a href="<?= url('author/') ?>" class="header__nav-link">運営者</a>
         </nav>
     </div>

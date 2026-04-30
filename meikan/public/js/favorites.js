@@ -224,6 +224,27 @@
         }
     }
 
+    function showAddedFx(btn) {
+        var fx = document.createElement('span');
+        fx.className = 'fav-btn__fx';
+        fx.textContent = '+1 ♥';
+        btn.appendChild(fx);
+        setTimeout(function () {
+            if (fx.parentNode) fx.parentNode.removeChild(fx);
+        }, 900);
+    }
+
+    function updateHeaderBadge() {
+        var badges = document.querySelectorAll('[data-fav-badge]');
+        if (!badges.length) return;
+        var data = AvHakaseFavorites.getUserData();
+        var total = data.favorites.actresses.length + data.favorites.works.length;
+        for (var i = 0; i < badges.length; i++) {
+            badges[i].textContent = total;
+            badges[i].setAttribute('data-count', String(total));
+        }
+    }
+
     function bindButton(btn) {
         if (btn.dataset.favoriteBound === '1') return;
         btn.dataset.favoriteBound = '1';
@@ -244,7 +265,10 @@
                 source: source,
                 itemName: itemName
             });
-            updateBtnState(btn, result === 'added');
+            var added = result === 'added';
+            updateBtnState(btn, added);
+            if (added) showAddedFx(btn);
+            updateHeaderBadge();
         });
     }
 
@@ -272,10 +296,12 @@
         document.addEventListener('DOMContentLoaded', function () {
             setGtagUserProperty();
             initButtons();
+            updateHeaderBadge();
         });
     } else {
         setGtagUserProperty();
         initButtons();
+        updateHeaderBadge();
     }
 
     // 動的に追加されたカード用：必要になったら明示呼び出し

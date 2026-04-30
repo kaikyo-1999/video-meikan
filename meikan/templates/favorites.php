@@ -4,48 +4,80 @@
  *
  * 表示はクライアントサイドで localStorage を読み込んで JS で描画する。
  * SSRでは骨組みだけ出力。
+ *
+ * 受け取る変数:
+ *   $popularActresses: array (DB利用可時、人気女優Top5。離脱防止導線用)
  */
+$popularActresses = $popularActresses ?? [];
 ?>
-<h1 class="page-title">お気に入り</h1>
+<h1 class="favorites-h1">❤️ お気に入り</h1>
 
-<div class="favorites-page__intro">
-    <strong>※ お気に入りはこの端末のブラウザに保存されています。</strong>
-    端末を変えたりブラウザ履歴を消すと消えてしまうため、将来 LINE 連携で同期できる仕組みを準備中です。
+<div class="favorites-intro">
+    <span class="favorites-intro__badge">⚠ 注意</span>
+    <strong>お気に入りはこの端末のブラウザに保存されています。</strong>
+    端末を変えたりブラウザの履歴を消すと消えてしまうので注意！ 将来 LINE 連携で同期できる仕組みを準備中です。
 </div>
 
 <section class="favorites-page__section" data-favorites-section="actresses">
     <h2 class="favorites-page__section-title">
-        女優<span class="favorites-page__count" data-favorites-count="actresses">(0)</span>
+        💕 お気に入りの女優<span class="favorites-page__count" data-favorites-count="actresses">(0)</span>
     </h2>
     <div data-favorites-list="actresses">
         <div class="favorites-page__empty" data-favorites-empty="actresses">
-            まだお気に入りに登録された女優はありません。<br>
-            <a href="<?= url('meikan/') ?>">名鑑から女優を探す</a>
+            <div class="favorites-page__empty-icon">💔</div>
+            <p class="favorites-page__empty-title">まだお気に入りの女優がいません！</p>
+            <p class="favorites-page__empty-text">気になる女優を ♥ でストックしておくと、新作チェックがラクになります</p>
+            <a href="<?= url('meikan/') ?>" class="favorites-page__empty-cta">→ 名鑑から女優を探す</a>
         </div>
     </div>
 </section>
 
 <section class="favorites-page__section" data-favorites-section="works">
     <h2 class="favorites-page__section-title">
-        作品<span class="favorites-page__count" data-favorites-count="works">(0)</span>
+        🎬 お気に入りの作品<span class="favorites-page__count" data-favorites-count="works">(0)</span>
     </h2>
     <div data-favorites-list="works">
         <div class="favorites-page__empty" data-favorites-empty="works">
-            まだお気に入りに登録された作品はありません。<br>
-            女優ページの作品カードからお気に入り登録できます。
+            <div class="favorites-page__empty-icon">📼</div>
+            <p class="favorites-page__empty-title">まだお気に入りの作品がありません！</p>
+            <p class="favorites-page__empty-text">女優ページの作品カード右上の ♥ から登録できます</p>
         </div>
     </div>
 </section>
 
+<?php if (!empty($popularActresses)): ?>
+<section class="favorites-page__section favorites-page__popular">
+    <h2 class="favorites-page__section-title">
+        🔥 みんなが見てる人気の女優TOP<?= count($popularActresses) ?>
+    </h2>
+    <ul class="favorites-popular__grid">
+        <?php foreach ($popularActresses as $i => $a): ?>
+        <li class="favorites-popular__item">
+            <a href="<?= url(h($a['slug']) . '/') ?>" class="favorites-popular__link">
+                <span class="favorites-popular__rank">#<?= $i + 1 ?></span>
+                <?php if (!empty($a['thumbnail_url'])): ?>
+                <img class="favorites-popular__thumb" src="<?= h($a['thumbnail_url']) ?>" alt="<?= h($a['name']) ?>" loading="lazy" width="80" height="80">
+                <?php endif; ?>
+                <div class="favorites-popular__info">
+                    <span class="favorites-popular__name"><?= h($a['name']) ?></span>
+                    <span class="favorites-popular__count">作品<?= (int)$a['work_count'] ?>本</span>
+                </div>
+            </a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+</section>
+<?php endif; ?>
+
 <div class="favorites-page__future-cta">
-    <div class="favorites-page__future-cta-title">🔔 将来予定: LINE 連携で端末をまたいで同期</div>
-    LINE 連携機能をリリースすると、お気に入り登録した女優の<strong>新作が出たタイミングで通知が届く</strong>ようになります。準備中なのでお楽しみに。
+    <div class="favorites-page__future-cta-ribbon">📢 NEW! 近日公開予定</div>
+    <div class="favorites-page__future-cta-title">LINE 連携で端末をまたいで同期できるように！</div>
+    <p>LINE 連携機能をリリースすると、お気に入り登録した女優の<strong>新作が出たタイミングでLINEに通知が届く</strong>ようになります。準備中なのでお楽しみに！</p>
 </div>
 
 <script>
 (function () {
     if (!window.AvHakaseFavorites) {
-        // favorites.js がまだ読み込まれていない場合は少し待つ
         document.addEventListener('DOMContentLoaded', initRender);
         return;
     }
@@ -76,12 +108,14 @@
         var countEl = document.querySelector('[data-favorites-count="actresses"]');
         countEl.textContent = '(' + list.length + ')';
 
-        if (list.length === 0) return;
+        if (list.length === 0) {
+            // 空状態のままにする
+            return;
+        }
 
         var html = '<ul class="favorites-page__actress-grid">';
         for (var i = 0; i < list.length; i++) {
-            var item = list[i];
-            html += renderActressItem(item, i);
+            html += renderActressItem(list[i], i);
         }
         html += '</ul>';
         container.innerHTML = html;
@@ -93,7 +127,8 @@
         var safeSlug = String(item.slug).replace(/[<>"']/g, '');
         return '<li class="favorites-page__actress-item">'
             + '<a href="' + url + '" data-favorite-item-link data-fav-type="actress" data-fav-id="' + safeSlug + '" data-fav-position="' + position + '">'
-            + safeSlug
+            + '<span class="favorites-page__item-heart">♥</span>'
+            + '<span class="favorites-page__item-name">' + safeSlug + '</span>'
             + '</a>'
             + ' <button type="button" class="favorites-page__remove" data-fav-remove data-fav-type="actress" data-fav-id="' + safeSlug + '">削除</button>'
             + '</li>';
@@ -109,8 +144,7 @@
 
         var html = '<ul class="favorites-page__work-list">';
         for (var i = 0; i < list.length; i++) {
-            var item = list[i];
-            html += renderWorkItem(item, i);
+            html += renderWorkItem(list[i], i);
         }
         html += '</ul>';
         container.innerHTML = html;
@@ -123,8 +157,8 @@
         var thumb = 'https://pics.dmm.co.jp/digital/video/' + safeCid + '/' + safeCid + 'pl.jpg';
         return '<li class="favorites-page__work-item">'
             + '<a href="' + fanzaUrl + '" target="_blank" rel="nofollow noopener" data-favorite-item-link data-fav-type="work" data-fav-id="' + safeCid + '" data-fav-position="' + position + '" data-destination="fanza">'
-            + '<img src="' + thumb + '" alt="" loading="lazy" width="120">'
-            + '<span>' + safeCid + '</span>'
+            + '<img src="' + thumb + '" alt="" loading="lazy" width="100">'
+            + '<span class="favorites-page__item-name">' + safeCid + '</span>'
             + '</a>'
             + ' <button type="button" class="favorites-page__remove" data-fav-remove data-fav-type="work" data-fav-id="' + safeCid + '">削除</button>'
             + '</li>';
@@ -154,51 +188,3 @@
     });
 })();
 </script>
-
-<style>
-.favorites-page__actress-grid,
-.favorites-page__work-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-.favorites-page__actress-item,
-.favorites-page__work-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 12px;
-    border-bottom: 1px solid var(--color-border);
-}
-.favorites-page__actress-item a,
-.favorites-page__work-item a {
-    color: var(--color-text);
-    text-decoration: none;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.favorites-page__actress-item a:hover,
-.favorites-page__work-item a:hover {
-    color: var(--color-link);
-}
-.favorites-page__work-item img {
-    border-radius: 4px;
-}
-.favorites-page__remove {
-    background: none;
-    border: 1px solid var(--color-border);
-    border-radius: 100px;
-    color: var(--color-text-sub);
-    font-size: 12px;
-    padding: 4px 12px;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-.favorites-page__remove:hover {
-    border-color: var(--color-danger);
-    color: var(--color-danger);
-}
-</style>
