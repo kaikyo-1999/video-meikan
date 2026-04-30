@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <!-- visitor_id 同期初期化（GA4より前に走らせる。お気に入り機能と共有） -->
+    <script>
+      (function() {
+        var KEY = 'av-hakase:user';
+        var SCHEMA_VERSION = 1;
+        var data = null;
+        try { data = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+        if (!data || typeof data !== 'object') data = {};
+        if (data.v !== SCHEMA_VERSION) data.v = SCHEMA_VERSION;
+        if (!data.visitor_id) {
+          data.visitor_id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+          });
+        }
+        if (!data.first_visit_at) data.first_visit_at = new Date().toISOString();
+        if (!data.favorites || typeof data.favorites !== 'object') {
+          data.favorites = { actresses: [], works: [] };
+        }
+        try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+        window.__AV_HAKASE_VISITOR_ID = data.visitor_id;
+      })();
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XP1BJTKX3S"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+      gtag('set', 'user_properties', { visitor_id: window.__AV_HAKASE_VISITOR_ID });
       gtag('config', 'G-XP1BJTKX3S');
     </script>
     <script>
@@ -15,7 +39,8 @@
         if (!link || typeof gtag === 'undefined') return;
         gtag('event', 'fanza_click', {
           fanza_cid: link.dataset.fanzaCid,
-          link_type: link.dataset.fanzaLinkType
+          link_type: link.dataset.fanzaLinkType,
+          visitor_id: window.__AV_HAKASE_VISITOR_ID
         });
       });
     </script>
@@ -76,6 +101,7 @@
     <?php require TEMPLATE_DIR . '/partials/footer.php'; ?>
 
     <script>var BASE_URL = '<?= url() ?>';</script>
+    <script src="<?= asset('js/favorites.js') ?>" defer></script>
     <script src="<?= asset('js/app.js') ?>" defer></script>
     <script src="<?= asset('js/ads.js') ?>" defer></script>
     <?php if (!empty($genre) || !empty($works)): ?>

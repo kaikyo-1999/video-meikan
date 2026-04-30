@@ -17,6 +17,18 @@ $worksOffset = 0;
     <div class="profile-section__info">
         <h1 class="profile-section__name"><?= h($actress['name']) ?><?php if (!empty($actress['birthday'])): ?><?php $_age = (new DateTime($actress['birthday']))->diff(new DateTime())->y; ?><span class="profile-section__name-age">（<?= $_age ?>歳）</span><?php endif; ?></h1>
         <p class="profile-section__count">作品数：<?= (int)$actress['work_count'] ?>本</p>
+        <?php if (!empty($actress['slug'])): ?>
+        <div class="profile-section__fav">
+            <?php
+                $favType = 'actress';
+                $favId = $actress['slug'];
+                $favName = $actress['name'] ?? '';
+                $favSource = 'actress_header';
+                $favVariant = 'default';
+                require TEMPLATE_DIR . '/partials/favorite-button.php';
+            ?>
+        </div>
+        <?php endif; ?>
         <?php if ($hasProfile): ?>
         <table class="profile-detail__table">
             <?php if (!empty($actress['birthday'])): ?>

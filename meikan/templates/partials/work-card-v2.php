@@ -29,6 +29,16 @@ $hasCarousel = $totalSlides > 1;
 ?>
 <div class="work-card-v2">
     <div class="work-card-v2__media">
+        <?php if (!empty($work['source_id'])): ?>
+        <?php
+            $favType = 'work';
+            $favId = $work['source_id'];
+            $favName = $work['title'] ?? '';
+            $favSource = 'work_card_v2';
+            $favVariant = 'overlay';
+            require __DIR__ . '/favorite-button.php';
+        ?>
+        <?php endif; ?>
         <?php if ($hasCarousel): ?>
         <div class="work-card-v2__carousel" data-carousel>
             <div class="work-card-v2__slides">
