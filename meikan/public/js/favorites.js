@@ -152,6 +152,8 @@
             item[idField] = itemId;
             item.added_at = new Date().toISOString();
             item.source = options.source || 'unknown';
+            if (options.itemName) item.name = options.itemName;
+            if (options.thumbnail) item.thumbnail = options.thumbnail;
             list.push(item);
             save(data);
 
@@ -255,6 +257,7 @@
 
         var itemName = btn.dataset.favoriteName || '';
         var source = btn.dataset.favoriteSource || 'unknown';
+        var thumbnail = btn.dataset.favoriteThumb || '';
 
         updateBtnState(btn, AvHakaseFavorites.isFavorite(itemType, itemId));
 
@@ -263,7 +266,8 @@
             e.stopPropagation();
             var result = AvHakaseFavorites.toggle(itemType, itemId, {
                 source: source,
-                itemName: itemName
+                itemName: itemName,
+                thumbnail: thumbnail
             });
             var added = result === 'added';
             updateBtnState(btn, added);
@@ -306,4 +310,5 @@
 
     // 動的に追加されたカード用：必要になったら明示呼び出し
     AvHakaseFavorites.initButtons = initButtons;
+    AvHakaseFavorites.updateHeaderBadge = updateHeaderBadge;
 })();

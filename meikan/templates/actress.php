@@ -23,6 +23,7 @@ $worksOffset = 0;
                 $favType = 'actress';
                 $favId = $actress['slug'];
                 $favName = $actress['name'] ?? '';
+                $favThumb = $actress['thumbnail_url'] ?? '';
                 $favSource = 'actress_header';
                 $favVariant = 'default';
                 require TEMPLATE_DIR . '/partials/favorite-button.php';

@@ -77,12 +77,6 @@ $popularActresses = $popularActresses ?? [];
 
 <script>
 (function () {
-    if (!window.AvHakaseFavorites) {
-        document.addEventListener('DOMContentLoaded', initRender);
-        return;
-    }
-    initRender();
-
     function initRender() {
         if (!window.AvHakaseFavorites) {
             setTimeout(initRender, 50);
@@ -91,6 +85,12 @@ $popularActresses = $popularActresses ?? [];
         sendListView();
         renderActresses();
         renderWorks();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initRender);
+    } else {
+        initRender();
     }
 
     function sendListView() {
@@ -125,10 +125,12 @@ $popularActresses = $popularActresses ?? [];
     function renderActressItem(item, position) {
         var url = '/' + encodeURIComponent(item.slug) + '/';
         var safeSlug = String(item.slug).replace(/[<>"']/g, '');
+        var displayName = item.name ? escapeHtml(item.name) : safeSlug;
+        var thumbHtml = item.thumbnail ? '<img class="favorites-page__item-thumb" src="' + escapeHtml(item.thumbnail) + '" alt="" loading="lazy" width="48" height="48">' : '<span class="favorites-page__item-heart">♥</span>';
         return '<li class="favorites-page__actress-item">'
             + '<a href="' + url + '" data-favorite-item-link data-fav-type="actress" data-fav-id="' + safeSlug + '" data-fav-position="' + position + '">'
-            + '<span class="favorites-page__item-heart">♥</span>'
-            + '<span class="favorites-page__item-name">' + safeSlug + '</span>'
+            + thumbHtml
+            + '<span class="favorites-page__item-name">' + displayName + '</span>'
             + '</a>'
             + ' <button type="button" class="favorites-page__remove" data-fav-remove data-fav-type="actress" data-fav-id="' + safeSlug + '">削除</button>'
             + '</li>';
@@ -155,13 +157,20 @@ $popularActresses = $popularActresses ?? [];
         var safeCid = String(item.cid).replace(/[<>"']/g, '');
         var fanzaUrl = 'https://www.dmm.co.jp/digital/videoa/-/detail/=/cid=' + safeCid + '/';
         var thumb = 'https://pics.dmm.co.jp/digital/video/' + safeCid + '/' + safeCid + 'pl.jpg';
+        var displayName = item.name ? escapeHtml(item.name) : safeCid;
         return '<li class="favorites-page__work-item">'
             + '<a href="' + fanzaUrl + '" target="_blank" rel="nofollow noopener" data-favorite-item-link data-fav-type="work" data-fav-id="' + safeCid + '" data-fav-position="' + position + '" data-destination="fanza">'
-            + '<img src="' + thumb + '" alt="" loading="lazy" width="100">'
-            + '<span class="favorites-page__item-name">' + safeCid + '</span>'
+            + '<img src="' + thumb + '" alt="" loading="lazy" width="80" height="60">'
+            + '<span class="favorites-page__item-name">' + displayName + '</span>'
             + '</a>'
             + ' <button type="button" class="favorites-page__remove" data-fav-remove data-fav-type="work" data-fav-id="' + safeCid + '">削除</button>'
             + '</li>';
+    }
+
+    function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+            return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]);
+        });
     }
 
     function bindClickEvent(el) {
@@ -179,11 +188,14 @@ $popularActresses = $popularActresses ?? [];
 
     document.addEventListener('click', function (e) {
         var btn = e.target.closest('[data-fav-remove]');
-        if (!btn) return;
+        if (!btn || !window.AvHakaseFavorites) return;
         e.preventDefault();
         if (window.AvHakaseFavorites.remove(btn.dataset.favType, btn.dataset.favId)) {
             if (btn.dataset.favType === 'actress') renderActresses();
             else renderWorks();
+            if (window.AvHakaseFavorites.updateHeaderBadge) {
+                window.AvHakaseFavorites.updateHeaderBadge();
+            }
         }
     });
 })();

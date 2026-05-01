@@ -16,6 +16,7 @@
 $favType    = $favType ?? 'actress';
 $favId      = $favId ?? '';
 $favName    = $favName ?? '';
+$favThumb   = $favThumb ?? '';
 $favSource  = $favSource ?? 'unknown';
 $favVariant = $favVariant ?? 'default';
 if ($favId === '') return;
@@ -28,6 +29,7 @@ $btnClass = 'fav-btn' . ($favVariant === 'overlay' ? ' fav-btn--overlay' : '');
     data-favorite-type="<?= h($favType) ?>"
     data-favorite-id="<?= h($favId) ?>"
     data-favorite-name="<?= h($favName) ?>"
+    <?php if ($favThumb !== ''): ?>data-favorite-thumb="<?= h($favThumb) ?>"<?php endif; ?>
     data-favorite-source="<?= h($favSource) ?>"
     aria-pressed="false"
     aria-label="お気に入りに追加"

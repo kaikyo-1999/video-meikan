@@ -34,6 +34,7 @@ $hasCarousel = $totalSlides > 1;
             $favType = 'work';
             $favId = $work['source_id'];
             $favName = $work['title'] ?? '';
+            $favThumb = $work['thumbnail_url'] ?? '';
             $favSource = 'work_card_v2';
             $favVariant = 'overlay';
             require __DIR__ . '/favorite-button.php';
