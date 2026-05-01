@@ -1,6 +1,6 @@
 #!/bin/bash
-# 任意のコマンドをラップして、失敗時のみ Slack に通知するスクリプト。
-# Slack Bot Token + chat.postMessage API 方式（oripa-sokuho の daily_report.py と同じ）。
+# 任意のコマンドをラップして、Slack に成功/失敗通知を送るスクリプト。
+# Slack Bot Token + chat.postMessage API 方式。
 #
 # 使い方:
 #   notify_on_fail.sh <job_name> <command> [args...]
@@ -15,6 +15,13 @@
 # 失敗判定:
 #   - コマンドの exit code が非ゼロ
 #   - もしくは標準出力 / 標準エラーに "Fatal error" / "Uncaught" / "ERROR:" を含む
+#
+# 通知:
+#   - 失敗時: 🚨 アラート + ログ末尾30行 + 失敗理由 + 所要時間
+#   - 成功時: ✅ 「更新完了」メッセ + 所要時間 + ログから抽出した summary 行
+#     （"更新: N件 / スキップ: M件" のような集計行を grep で拾う。
+#      レコード単位の "名前: 34 件更新" は除外）
+#   ※ ファイル名は notify_on_fail のままだが、成功時も投稿する仕様に拡張済み
 
 set -u
 
@@ -47,9 +54,13 @@ LOG_DIR="${HOME}/cron_logs"
 mkdir -p "$LOG_DIR"
 LOG_FILE="${LOG_DIR}/${JOB_NAME}_$(date +%Y%m%d_%H%M%S).log"
 
+START_TIME=$(date +%s)
+
 # コマンド実行
 "$@" > "$LOG_FILE" 2>&1
 EXIT_CODE=$?
+
+DURATION=$(( $(date +%s) - START_TIME ))
 
 FAIL=0
 REASON=""
@@ -63,6 +74,28 @@ fi
 
 # 古いログを 30 日で自動削除
 find "$LOG_DIR" -name "*.log" -type f -mtime +30 -delete 2>/dev/null
+
+# 所要時間を人間向けにフォーマット
+format_duration() {
+    local sec="$1"
+    if [ "$sec" -lt 60 ]; then
+        echo "${sec}秒"
+    elif [ "$sec" -lt 3600 ]; then
+        echo "$((sec / 60))分$((sec % 60))秒"
+    else
+        echo "$((sec / 3600))時間$((sec % 3600 / 60))分"
+    fi
+}
+
+# ログから summary 行（"更新: 12345 件 / ..." のような集計行）を抽出
+# - 各レコード単位の "名前: 34 件更新" は除外
+extract_highlights() {
+    local log_file="$1"
+    tail -80 "$log_file" \
+        | grep -E "(更新|登録|追加|削除|スキップ|エラー|失敗|処理|新規|計算|完了): [0-9,]+|新規[^:]*: [0-9,]+ ?(人|本|件)|=== 完了 ===" \
+        | grep -vE "件更新 *$" \
+        | tail -8
+}
 
 post_to_slack() {
     local text="$1"
@@ -88,16 +121,30 @@ post_to_slack() {
         https://slack.com/api/chat.postMessage > /dev/null || true
 }
 
+HOST=$(hostname -s 2>/dev/null || echo "?")
+DURATION_FMT=$(format_duration "$DURATION")
+
 if [ "$FAIL" -eq 1 ]; then
-    HOST=$(hostname -s 2>/dev/null || echo "?")
     TAIL=$(tail -30 "$LOG_FILE")
-    TEXT=":rotating_light: *${JOB_NAME}* failed on ${HOST} (${REASON})
+    TEXT=":rotating_light: *${JOB_NAME}* failed on ${HOST} (${REASON} / ${DURATION_FMT})
 
 \`\`\`
 ${TAIL}
 \`\`\`
 
 full log: ${LOG_FILE}"
+    post_to_slack "$TEXT"
+else
+    HIGHLIGHTS=$(extract_highlights "$LOG_FILE")
+    if [ -n "$HIGHLIGHTS" ]; then
+        TEXT=":white_check_mark: *${JOB_NAME}* 更新完了 on ${HOST} (${DURATION_FMT})
+
+\`\`\`
+${HIGHLIGHTS}
+\`\`\`"
+    else
+        TEXT=":white_check_mark: *${JOB_NAME}* 更新完了 on ${HOST} (${DURATION_FMT})"
+    fi
     post_to_slack "$TEXT"
 fi
 
