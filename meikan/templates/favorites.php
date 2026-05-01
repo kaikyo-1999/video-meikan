@@ -11,7 +11,7 @@
 <div class="favorites-intro">
     <span class="favorites-intro__badge">⚠ 注意</span>
     <strong>お気に入りはこの端末のブラウザに保存されています。</strong>
-    端末を変えたりブラウザの履歴を消すと消えてしまうので注意！ 将来 LINE 連携で同期できる仕組みを準備中です。
+    端末を変えたりブラウザの履歴を消すと消えてしまうので注意！
 </div>
 
 <section class="favorites-page__section" data-favorites-section="actresses">
@@ -80,7 +80,18 @@
         var countEl = document.querySelector('[data-favorites-count="actresses"]');
         countEl.textContent = '(' + list.length + ')';
 
-        if (list.length === 0) return;
+        if (list.length === 0) {
+            // 空状態に戻す: empty-stateを再描画
+            if (!container.querySelector('[data-favorites-empty]')) {
+                container.innerHTML = '<div class="favorites-page__empty" data-favorites-empty="actresses">'
+                    + '<div class="favorites-page__empty-icon">💔</div>'
+                    + '<p class="favorites-page__empty-title">まだお気に入りの女優がいません！</p>'
+                    + '<p class="favorites-page__empty-text">気になる女優を ♥ でストックしておくと、新作チェックがラクになります</p>'
+                    + '<a href="<?= url('meikan/') ?>" class="favorites-page__empty-cta">→ 名鑑から女優を探す</a>'
+                    + '</div>';
+            }
+            return;
+        }
 
         var html = '<ul class="favorites-page__actress-grid">';
         for (var i = 0; i < list.length; i++) {
@@ -89,6 +100,7 @@
         html += '</ul>';
         container.innerHTML = html;
         container.querySelectorAll('[data-favorite-item-link]').forEach(bindClickEvent);
+        container.querySelectorAll('[data-fav-remove]').forEach(bindRemoveLongPress);
     }
 
     function renderActressItem(item, position) {
@@ -103,7 +115,7 @@
             + visual
             + '<span class="favorites-page__item-name">' + displayName + '</span>'
             + '</a>'
-            + '<button type="button" class="favorites-page__remove" data-fav-remove data-fav-type="actress" data-fav-id="' + safeSlug + '">削除</button>'
+            + '<button type="button" class="favorites-page__remove" data-fav-remove data-fav-type="actress" data-fav-id="' + safeSlug + '" data-fav-name="' + displayName + '" aria-label="お気に入りから削除（長押し）"><span aria-hidden="true">×</span></button>'
             + '</li>';
     }
 
@@ -113,7 +125,16 @@
         var countEl = document.querySelector('[data-favorites-count="works"]');
         countEl.textContent = '(' + list.length + ')';
 
-        if (list.length === 0) return;
+        if (list.length === 0) {
+            if (!container.querySelector('[data-favorites-empty]')) {
+                container.innerHTML = '<div class="favorites-page__empty" data-favorites-empty="works">'
+                    + '<div class="favorites-page__empty-icon">📼</div>'
+                    + '<p class="favorites-page__empty-title">まだお気に入りの作品がありません！</p>'
+                    + '<p class="favorites-page__empty-text">女優ページの作品カード右上の ♥ から登録できます</p>'
+                    + '</div>';
+            }
+            return;
+        }
 
         var html = '<ul class="favorites-page__work-list">';
         for (var i = 0; i < list.length; i++) {
@@ -122,6 +143,7 @@
         html += '</ul>';
         container.innerHTML = html;
         container.querySelectorAll('[data-favorite-item-link]').forEach(bindClickEvent);
+        container.querySelectorAll('[data-fav-remove]').forEach(bindRemoveLongPress);
     }
 
     function renderWorkItem(item, position) {
@@ -134,7 +156,7 @@
             + '<img src="' + escapeHtml(thumb) + '" alt="" loading="lazy">'
             + '<span class="favorites-page__item-name">' + displayName + '</span>'
             + '</a>'
-            + '<button type="button" class="favorites-page__remove" data-fav-remove data-fav-type="work" data-fav-id="' + safeCid + '">削除</button>'
+            + '<button type="button" class="favorites-page__remove" data-fav-remove data-fav-type="work" data-fav-id="' + safeCid + '" data-fav-name="' + displayName + '" aria-label="お気に入りから削除（長押し）"><span aria-hidden="true">×</span></button>'
             + '</li>';
     }
 
@@ -151,10 +173,49 @@
         });
     }
 
-    document.addEventListener('click', function (e) {
-        var btn = e.target.closest('[data-fav-remove]');
-        if (!btn || !window.AvHakaseFavorites) return;
-        e.preventDefault();
+    // === 長押し削除 + 確認モーダル ===
+    var LONG_PRESS_MS = 600;
+
+    function bindRemoveLongPress(btn) {
+        if (btn.dataset.longPressBound === '1') return;
+        btn.dataset.longPressBound = '1';
+
+        var timer = null;
+
+        function start(e) {
+            // 主ボタン以外無視
+            if (e.button !== undefined && e.button !== 0) return;
+            btn.classList.add('is-pressing');
+            timer = setTimeout(function () {
+                timer = null;
+                btn.classList.remove('is-pressing');
+                if (navigator.vibrate) { try { navigator.vibrate(30); } catch (e) {} }
+                openConfirmModal({
+                    name: btn.dataset.favName || btn.dataset.favId || '',
+                    onConfirm: function () { removeAndRerender(btn); }
+                });
+            }, LONG_PRESS_MS);
+        }
+
+        function cancel() {
+            btn.classList.remove('is-pressing');
+            if (timer) { clearTimeout(timer); timer = null; }
+        }
+
+        btn.addEventListener('mousedown', start);
+        btn.addEventListener('touchstart', start, { passive: true });
+        btn.addEventListener('mouseup', cancel);
+        btn.addEventListener('mouseleave', cancel);
+        btn.addEventListener('touchend', cancel);
+        btn.addEventListener('touchcancel', cancel);
+        // 短いクリックで何も起きないように（誤操作防止）
+        btn.addEventListener('click', function (e) { e.preventDefault(); });
+        // モバイルの contextmenu (long-press) を抑制
+        btn.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+    }
+
+    function removeAndRerender(btn) {
+        if (!window.AvHakaseFavorites) return;
         if (window.AvHakaseFavorites.remove(btn.dataset.favType, btn.dataset.favId)) {
             if (btn.dataset.favType === 'actress') renderActresses();
             else renderWorks();
@@ -162,7 +223,67 @@
                 window.AvHakaseFavorites.updateHeaderBadge();
             }
         }
-    });
+    }
+
+    function ensureModal() {
+        if (document.getElementById('favConfirmModal')) return;
+        var html = '<div class="confirm-modal" id="favConfirmModal" hidden role="dialog" aria-modal="true" aria-labelledby="favConfirmTitle">'
+            + '<div class="confirm-modal__backdrop" data-confirm-cancel></div>'
+            + '<div class="confirm-modal__card">'
+            + '<p class="confirm-modal__title" id="favConfirmTitle">本当に削除してもいい？</p>'
+            + '<p class="confirm-modal__desc">「<span data-confirm-name></span>」をお気に入りから削除します</p>'
+            + '<div class="confirm-modal__buttons">'
+            + '<button type="button" class="confirm-modal__btn confirm-modal__btn--cancel" data-confirm-cancel>キャンセル</button>'
+            + '<button type="button" class="confirm-modal__btn confirm-modal__btn--ok" data-confirm-ok>削除する</button>'
+            + '</div>'
+            + '</div>'
+            + '</div>';
+        document.body.insertAdjacentHTML('beforeend', html);
+    }
+
+    var modalCurrentOnConfirm = null;
+    var modalKeyHandler = null;
+
+    function openConfirmModal(opts) {
+        ensureModal();
+        var modal = document.getElementById('favConfirmModal');
+        var nameEl = modal.querySelector('[data-confirm-name]');
+        if (nameEl) nameEl.textContent = opts.name || '';
+        modal.removeAttribute('hidden');
+        modalCurrentOnConfirm = opts.onConfirm || null;
+
+        // ボタン/backdropクリックで close (一度だけ全体に登録)
+        if (!modal.dataset.bound) {
+            modal.dataset.bound = '1';
+            modal.addEventListener('click', function (e) {
+                var ok = e.target.closest('[data-confirm-ok]');
+                var cancel = e.target.closest('[data-confirm-cancel]');
+                if (ok) {
+                    var fn = modalCurrentOnConfirm;
+                    closeConfirmModal();
+                    if (typeof fn === 'function') fn();
+                } else if (cancel) {
+                    closeConfirmModal();
+                }
+            });
+        }
+
+        // ESCで閉じる
+        modalKeyHandler = function (e) {
+            if (e.key === 'Escape') closeConfirmModal();
+        };
+        document.addEventListener('keydown', modalKeyHandler);
+    }
+
+    function closeConfirmModal() {
+        var modal = document.getElementById('favConfirmModal');
+        if (modal) modal.setAttribute('hidden', '');
+        modalCurrentOnConfirm = null;
+        if (modalKeyHandler) {
+            document.removeEventListener('keydown', modalKeyHandler);
+            modalKeyHandler = null;
+        }
+    }
 
     function escapeHtml(s) {
         return String(s).replace(/[&<>"']/g, function (c) {
