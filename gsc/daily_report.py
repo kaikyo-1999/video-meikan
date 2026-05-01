@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""GSC日次推移グラフを生成してSlackに投稿する"""
+"""GSC日次レポート: 記事/女優/ジャンル別の積み上げグラフを生成してSlackに投稿する"""
 
 import os
+import re
 import sys
 import tempfile
+from collections import defaultdict
 from datetime import datetime, timedelta
 
 from dotenv import load_dotenv
@@ -17,113 +19,169 @@ import matplotlib.pyplot as plt
 matplotlib.rcParams["font.family"] = "Hiragino Sans"
 from slack_sdk import WebClient
 
-from fetch import SITE_URL, get_service, fetch_performance
+from fetch import SITE_URL, get_service
 
-# Slack設定（環境変数から読む）
 SLACK_BOT_TOKEN = os.environ.get("SLACK_BOT_TOKEN", "")
 SLACK_CHANNEL = os.environ.get("SLACK_CHANNEL", "")
 
 DAYS = 90
 
+CATEGORIES = ["記事", "女優", "ジャンル", "その他"]
+COLORS = {
+    "記事": "#e74c3c",
+    "女優": "#3498db",
+    "ジャンル": "#f39c12",
+    "その他": "#95a5a6",
+}
 
-def fetch_daily_data():
-    """日別のクリック・表示回数・平均順位を取得する"""
+ACTRESS_RE = re.compile(r"^https://av-hakase\.com/[a-z0-9][a-z0-9-]*/$")
+GENRE_RE = re.compile(r"^https://av-hakase\.com/[a-z0-9][a-z0-9-]*/[a-z0-9][a-z0-9-]*/$")
+
+
+def classify(url: str) -> str:
+    if "/article" in url:
+        return "記事"
+    if GENRE_RE.match(url):
+        return "ジャンル"
+    if ACTRESS_RE.match(url):
+        return "女優"
+    return "その他"
+
+
+def fetch_daily_by_category():
+    """日別×カテゴリ別の clicks/imp/重み付き順位 を返す"""
     service = get_service()
-
     end_date = datetime.now() - timedelta(days=3)
     start_date = end_date - timedelta(days=DAYS - 1)
 
-    body = {
-        "startDate": start_date.strftime("%Y-%m-%d"),
-        "endDate": end_date.strftime("%Y-%m-%d"),
-        "dimensions": ["date"],
-        "rowLimit": DAYS,
-    }
-    response = service.searchanalytics().query(siteUrl=SITE_URL, body=body).execute()
-    rows = response.get("rows", [])
+    rows = []
+    start_row = 0
+    LIMIT = 25000
+    while True:
+        body = {
+            "startDate": start_date.strftime("%Y-%m-%d"),
+            "endDate": end_date.strftime("%Y-%m-%d"),
+            "dimensions": ["date", "page"],
+            "rowLimit": LIMIT,
+            "startRow": start_row,
+        }
+        resp = service.searchanalytics().query(siteUrl=SITE_URL, body=body).execute()
+        chunk = resp.get("rows", [])
+        rows.extend(chunk)
+        if len(chunk) < LIMIT:
+            break
+        start_row += LIMIT
 
-    dates, clicks, impressions, positions = [], [], [], []
-    for row in sorted(rows, key=lambda r: r["keys"][0]):
-        dates.append(datetime.strptime(row["keys"][0], "%Y-%m-%d"))
-        clicks.append(int(row["clicks"]))
-        impressions.append(int(row["impressions"]))
-        positions.append(row["position"])
+    # date -> category -> {clicks, imp, pos_imp_sum}
+    agg = defaultdict(lambda: defaultdict(lambda: {"clicks": 0, "imp": 0, "pos_imp_sum": 0.0}))
+    for r in rows:
+        date_str, url = r["keys"]
+        cat = classify(url)
+        d = datetime.strptime(date_str, "%Y-%m-%d")
+        clicks = int(r["clicks"])
+        imp = int(r["impressions"])
+        pos = float(r["position"])
+        bucket = agg[d][cat]
+        bucket["clicks"] += clicks
+        bucket["imp"] += imp
+        bucket["pos_imp_sum"] += pos * imp
+    return agg
 
-    return dates, clicks, impressions, positions
 
+def create_chart(agg):
+    dates = sorted(agg.keys())
+    if not dates:
+        return None, dates
 
-def create_chart(dates, clicks, impressions, positions):
-    """3段グラフを生成して一時ファイルパスを返す"""
-    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(12, 8), sharex=True)
-    fig.suptitle(
-        f"av-hakase.com GSC日次推移\n{dates[0].strftime('%Y/%m/%d')} 〜 {dates[-1].strftime('%Y/%m/%d')}",
-        fontsize=14,
-        fontweight="bold",
-    )
+    # カテゴリ別系列
+    series_imp = {c: [agg[d][c]["imp"] for d in dates] for c in CATEGORIES}
+    series_clicks = {c: [agg[d][c]["clicks"] for d in dates] for c in CATEGORIES}
+    series_pos = {}
+    for c in CATEGORIES:
+        positions = []
+        for d in dates:
+            b = agg[d][c]
+            positions.append(b["pos_imp_sum"] / b["imp"] if b["imp"] > 0 else None)
+        series_pos[c] = positions
 
-    # 表示回数
-    ax1.fill_between(dates, impressions, alpha=0.3, color="#4285F4")
-    ax1.plot(dates, impressions, color="#4285F4", linewidth=1.2)
-    ax1.set_ylabel("表示回数")
-    ax1.grid(True, alpha=0.3)
+    period = f"{dates[0].strftime('%Y/%m/%d')} 〜 {dates[-1].strftime('%Y/%m/%d')}"
+    fig, axes = plt.subplots(3, 1, figsize=(14, 10), sharex=True)
+    fig.suptitle(f"av-hakase.com GSC日次推移\n{period}", fontsize=14, fontweight="bold")
 
-    # クリック数
-    ax2.fill_between(dates, clicks, alpha=0.3, color="#34A853")
-    ax2.plot(dates, clicks, color="#34A853", linewidth=1.2)
-    ax2.set_ylabel("クリック数")
-    ax2.grid(True, alpha=0.3)
+    # 1) 表示回数（積み上げ）
+    ax = axes[0]
+    bottom = [0] * len(dates)
+    for c in CATEGORIES:
+        ax.bar(dates, series_imp[c], bottom=bottom, color=COLORS[c], alpha=0.8, label=c, width=0.8)
+        bottom = [b + v for b, v in zip(bottom, series_imp[c])]
+    ax.set_ylabel("表示回数")
+    ax.legend(loc="upper left")
+    ax.grid(True, alpha=0.3)
 
-    # 平均順位（上が良い＝軸反転）
-    ax3.plot(dates, positions, color="#EA4335", linewidth=1.2)
-    ax3.invert_yaxis()
-    ax3.set_ylabel("平均順位")
-    ax3.grid(True, alpha=0.3)
+    # 2) クリック数（積み上げ）
+    ax = axes[1]
+    bottom = [0] * len(dates)
+    for c in CATEGORIES:
+        ax.bar(dates, series_clicks[c], bottom=bottom, color=COLORS[c], alpha=0.8, label=c, width=0.8)
+        bottom = [b + v for b, v in zip(bottom, series_clicks[c])]
+    ax.set_ylabel("クリック数")
+    ax.legend(loc="upper left")
+    ax.grid(True, alpha=0.3)
 
-    ax3.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=mdates.MO))
-    ax3.xaxis.set_major_formatter(mdates.DateFormatter("%m/%d"))
+    # 3) 平均順位（カテゴリ別折れ線、軸反転）
+    ax = axes[2]
+    for c in CATEGORIES:
+        ys = series_pos[c]
+        if all(v is None for v in ys):
+            continue
+        ax.plot(dates, ys, "o-", color=COLORS[c], label=c, markersize=3, linewidth=1.2)
+    ax.invert_yaxis()
+    ax.set_ylabel("平均順位")
+    ax.legend(loc="upper left")
+    ax.grid(True, alpha=0.3)
+
+    axes[2].xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=mdates.MO))
+    axes[2].xaxis.set_major_formatter(mdates.DateFormatter("%m/%d"))
     plt.xticks(rotation=45)
     plt.tight_layout()
 
     path = os.path.join(tempfile.gettempdir(), "gsc_daily_report.png")
     fig.savefig(path, dpi=150, bbox_inches="tight")
     plt.close(fig)
-    return path
+    return path, dates
 
 
-def fetch_top_pages(dates):
-    """クリック数上位5ページを取得する。5件未満ならNoneを返す"""
-    service = get_service()
-    start_date = dates[0].strftime("%Y-%m-%d")
-    end_date = dates[-1].strftime("%Y-%m-%d")
-    rows = fetch_performance(service, start_date, end_date, dimensions=["page"], row_limit=5)
-    if len(rows) < 5:
-        return None
-    rows.sort(key=lambda r: r["clicks"], reverse=True)
-    return rows[:5]
-
-
-def post_to_slack(image_path, dates, clicks, impressions, top_pages):
-    """画像をSlackにアップロードする"""
+def post_to_slack(image_path, agg, dates):
     if not SLACK_BOT_TOKEN or not SLACK_CHANNEL:
         print("SLACK_BOT_TOKEN / SLACK_CHANNEL が未設定。Slack投稿をスキップ。")
         return
 
-    client = WebClient(token=SLACK_BOT_TOKEN)
-
     period = f"{dates[0].strftime('%Y/%m/%d')} 〜 {dates[-1].strftime('%Y/%m/%d')}"
-    total_clicks = sum(clicks)
-    total_imp = sum(impressions)
-    comment = f"*GSC日次レポート* ({period})\n表示: {total_imp:,} / クリック: {total_clicks:,}"
 
-    if top_pages:
-        comment += "\n\n*クリック上位5ページ*"
-        for i, row in enumerate(top_pages, 1):
-            url = row["keys"][0]
-            c = int(row["clicks"])
-            imp = int(row["impressions"])
-            pos = f"{row['position']:.1f}"
-            comment += f"\n{i}. {url}\n    clicks: {c} / imp: {imp:,} / pos: {pos}"
+    totals = {c: {"clicks": 0, "imp": 0, "pos_imp_sum": 0.0} for c in CATEGORIES}
+    for d in dates:
+        for c in CATEGORIES:
+            b = agg[d][c]
+            totals[c]["clicks"] += b["clicks"]
+            totals[c]["imp"] += b["imp"]
+            totals[c]["pos_imp_sum"] += b["pos_imp_sum"]
 
+    grand_clicks = sum(t["clicks"] for t in totals.values())
+    grand_imp = sum(t["imp"] for t in totals.values())
+
+    lines = [f"*GSC日次レポート* ({period})", f"表示: {grand_imp:,} / クリック: {grand_clicks:,}", ""]
+    for c in CATEGORIES:
+        t = totals[c]
+        if t["imp"] == 0 and t["clicks"] == 0:
+            continue
+        ctr = (t["clicks"] / t["imp"] * 100) if t["imp"] else 0
+        pos = (t["pos_imp_sum"] / t["imp"]) if t["imp"] else 0
+        lines.append(
+            f"*{c}* — 表示: {t['imp']:,} / クリック: {t['clicks']:,} / CTR: {ctr:.2f}% / 平均順位: {pos:.1f}"
+        )
+    comment = "\n".join(lines)
+
+    client = WebClient(token=SLACK_BOT_TOKEN)
     client.files_upload_v2(
         channel=SLACK_CHANNEL,
         file=image_path,
@@ -134,18 +192,14 @@ def post_to_slack(image_path, dates, clicks, impressions, top_pages):
 
 
 def main():
-    dates, clicks, impressions, positions = fetch_daily_data()
+    agg = fetch_daily_by_category()
+    image_path, dates = create_chart(agg)
     if not dates:
         print("データなし")
         sys.exit(1)
-
     print(f"取得日数: {len(dates)}日 ({dates[0].strftime('%Y/%m/%d')} 〜 {dates[-1].strftime('%Y/%m/%d')})")
-
-    image_path = create_chart(dates, clicks, impressions, positions)
     print(f"グラフ生成: {image_path}")
-
-    top_pages = fetch_top_pages(dates)
-    post_to_slack(image_path, dates, clicks, impressions, top_pages)
+    post_to_slack(image_path, agg, dates)
 
 
 if __name__ == "__main__":

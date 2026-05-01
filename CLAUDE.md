@@ -83,6 +83,22 @@ FANZA_DISPLAY_AFFILIATE_ID  — 表示用アフィリエイトID
 
 読み込み優先順位: `.env.local` > `.env`
 
+## サーチコンソール / GSC
+
+- **サイト**: `sc-domain:av-hakase.com`（`gsc/fetch.py` の `SITE_URL` 参照）
+- **サービスアカウントキー**: `marke-analytics-fa4cf49cfeef.json`（GA4と共通）
+- **取得スクリプト**: `gsc/fetch.py`（`get_service()` / `fetch_performance()`）
+
+### データソースの優先順位
+
+GSCのクエリ・ページ・パフォーマンスデータが必要なときは、**Google Search Console APIを優先する**（Ahrefs MCPの `gsc-*` ツールではない）。理由:
+
+- 公式APIの方が遅延が少なく、データも最新かつ正確（Ahrefsは中継キャッシュのため数日遅れる場合がある）
+- 既に `gsc/fetch.py` でサービスアカウント認証済み — 追加コストなし
+- `where` 等のフィルタもPython側で柔軟に書ける
+
+Ahrefs MCPの `gsc-*` ツールを使うのは、GSC APIで取得できない指標（Ahrefs独自の集計・キーワード難易度等と組み合わせる場合）に限る。
+
 ## 記事システム
 
 Markdown記事は `content/articles/` に配置。ArticleControllerが独自パーサーでHTMLに変換する。

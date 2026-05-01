@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""GA4 日次レポート: 記事経由 vs DB経由セッション（グラフ生成 + Slack投稿）"""
+"""GA4 日次レポート: 記事/女優/ジャンル別セッション（積み上げ）と滞在時間を可視化してSlackに投稿"""
 
 import os
+import re
 import tempfile
+from collections import defaultdict
 from datetime import datetime
 
 from dotenv import load_dotenv
@@ -27,6 +29,28 @@ PROPERTY_ID = "529336238"
 SLACK_BOT_TOKEN = os.environ.get("SLACK_BOT_TOKEN", "")
 SLACK_CHANNEL = os.environ.get("SLACK_CHANNEL", "")
 
+CATEGORIES = ["記事", "女優", "ジャンル", "その他"]
+COLORS = {
+    "記事": "#e74c3c",
+    "女優": "#3498db",
+    "ジャンル": "#f39c12",
+    "その他": "#95a5a6",
+}
+
+# landingPage は path のみで末尾スラッシュなしのことが多い（"/mihinanami" "/sui/anal"）
+ACTRESS_RE = re.compile(r"^/[a-z0-9][a-z0-9-]*/?$")
+GENRE_RE = re.compile(r"^/[a-z0-9][a-z0-9-]*/[a-z0-9][a-z0-9-]*/?$")
+
+
+def classify(landing_page: str) -> str:
+    if "/article" in landing_page:
+        return "記事"
+    if GENRE_RE.match(landing_page):
+        return "ジャンル"
+    if ACTRESS_RE.match(landing_page):
+        return "女優"
+    return "その他"
+
 
 def get_client():
     credentials = service_account.Credentials.from_service_account_file(
@@ -35,20 +59,19 @@ def get_client():
     return build("analyticsdata", "v1beta", credentials=credentials)
 
 
-def fetch_daily(client, date_range, dimension_filter=None):
+def fetch_by_landing_page(client, date_range):
+    """date × landingPage で取得し、Python側でカテゴリ集約する"""
+    LIMIT = 100000
     body = {
         "dateRanges": [date_range],
-        "dimensions": [{"name": "date"}],
+        "dimensions": [{"name": "date"}, {"name": "landingPage"}],
         "metrics": [
             {"name": "averageSessionDuration"},
             {"name": "screenPageViewsPerSession"},
             {"name": "sessions"},
         ],
-        "orderBys": [{"dimension": {"dimensionName": "date"}}],
+        "limit": LIMIT,
     }
-    if dimension_filter:
-        body["dimensionFilter"] = dimension_filter
-
     response = client.properties().runReport(
         property=f"properties/{PROPERTY_ID}", body=body
     ).execute()
@@ -77,25 +100,25 @@ def fetch_event_count_daily(client, date_range, event_name):
     }
 
 
-def rows_to_dict(rows):
-    data = {}
+def aggregate_by_category(rows):
+    """date -> category -> {sessions, dur_sess_sum, pps_sess_sum} に集計"""
+    agg = defaultdict(lambda: defaultdict(lambda: {
+        "sessions": 0,
+        "dur_sess_sum": 0.0,  # sum(avg_duration * sessions) for weighted avg
+        "pps_sess_sum": 0.0,  # sum(pages_per_session * sessions)
+    }))
     for row in rows:
         date = row["dimensionValues"][0]["value"]
-        data[date] = {
-            "avg_duration": float(row["metricValues"][0]["value"]),
-            "pages_per_session": float(row["metricValues"][1]["value"]),
-            "sessions": int(row["metricValues"][2]["value"]),
-        }
-    return data
-
-
-def summarize(data):
-    total_sessions = sum(d["sessions"] for d in data.values())
-    if total_sessions == 0:
-        return 0, 0, 0
-    weighted_dur = sum(d["avg_duration"] * d["sessions"] for d in data.values()) / total_sessions
-    weighted_pps = sum(d["pages_per_session"] * d["sessions"] for d in data.values()) / total_sessions
-    return weighted_dur, weighted_pps, total_sessions
+        landing = row["dimensionValues"][1]["value"]
+        cat = classify(landing)
+        avg_dur = float(row["metricValues"][0]["value"])
+        pps = float(row["metricValues"][1]["value"])
+        sess = int(row["metricValues"][2]["value"])
+        b = agg[date][cat]
+        b["sessions"] += sess
+        b["dur_sess_sum"] += avg_dur * sess
+        b["pps_sess_sum"] += pps * sess
+    return agg
 
 
 def fmt_duration(seconds):
@@ -103,16 +126,27 @@ def fmt_duration(seconds):
     return f"{m}:{s:02d}"
 
 
-def create_chart(all_dates, article_data, db_data, click_data):
-    empty = {"avg_duration": 0, "pages_per_session": 0, "sessions": 0}
-
+def create_chart(agg, click_data):
+    all_dates = sorted(agg.keys())
+    if not all_dates:
+        return None, all_dates
     dates = [datetime.strptime(d, "%Y%m%d") for d in all_dates]
-    a_dur = [article_data.get(d, empty)["avg_duration"] / 60 for d in all_dates]
-    b_dur = [db_data.get(d, empty)["avg_duration"] / 60 for d in all_dates]
-    a_pps = [article_data.get(d, empty)["pages_per_session"] for d in all_dates]
-    b_pps = [db_data.get(d, empty)["pages_per_session"] for d in all_dates]
-    a_sess = [article_data.get(d, empty)["sessions"] for d in all_dates]
-    b_sess = [db_data.get(d, empty)["sessions"] for d in all_dates]
+
+    series_sess = {c: [agg[d][c]["sessions"] for d in all_dates] for c in CATEGORIES}
+    series_dur = {}
+    series_pps = {}
+    for c in CATEGORIES:
+        durs, ppss = [], []
+        for d in all_dates:
+            b = agg[d][c]
+            if b["sessions"] > 0:
+                durs.append(b["dur_sess_sum"] / b["sessions"] / 60)  # 分
+                ppss.append(b["pps_sess_sum"] / b["sessions"])
+            else:
+                durs.append(None)
+                ppss.append(None)
+        series_dur[c] = durs
+        series_pps[c] = ppss
 
     period = f"{all_dates[0][:4]}/{all_dates[0][4:6]}/{all_dates[0][6:]} 〜 {all_dates[-1][:4]}/{all_dates[-1][4:6]}/{all_dates[-1][6:]}"
     fig, axes = plt.subplots(3, 1, figsize=(14, 10), sharex=True)
@@ -120,24 +154,33 @@ def create_chart(all_dates, article_data, db_data, click_data):
 
     # 1) 平均滞在時間 (分)
     ax = axes[0]
-    ax.plot(dates, a_dur, "o-", color="#e74c3c", label="記事経由", markersize=4, linewidth=1.5)
-    ax.plot(dates, b_dur, "o-", color="#3498db", label="DB経由", markersize=4, linewidth=1.5)
+    for c in CATEGORIES:
+        ys = series_dur[c]
+        if all(v is None for v in ys):
+            continue
+        ax.plot(dates, ys, "o-", color=COLORS[c], label=c, markersize=4, linewidth=1.5)
     ax.set_ylabel("平均滞在時間 (分)")
     ax.legend(loc="upper left")
     ax.grid(True, alpha=0.3)
 
     # 2) ページ/セッション
     ax = axes[1]
-    ax.plot(dates, a_pps, "o-", color="#e74c3c", label="記事経由", markersize=4, linewidth=1.5)
-    ax.plot(dates, b_pps, "o-", color="#3498db", label="DB経由", markersize=4, linewidth=1.5)
+    for c in CATEGORIES:
+        ys = series_pps[c]
+        if all(v is None for v in ys):
+            continue
+        ax.plot(dates, ys, "o-", color=COLORS[c], label=c, markersize=4, linewidth=1.5)
     ax.set_ylabel("ページ/セッション")
     ax.legend(loc="upper left")
     ax.grid(True, alpha=0.3)
 
-    # 3) セッション数（積み上げ棒）+ FANZAクリック（折れ線・右軸）
+    # 3) セッション数（積み上げ）+ FANZAクリック（折れ線・右軸）
     ax = axes[2]
-    ax.bar(dates, a_sess, color="#e74c3c", alpha=0.7, label="記事経由", width=0.8)
-    ax.bar(dates, b_sess, bottom=a_sess, color="#3498db", alpha=0.7, label="DB経由", width=0.8)
+    bottom = [0] * len(all_dates)
+    for c in CATEGORIES:
+        vals = series_sess[c]
+        ax.bar(dates, vals, bottom=bottom, color=COLORS[c], alpha=0.8, label=c, width=0.8)
+        bottom = [b + v for b, v in zip(bottom, vals)]
     ax.set_ylabel("セッション数")
     ax.grid(True, alpha=0.3)
 
@@ -158,25 +201,36 @@ def create_chart(all_dates, article_data, db_data, click_data):
     path = os.path.join(tempfile.gettempdir(), "ga4_daily_report.png")
     fig.savefig(path, dpi=150, bbox_inches="tight")
     plt.close(fig)
-    return path
+    return path, all_dates
 
 
-def post_to_slack(image_path, all_dates, article_data, db_data, click_data):
+def post_to_slack(image_path, agg, all_dates, click_data):
     if not SLACK_BOT_TOKEN or not SLACK_CHANNEL:
         print("SLACK_BOT_TOKEN / SLACK_CHANNEL が未設定。Slack投稿をスキップ。")
         return
 
-    a_dur, a_pps, a_sess = summarize(article_data)
-    b_dur, b_pps, b_sess = summarize(db_data)
+    totals = {c: {"sessions": 0, "dur_sess_sum": 0.0, "pps_sess_sum": 0.0} for c in CATEGORIES}
+    for d in all_dates:
+        for c in CATEGORIES:
+            b = agg[d][c]
+            totals[c]["sessions"] += b["sessions"]
+            totals[c]["dur_sess_sum"] += b["dur_sess_sum"]
+            totals[c]["pps_sess_sum"] += b["pps_sess_sum"]
     total_clicks = sum(click_data.values())
 
     period = f"{all_dates[0][:4]}/{all_dates[0][4:6]}/{all_dates[0][6:]} 〜 {all_dates[-1][:4]}/{all_dates[-1][4:6]}/{all_dates[-1][6:]}"
-    comment = (
-        f"*GA4日次レポート* ({period})\n\n"
-        f"*記事経由* — セッション: {a_sess:,} / 滞在: {fmt_duration(a_dur)} / ページ/S: {a_pps:.2f}\n"
-        f"*DB経由* — セッション: {b_sess:,} / 滞在: {fmt_duration(b_dur)} / ページ/S: {b_pps:.2f}\n"
-        f"*FANZAクリック* — 合計: {total_clicks:,}"
-    )
+    lines = [f"*GA4日次レポート* ({period})", ""]
+    for c in CATEGORIES:
+        t = totals[c]
+        if t["sessions"] == 0:
+            continue
+        dur = t["dur_sess_sum"] / t["sessions"]
+        pps = t["pps_sess_sum"] / t["sessions"]
+        lines.append(
+            f"*{c}* — セッション: {t['sessions']:,} / 滞在: {fmt_duration(dur)} / ページ/S: {pps:.2f}"
+        )
+    lines.append(f"*FANZAクリック* — 合計: {total_clicks:,}")
+    comment = "\n".join(lines)
 
     client = WebClient(token=SLACK_BOT_TOKEN)
     client.files_upload_v2(
@@ -192,37 +246,19 @@ def main():
     client = get_client()
     date_range = {"startDate": "90daysAgo", "endDate": "yesterday"}
 
-    article_filter = {
-        "filter": {
-            "fieldName": "landingPage",
-            "stringFilter": {"matchType": "CONTAINS", "value": "/article/"},
-        }
-    }
-    db_filter = {
-        "notExpression": {
-            "filter": {
-                "fieldName": "landingPage",
-                "stringFilter": {"matchType": "CONTAINS", "value": "/article/"},
-            }
-        }
-    }
-
     print("データ取得中...")
-    article_data = rows_to_dict(fetch_daily(client, date_range, article_filter))
-    db_data = rows_to_dict(fetch_daily(client, date_range, db_filter))
+    rows = fetch_by_landing_page(client, date_range)
+    agg = aggregate_by_category(rows)
     click_data = fetch_event_count_daily(client, date_range, "fanza_click")
 
-    all_dates = sorted(set(list(article_data.keys()) + list(db_data.keys())))
+    image_path, all_dates = create_chart(agg, click_data)
     if not all_dates:
         print("データなし")
         return
-
-    print(f"取得日数: {len(all_dates)}日 / FANZAクリック: {sum(click_data.values()):,}件")
-
-    image_path = create_chart(all_dates, article_data, db_data, click_data)
+    print(f"取得日数: {len(all_dates)}日 / 行数: {len(rows)} / FANZAクリック: {sum(click_data.values()):,}件")
     print(f"グラフ生成: {image_path}")
 
-    post_to_slack(image_path, all_dates, article_data, db_data, click_data)
+    post_to_slack(image_path, agg, all_dates, click_data)
 
 
 if __name__ == "__main__":
