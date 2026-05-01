@@ -14,6 +14,18 @@
     端末を変えたりブラウザの履歴を消すと消えてしまうので注意！
 </div>
 
+<div class="bookmark-cta">
+    <div class="bookmark-cta__icon" aria-hidden="true">📌</div>
+    <div class="bookmark-cta__body">
+        <p class="bookmark-cta__title">端末を変えても戻ってこれるように</p>
+        <p class="bookmark-cta__desc">
+            <strong>ブックマーク登録</strong> や <strong>ホーム画面追加</strong> しておくと、
+            次回もすぐ博士に戻ってこれます。
+        </p>
+    </div>
+    <button type="button" class="bookmark-cta__btn" data-bookmark-show data-bookmark-source="cta">登録方法を見る</button>
+</div>
+
 <section class="favorites-page__section" data-favorites-section="actresses">
     <h2 class="favorites-page__section-title">
         お気に入りの女優<span class="favorites-page__count" data-favorites-count="actresses">(0)</span>
@@ -67,7 +79,7 @@
 
     function sendListView() {
         if (typeof gtag === 'undefined') return;
-        gtag('event', 'favorite_list_view', {
+        gtag('event', 'viewed_favorite_list', {
             visitor_id: window.AvHakaseFavorites.getVisitorId(),
             actresses_count: window.AvHakaseFavorites.list('actress').length,
             works_count: window.AvHakaseFavorites.list('work').length
@@ -163,7 +175,7 @@
     function bindClickEvent(el) {
         el.addEventListener('click', function () {
             if (typeof gtag === 'undefined') return;
-            gtag('event', 'favorite_item_click', {
+            gtag('event', 'clicked_favorite_item', {
                 visitor_id: window.AvHakaseFavorites.getVisitorId(),
                 item_type: el.dataset.favType,
                 item_id: el.dataset.favId,

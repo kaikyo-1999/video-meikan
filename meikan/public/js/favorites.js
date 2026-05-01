@@ -157,7 +157,7 @@
             list.push(item);
             save(data);
 
-            sendEvent('favorite_add', {
+            sendEvent('added_favorite', {
                 visitor_id: data.visitor_id,
                 item_type: itemType,
                 item_id: itemId,
@@ -170,6 +170,9 @@
                 user_first_favorite: totalBefore === 0,
                 ms_since_page_load: typeof performance !== 'undefined' && performance.now ? Math.round(performance.now()) : null
             });
+
+            // 3件目以降到達時に1度だけ「ブックマーク登録おすすめ」トースト表示
+            maybeShowBookmarkPrompt(totalBefore + 1);
 
             return true;
         },
@@ -190,7 +193,7 @@
             list.splice(idx, 1);
             save(data);
 
-            sendEvent('favorite_remove', {
+            sendEvent('removed_favorite', {
                 visitor_id: data.visitor_id,
                 item_type: itemType,
                 item_id: itemId,
@@ -247,6 +250,165 @@
         }
     }
 
+    // ============================================================
+    // ブックマーク登録 促進（toast + modal）
+    // ============================================================
+    var BOOKMARK_PROMPT_THRESHOLD = 3;
+    var BOOKMARK_FLAG_KEY = 'av-hakase:bookmark_prompt_shown';
+
+    function detectDevice() {
+        var ua = navigator.userAgent || '';
+        if (/iPhone|iPad|iPod/i.test(ua)) return 'ios';
+        if (/Android/i.test(ua)) return 'android';
+        if (/Mac/i.test(ua)) return 'mac';
+        if (/Windows|Linux|X11/i.test(ua)) return 'win';
+        return 'desktop';
+    }
+
+    function maybeShowBookmarkPrompt(totalAfter) {
+        if (totalAfter < BOOKMARK_PROMPT_THRESHOLD) return;
+        try {
+            if (localStorage.getItem(BOOKMARK_FLAG_KEY)) return;
+            localStorage.setItem(BOOKMARK_FLAG_KEY, '1');
+        } catch (e) { return; }
+        showBookmarkToast();
+    }
+
+    function showBookmarkToast() {
+        // 既存のtoastがあれば消してから出し直し
+        var prev = document.getElementById('bookmarkToast');
+        if (prev) prev.parentNode.removeChild(prev);
+
+        var html = '<div class="bookmark-toast" id="bookmarkToast" role="status">'
+            + '<div class="bookmark-toast__inner">'
+            + '<span class="bookmark-toast__icon" aria-hidden="true">📌</span>'
+            + '<div class="bookmark-toast__body">'
+            + '<strong>お気に入りが3件溜まりました！</strong>'
+            + '消えないようにブックマーク登録もおすすめ'
+            + '</div>'
+            + '<button type="button" class="bookmark-toast__action" data-bookmark-toast-show>方法を見る</button>'
+            + '<button type="button" class="bookmark-toast__close" data-bookmark-toast-close aria-label="閉じる">×</button>'
+            + '</div>'
+            + '</div>';
+        document.body.insertAdjacentHTML('beforeend', html);
+
+        var toast = document.getElementById('bookmarkToast');
+        var actionBtn = toast.querySelector('[data-bookmark-toast-show]');
+        var closeBtn = toast.querySelector('[data-bookmark-toast-close]');
+
+        actionBtn.addEventListener('click', function () {
+            sendEvent('clicked_bookmark_method', {
+                visitor_id: AvHakaseFavorites.getVisitorId(),
+                trigger: 'toast'
+            });
+            showBookmarkModal('toast');
+            dismissBookmarkToast(false);
+        });
+        closeBtn.addEventListener('click', function () {
+            sendEvent('dismissed_bookmark_prompt', {
+                visitor_id: AvHakaseFavorites.getVisitorId(),
+                trigger: 'toast_close'
+            });
+            dismissBookmarkToast(true);
+        });
+
+        // 12秒で自動消灯
+        setTimeout(function () {
+            if (document.getElementById('bookmarkToast')) {
+                sendEvent('dismissed_bookmark_prompt', {
+                    visitor_id: AvHakaseFavorites.getVisitorId(),
+                    trigger: 'toast_timeout'
+                });
+                dismissBookmarkToast(true);
+            }
+        }, 12000);
+
+        // 表示インプレッション
+        sendEvent('viewed_bookmark_prompt', {
+            visitor_id: AvHakaseFavorites.getVisitorId(),
+            trigger: 'favorite_threshold',
+            total_favorites: BOOKMARK_PROMPT_THRESHOLD
+        });
+    }
+
+    function dismissBookmarkToast(animateOut) {
+        var toast = document.getElementById('bookmarkToast');
+        if (!toast) return;
+        if (animateOut) {
+            toast.classList.add('is-leaving');
+            setTimeout(function () { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 250);
+        } else {
+            toast.parentNode.removeChild(toast);
+        }
+    }
+
+    function ensureBookmarkModal() {
+        if (document.getElementById('bookmarkModal')) return;
+        var device = detectDevice();
+        var item = function (key, label, body) {
+            return '<li class="bookmark-modal__item' + (device === key ? ' is-current-device' : '') + '">'
+                + '<span class="bookmark-modal__device">' + label + (device === key ? ' <em>(あなたの環境)</em>' : '') + '</span>'
+                + '<p>' + body + '</p>'
+                + '</li>';
+        };
+        var html = '<div class="bookmark-modal" id="bookmarkModal" hidden role="dialog" aria-modal="true" aria-labelledby="bookmarkModalTitle">'
+            + '<div class="bookmark-modal__backdrop" data-bookmark-close></div>'
+            + '<div class="bookmark-modal__card">'
+            + '<h3 id="bookmarkModalTitle">📌 ブックマーク登録の方法</h3>'
+            + '<p class="bookmark-modal__lead">いつでも博士に戻ってこれるように、ブックマーク or ホーム画面に追加！</p>'
+            + '<ul class="bookmark-modal__list">'
+            + item('ios',     '🍎 iPhone / iPad (Safari)',    '画面下の<strong>共有ボタン</strong>から<strong>「ホーム画面に追加」</strong>')
+            + item('android', '🤖 Android (Chrome)',          '右上の<strong>メニュー (⋮)</strong> → <strong>「ホーム画面に追加」</strong>')
+            + item('mac',     '💻 Mac (PC)',                  '<kbd>⌘</kbd> + <kbd>D</kbd> でブックマーク登録')
+            + item('win',     '💻 Windows / Linux (PC)',      '<kbd>Ctrl</kbd> + <kbd>D</kbd> でブックマーク登録')
+            + '</ul>'
+            + '<button type="button" class="bookmark-modal__close" data-bookmark-close>閉じる</button>'
+            + '</div>'
+            + '</div>';
+        document.body.insertAdjacentHTML('beforeend', html);
+
+        var modal = document.getElementById('bookmarkModal');
+        modal.addEventListener('click', function (e) {
+            if (e.target.closest('[data-bookmark-close]')) {
+                modal.setAttribute('hidden', '');
+            }
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && !modal.hasAttribute('hidden')) {
+                modal.setAttribute('hidden', '');
+            }
+        });
+    }
+
+    function showBookmarkModal(trigger) {
+        ensureBookmarkModal();
+        var modal = document.getElementById('bookmarkModal');
+        modal.removeAttribute('hidden');
+        // toastからのトリガは toast側で既にviewed送信済 → 重複防止
+        if (trigger !== 'toast') {
+            sendEvent('viewed_bookmark_prompt', {
+                visitor_id: AvHakaseFavorites.getVisitorId(),
+                trigger: trigger || 'manual'
+            });
+        }
+    }
+
+    // ページ内の [data-bookmark-show] ボタン全部に handler を bind
+    function initBookmarkButtons(root) {
+        root = root || document;
+        root.querySelectorAll('[data-bookmark-show]').forEach(function (btn) {
+            if (btn.dataset.bmBound === '1') return;
+            btn.dataset.bmBound = '1';
+            btn.addEventListener('click', function () {
+                sendEvent('clicked_bookmark_method', {
+                    visitor_id: AvHakaseFavorites.getVisitorId(),
+                    trigger: btn.dataset.bookmarkSource || 'cta'
+                });
+                showBookmarkModal(btn.dataset.bookmarkSource || 'cta');
+            });
+        });
+    }
+
     function bindButton(btn) {
         if (btn.dataset.favoriteBound === '1') return;
         btn.dataset.favoriteBound = '1';
@@ -301,14 +463,18 @@
             setGtagUserProperty();
             initButtons();
             updateHeaderBadge();
+            initBookmarkButtons();
         });
     } else {
         setGtagUserProperty();
         initButtons();
         updateHeaderBadge();
+        initBookmarkButtons();
     }
 
     // 動的に追加されたカード用：必要になったら明示呼び出し
     AvHakaseFavorites.initButtons = initButtons;
     AvHakaseFavorites.updateHeaderBadge = updateHeaderBadge;
+    AvHakaseFavorites.showBookmarkModal = showBookmarkModal;
+    AvHakaseFavorites.initBookmarkButtons = initBookmarkButtons;
 })();
