@@ -26,7 +26,7 @@
 
     var currentSort = 'rank';
     var currentQuery = '';
-    var currentSingle = true;
+    var currentSingle = singleCheckbox ? singleCheckbox.checked : true;
     var currentVr = '';
 
     // --- API呼び出し ---

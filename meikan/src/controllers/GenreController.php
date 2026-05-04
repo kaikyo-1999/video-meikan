@@ -34,9 +34,12 @@ class GenreController
         }
 
         // デフォルト: 単体作品のみ・人気順
-        $totalWorks = Work::countSingleByActressAndGenre($actress['id'], $genre['id']);
+        // 単体作品が0件の場合は全作品表示にフォールバック（空ページ防止）
+        $totalSingle = Work::countSingleByActressAndGenre($actress['id'], $genre['id']);
+        $singleOnly = $totalSingle > 0;
+        $totalWorks = $singleOnly ? $totalSingle : $totalWorksAll;
         $pagination = paginate($totalWorks, ITEMS_PER_PAGE, $page);
-        $works = Work::findByActressAndGenre($actress['id'], $genre['id'], ITEMS_PER_PAGE, $pagination['offset']);
+        $works = Work::findByActressAndGenre($actress['id'], $genre['id'], ITEMS_PER_PAGE, $pagination['offset'], $singleOnly);
         $workIds = array_column($works, 'id');
         $workSampleImages = Work::getSampleImagesBulk($workIds);
         $allGenres = Actress::getGenres($actress['id']);
@@ -104,6 +107,7 @@ class GenreController
             'works' => $works,
             'workSampleImages' => $workSampleImages,
             'totalWorks' => $totalWorks,
+            'singleOnly' => $singleOnly,
             'pagination' => $pagination,
             'allGenres' => $allGenres,
             'similarActresses' => $similarActresses,

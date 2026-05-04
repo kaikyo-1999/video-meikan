@@ -70,7 +70,7 @@ $worksOffset = 0;
         <div class="sidebar-section">
             <h3 class="sidebar-section__title">出演形態</h3>
             <label class="work-controls__checkbox">
-                <input type="checkbox" id="workSingle" checked>
+                <input type="checkbox" id="workSingle"<?= !isset($singleOnly) || $singleOnly ? ' checked' : '' ?>>
                 <span>単体作品のみ</span>
             </label>
         </div>
