@@ -251,17 +251,18 @@ ul, ol { list-style: none; }
 .top-section__more {
     display: block;
     text-align: center;
-    padding: 6px 10px;
-    margin-top: 4px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--color-accent);
-    border: 1px solid var(--color-accent);
-    border-radius: var(--radius);
-    transition: none;
-    text-decoration: underline;
+    padding: 14px 12px;
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text);
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.15s ease;
 }
-.top-section__more:hover { background: var(--color-card); }
+.top-section__more:hover { background: #e8e8ea; }
 
 /* --- Actress Grid --- */
 .actress-grid {
@@ -4139,4 +4140,456 @@ p > .article-inline-img {
         text-align: left;
     }
     .bookmark-cta__btn { width: 100%; }
+}
+
+/* ============================================================
+ * Filmarks 風 TOP — Phase 1 (2026-05-04)
+ * ヒーロー / 横スクロール rail / FC2 rail カード / ジャンルタイル
+ * ============================================================ */
+
+/* （旧 .top-section__head 派生は撤去。Filmarks 流に「もっと見る」は各セクション末尾の全幅ボタンへ） */
+
+/* --- ヒーロー --- */
+.hero {
+    margin: 12px 0 20px;
+    padding: 24px 16px;
+    background: linear-gradient(135deg, #14213d 0%, #233a6b 100%);
+    color: #fff;
+    border-radius: 4px;
+    text-align: center;
+}
+.hero__title {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 6px;
+    letter-spacing: 0.02em;
+}
+.hero__subtitle {
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.85);
+    margin: 0 0 16px;
+}
+.hero__tabs {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+.hero__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    background: rgba(255,255,255,0.10);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+.hero__tab:hover { background: rgba(255,255,255,0.2); }
+.hero__tab.is-active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+}
+.hero__tab-icon {
+    font-size: 14px;
+    line-height: 1;
+}
+.hero__search {
+    display: flex;
+    max-width: 520px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.hero__search-input {
+    flex: 1 1 auto;
+    padding: 10px 16px;
+    border: 0;
+    font-size: 14px;
+    color: var(--color-text);
+    background: transparent;
+    outline: none;
+    min-width: 0;
+}
+.hero__search-input::placeholder { color: #a0a0a4; }
+.hero__search-input:disabled { cursor: not-allowed; }
+.hero__search-btn {
+    flex: 0 0 auto;
+    padding: 0 18px;
+    background: var(--color-accent);
+    color: #fff;
+    border: 0;
+    font-size: 18px;
+    cursor: pointer;
+}
+.hero__search-btn:disabled {
+    background: #b0b0b5;
+    cursor: not-allowed;
+}
+
+@media (min-width: 768px) {
+    .hero { padding: 36px 24px; }
+    .hero__title { font-size: 36px; }
+    .hero__subtitle { font-size: 14px; margin-bottom: 22px; }
+    .hero__tab { padding: 10px 26px; font-size: 15px; }
+}
+
+/* --- 横スクロール rail (FC2 / Phase 2 のホット作品で共用) --- */
+.hot-rail {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0 12px;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    /* スクロールバーは PC のみ表示 (モバイルではノイズ) */
+    scrollbar-width: none;
+}
+.hot-rail::-webkit-scrollbar { display: none; }
+@media (min-width: 768px) {
+    .hot-rail { scrollbar-width: thin; }
+    .hot-rail::-webkit-scrollbar { display: block; height: 6px; }
+    .hot-rail::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.18); border-radius: 3px; }
+}
+.hot-rail__item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+}
+
+/* --- FC2 rail カード --- */
+.fc2-rail-card {
+    display: block;
+    width: 220px;
+    background: var(--color-card);
+    border-radius: 4px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-text);
+    position: relative;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.fc2-rail-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+.fc2-rail-card__rank {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    z-index: 1;
+    min-width: 26px;
+    height: 26px;
+    padding: 0 6px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 4px;
+}
+.fc2-rail-card__rank--top {
+    background: var(--color-accent);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+.fc2-rail-card__media {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #1a1a1e;
+    overflow: hidden;
+}
+.fc2-rail-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.fc2-rail-card__no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+.fc2-rail-card__body {
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+}
+.fc2-rail-card__cid {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text);
+}
+.fc2-rail-card__votes {
+    font-size: 12px;
+    color: var(--color-text-sub);
+    white-space: nowrap;
+}
+
+/* --- ジャンルタイルグリッド --- */
+.genre-tile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+@media (min-width: 480px) {
+    .genre-tile-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 768px) {
+    .genre-tile-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+}
+@media (min-width: 1100px) {
+    .genre-tile-grid { grid-template-columns: repeat(6, 1fr); }
+}
+
+.genre-tile {
+    position: relative;
+    display: block;
+    border-radius: 4px;
+    overflow: hidden;
+    text-decoration: none;
+    background: var(--color-card);
+    color: #fff;
+    transition: transform 0.12s ease;
+}
+.genre-tile:hover { transform: translateY(-2px); }
+.genre-tile__image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #2a2a30;
+}
+.genre-tile__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.genre-tile__placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #3a3a44 0%, #1a1a22 100%);
+}
+.genre-tile__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0) 100%);
+    pointer-events: none;
+}
+.genre-tile__body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 1;
+}
+.genre-tile__name {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+.genre-tile__count {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+/* --- 作品 rail カード (③ ホット作品 共通) --- */
+.work-rail-card {
+    display: block;
+    width: 220px;
+    background: var(--color-card);
+    border-radius: 4px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-text);
+    position: relative;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.work-rail-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+.work-rail-card__rank {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    z-index: 1;
+    min-width: 26px;
+    height: 26px;
+    padding: 0 6px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 4px;
+}
+.work-rail-card__rank--top {
+    background: var(--color-accent);
+}
+.work-rail-card__media {
+    width: 100%;
+    aspect-ratio: 220 / 148;
+    background: #1a1a1e;
+    overflow: hidden;
+}
+.work-rail-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.work-rail-card__no-image {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    color: #888; font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+}
+.work-rail-card__body {
+    padding: 8px 10px;
+}
+.work-rail-card__title {
+    margin: 0 0 4px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-text);
+    /* 2行クランプ */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+.work-rail-card__actress {
+    margin: 0;
+    font-size: 11px;
+    color: var(--color-text-sub);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- セール rail カード (④ FANZA セール) --- */
+.sale-rail-card {
+    display: block;
+    width: 220px;
+    background: var(--color-card);
+    border-radius: 4px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-text);
+    position: relative;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.sale-rail-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+.sale-rail-card__badge {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    z-index: 1;
+    padding: 3px 8px;
+    background: var(--color-danger);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    letter-spacing: 0.02em;
+}
+.sale-rail-card__media {
+    width: 100%;
+    aspect-ratio: 220 / 148;
+    background: #1a1a1e;
+    overflow: hidden;
+}
+.sale-rail-card__media img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.sale-rail-card__no-image {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    color: #888; font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+}
+.sale-rail-card__body { padding: 8px 10px; }
+.sale-rail-card__title {
+    margin: 0 0 6px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-text);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+.sale-rail-card__prices {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+.sale-rail-card__list-price {
+    font-size: 11px;
+    color: var(--color-text-sub);
+    text-decoration: line-through;
+}
+.sale-rail-card__sale-price {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--color-danger);
+}
+.sale-rail-card__deadline {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-danger);
+}
+
+
+/* セクション見出しの secondary ラベル ((週間) など) */
+.top-section__title-sub {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(255,255,255,0.22);
+    color: rgba(255,255,255,0.95);
+    border-radius: 3px;
+    vertical-align: middle;
+    letter-spacing: 0.04em;
 }

@@ -231,6 +231,62 @@ class Actress
     }
 
     /**
+     * TOP「PV急上昇女優」用。actress_signals.pv_velocity_score 降順。
+     * ノイズ除去のため sessions_7d >= しきい値 のものに限定。
+     * 該当が少ない場合は sessions_7d 単純降順にフォールバック。
+     * サムネイル必須・work URL のサムネ (誤データ) は除外。
+     */
+    public static function findHotByPv(int $limit = 6, int $minSessions = 10): array
+    {
+        $cacheKey = "hot_actresses_pv_{$limit}_{$minSessions}";
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return $cached;
+
+        $db = Database::getInstance();
+        $stmt = $db->prepare('
+            SELECT a.id, a.slug, a.name, a.thumbnail_url,
+                   s.sessions_7d, s.pv_velocity_score,
+                   COUNT(DISTINCT aw.work_id) AS work_count
+            FROM actresses a
+            INNER JOIN actress_signals s ON s.actress_id = a.id
+            LEFT JOIN actress_work aw ON aw.actress_id = a.id
+            WHERE a.thumbnail_url IS NOT NULL
+              AND a.thumbnail_url != ""
+              AND a.thumbnail_url NOT LIKE "%/digital/video/%"
+              AND a.thumbnail_url NOT LIKE "%now_printing%"
+              AND s.sessions_7d >= ?
+            GROUP BY a.id
+            ORDER BY s.pv_velocity_score DESC, s.sessions_7d DESC
+            LIMIT ?
+        ');
+        $stmt->execute([$minSessions, $limit]);
+        $rows = $stmt->fetchAll();
+
+        if (count($rows) < $limit) {
+            $stmt2 = $db->prepare('
+                SELECT a.id, a.slug, a.name, a.thumbnail_url,
+                       s.sessions_7d, s.pv_velocity_score,
+                       COUNT(DISTINCT aw.work_id) AS work_count
+                FROM actresses a
+                INNER JOIN actress_signals s ON s.actress_id = a.id
+                LEFT JOIN actress_work aw ON aw.actress_id = a.id
+                WHERE a.thumbnail_url IS NOT NULL
+                  AND a.thumbnail_url != ""
+                  AND a.thumbnail_url NOT LIKE "%/digital/video/%"
+                  AND a.thumbnail_url NOT LIKE "%now_printing%"
+                GROUP BY a.id
+                ORDER BY s.sessions_7d DESC
+                LIMIT ?
+            ');
+            $stmt2->execute([$limit]);
+            $rows = $stmt2->fetchAll();
+        }
+
+        Cache::set($cacheKey, $rows, 1800);
+        return $rows;
+    }
+
+    /**
      * DBに存在する最新のデビュー月（YYYY-MM形式）を取得
      */
     public static function getLatestDebutMonth(): ?string

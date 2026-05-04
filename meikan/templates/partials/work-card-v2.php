@@ -45,7 +45,7 @@ $hasCarousel = $totalSlides > 1;
             <div class="work-card-v2__slides">
                 <?php foreach ($allImages as $i => $imgUrl): ?>
                 <div class="work-card-v2__slide">
-                    <img src="<?= h($imgUrl) ?>" alt="<?= h($work['title']) ?>" loading="lazy">
+                    <img src="<?= h($imgUrl) ?>" alt="<?= h($work['title']) ?>" width="800" height="540" loading="lazy" decoding="async">
                 </div>
                 <?php endforeach; ?>
                 <?php if ($hasMovie): ?>
@@ -64,7 +64,7 @@ $hasCarousel = $totalSlides > 1;
         </div>
         <?php elseif (!empty($allImages)): ?>
         <div class="work-card-v2__single-image">
-            <img src="<?= h($allImages[0]) ?>" alt="<?= h($work['title']) ?>" loading="lazy">
+            <img src="<?= h($allImages[0]) ?>" alt="<?= h($work['title']) ?>" width="800" height="540" loading="lazy" decoding="async">
         </div>
         <?php else: ?>
         <div class="work-card-v2__placeholder"></div>

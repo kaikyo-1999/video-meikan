@@ -22,6 +22,71 @@ class Genre
         return Actress::getGenres($actressId);
     }
 
+    /**
+     * TOPページの「ジャンルから探す」タイル用。
+     * FEATURED_GENRE_SLUGS に並んだ順に取り出し、各ジャンルに紐づく代表作品サムネを付与する。
+     */
+    public static function findFeatured(int $limit = 12): array
+    {
+        $slugs = defined('FEATURED_GENRE_SLUGS') ? FEATURED_GENRE_SLUGS : [];
+        if (empty($slugs)) return [];
+
+        $cacheKey = 'genre_featured_' . md5(implode(',', $slugs)) . '_' . $limit;
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return $cached;
+
+        $placeholders = implode(',', array_fill(0, count($slugs), '?'));
+        $db = Database::getInstance();
+        $stmt = $db->prepare("
+            SELECT g.id, g.slug, g.name,
+                   COUNT(DISTINCT wg.work_id) AS work_count
+            FROM genres g
+            LEFT JOIN work_genre wg ON wg.genre_id = g.id
+            WHERE g.slug IN ({$placeholders})
+            GROUP BY g.id, g.slug, g.name
+        ");
+        $stmt->execute($slugs);
+        $rows = $stmt->fetchAll();
+
+        // slugs の順番に並べ替え
+        $bySlug = [];
+        foreach ($rows as $row) {
+            $bySlug[$row['slug']] = $row;
+        }
+        $ordered = [];
+        foreach ($slugs as $slug) {
+            if (isset($bySlug[$slug])) $ordered[] = $bySlug[$slug];
+            if (count($ordered) >= $limit) break;
+        }
+
+        // 代表作品サムネ (review_count DESC, release_date DESC) を1件ずつ付与
+        if (!empty($ordered)) {
+            $genreIds = array_column($ordered, 'id');
+            $idPlaceholders = implode(',', array_fill(0, count($genreIds), '?'));
+            $stmt2 = $db->prepare("
+                SELECT wg.genre_id, w.thumbnail_url
+                FROM work_genre wg
+                INNER JOIN works w ON w.id = wg.work_id
+                WHERE wg.genre_id IN ({$idPlaceholders})
+                  AND w.thumbnail_url IS NOT NULL AND w.thumbnail_url != ''
+                ORDER BY w.review_count DESC, w.release_date DESC
+            ");
+            $stmt2->execute($genreIds);
+            $covers = [];
+            foreach ($stmt2->fetchAll() as $row) {
+                $gid = (int)$row['genre_id'];
+                if (!isset($covers[$gid])) $covers[$gid] = $row['thumbnail_url'];
+            }
+            foreach ($ordered as &$g) {
+                $g['cover_image'] = $covers[(int)$g['id']] ?? null;
+            }
+            unset($g);
+        }
+
+        Cache::set($cacheKey, $ordered);
+        return $ordered;
+    }
+
     public static function allSlugsForActress(int $actressId): array
     {
         $db = Database::getInstance();

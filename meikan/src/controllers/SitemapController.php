@@ -28,6 +28,7 @@ class SitemapController
         $urls = [
             ['loc' => fullUrl(), 'changefreq' => 'daily', 'priority' => '1.0'],
             ['loc' => fullUrl('meikan/'), 'changefreq' => 'daily', 'priority' => '0.9'],
+            ['loc' => fullUrl('fc2/'), 'changefreq' => 'daily', 'priority' => '0.9'],
             ['loc' => fullUrl('article/'), 'changefreq' => 'weekly', 'priority' => '0.8'],
             ['loc' => fullUrl('author/'), 'changefreq' => 'monthly', 'priority' => '0.5'],
             ['loc' => fullUrl('cross-link/'), 'changefreq' => 'monthly', 'priority' => '0.3'],

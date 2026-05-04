@@ -1,5 +1,51 @@
 # CLAUDE.md — video-meikan
 
+## チャット出力ルール（最小化）
+
+このプロジェクトでは**チャット出力を最小限にする**。作業内容・調査結果・説明は docs ファイルに書き、チャットにはパスと必要最低限の情報だけを返す。
+
+### ワークフロー
+
+1. ユーザーから依頼を受ける
+2. 作業を実行（チャットへの中間報告は最小限）
+3. 作業内容・変更点・判断根拠を `docs/sessions/{YYYY-MM-DD}-{topic-slug}.md` に記載
+4. チャットには以下のみを返す:
+   - 作成・更新した docs のパス（`docs/sessions/2026-05-04-foo.md`）
+   - ユーザーへの確認事項・質問（あれば）
+   - 致命的なエラーや判断が必要な選択（あれば）
+
+### docs テンプレート（`docs/sessions/{YYYY-MM-DD}-{topic}.md`）
+
+```markdown
+# {タイトル}
+
+## 依頼
+{ユーザーの依頼内容を1-2行で}
+
+## 実施内容
+{何をしたか・なぜそうしたか}
+
+## 変更ファイル
+- `path/to/file:line` — 概要
+
+## 確認・残タスク
+- {あれば}
+```
+
+### 例外（チャットで返してよいケース）
+
+- 短い事実確認への即答（"このファイルどこ？" 等）
+- ユーザーが「チャットで説明して」と明示した場合
+- 緊急の警告・確認（破壊的操作の前など）
+
+### 禁止事項
+
+- チャットで作業内容を長文サマリーしない（→ docs に書く）
+- 変更ファイル一覧をチャットに長々と並べない（→ docs に書く）
+- 調査結果の本文をチャットに貼らない（→ docs に書く）
+
+---
+
 ## プロジェクト概要
 
 AV女優のジャンル別作品データベースサイト「AV博士」(av-hakase.com) のソースコード。
@@ -36,14 +82,19 @@ meikan/
 
 | パス | コントローラ |
 |------|-------------|
-| `/` | HomeController@index |
-| `/meikan/` | TopController@index |
+| `/` | HomeController@index (Filmarks 風 TOP — 2026-05-04 改修) |
+| `/meikan/` | TopController@index (女優一覧) |
+| `/fc2/` | Fc2RankingController@index (FC2 7桁ランキング) |
+| `/fc2/submit/` | Fc2RankingController@submit |
+| `/fc2/vote/` | Fc2RankingController@vote |
 | `/article/` | ArticleController@index |
 | `/article/{slug}/` | ArticleController@show |
 | `/author/` | AuthorController@show |
+| `/favorites/` | FavoritesController@show |
+| `/cross-link/` | CrossLinkController@show |
 | `/{actress_slug}/` | ActressController@show |
 | `/{actress_slug}/{genre_slug}/` | GenreController@show |
-| `/sitemap.xml` | SitemapController@index |
+| `/sitemap.xml` (+ `-core.xml` `-articles.xml` `-actresses.xml` `-genres.xml`) | SitemapController |
 
 slug形式: `/^[a-z0-9][a-z0-9-]*$/`
 

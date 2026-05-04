@@ -2,6 +2,114 @@
 
 class Work
 {
+    /**
+     * TOP「今週ホットな作品」用。work_signals.velocity_score 降順で取得。
+     * ノイズ除去のため click_7d >= しきい値 のものに限定。
+     * 該当が少ない場合は click_7d 単純降順にフォールバック。
+     * 各作品に主演女優1名を付与。
+     */
+    public static function findHotByVelocity(int $limit = 10, int $minClicks = 3): array
+    {
+        $cacheKey = "hot_works_v_{$limit}_{$minClicks}";
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return $cached;
+
+        $db = Database::getInstance();
+        $stmt = $db->prepare('
+            SELECT w.id, w.title, w.thumbnail_url, w.affiliate_url, w.source_id,
+                   s.click_7d, s.velocity_score
+            FROM works w
+            INNER JOIN work_signals s ON s.work_id = w.id
+            WHERE s.click_7d >= ?
+            ORDER BY s.velocity_score DESC, s.click_7d DESC
+            LIMIT ?
+        ');
+        $stmt->execute([$minClicks, $limit]);
+        $rows = $stmt->fetchAll();
+
+        if (count($rows) < $limit) {
+            $stmt2 = $db->prepare('
+                SELECT w.id, w.title, w.thumbnail_url, w.affiliate_url, w.source_id,
+                       s.click_7d, s.velocity_score
+                FROM works w
+                INNER JOIN work_signals s ON s.work_id = w.id
+                ORDER BY s.click_7d DESC, w.release_date DESC
+                LIMIT ?
+            ');
+            $stmt2->execute([$limit]);
+            $rows = $stmt2->fetchAll();
+        }
+
+        $rows = self::attachLeadActress($rows);
+        Cache::set($cacheKey, $rows, 1800); // 30分キャッシュ
+        return $rows;
+    }
+
+    /**
+     * TOP「FANZA セール中」用。works テーブル既存カラムから直接抽出。
+     * 条件: sale_end_at が未来日 AND list_price > price (実際に値引きされている)
+     * ソート: 割引率(%)降順 → 終了が近い順 (FOMO 訴求)
+     */
+    public static function findOnSale(int $limit = 10): array
+    {
+        $cacheKey = "sale_works_{$limit}";
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return $cached;
+
+        $db = Database::getInstance();
+        $stmt = $db->prepare('
+            SELECT id, title, thumbnail_url, affiliate_url, source_id,
+                   price, list_price, sale_end_at, campaign_title,
+                   ROUND((1 - price / list_price) * 100) AS discount_pct
+            FROM works
+            WHERE sale_end_at IS NOT NULL
+              AND sale_end_at > NOW()
+              AND price IS NOT NULL AND list_price IS NOT NULL
+              AND list_price > price
+              AND thumbnail_url IS NOT NULL AND thumbnail_url != ""
+            ORDER BY discount_pct DESC, sale_end_at ASC
+            LIMIT ?
+        ');
+        $stmt->execute([$limit]);
+        $rows = $stmt->fetchAll();
+        $rows = self::attachLeadActress($rows);
+
+        Cache::set($cacheKey, $rows, 1800);
+        return $rows;
+    }
+
+    /**
+     * 各作品に「主演女優1名」を付与する (id, name, slug)。
+     * actress_work から最初の1人を選ぶ簡易版。
+     */
+    private static function attachLeadActress(array $rows): array
+    {
+        if (empty($rows)) return $rows;
+        $ids = array_column($rows, 'id');
+        $placeholders = implode(',', array_fill(0, count($ids), '?'));
+        $db = Database::getInstance();
+        $stmt = $db->prepare("
+            SELECT aw.work_id, a.id, a.name, a.slug
+            FROM actress_work aw
+            INNER JOIN actresses a ON a.id = aw.actress_id
+            WHERE aw.work_id IN ({$placeholders})
+            ORDER BY aw.work_id, a.id
+        ");
+        $stmt->execute($ids);
+        $byWork = [];
+        foreach ($stmt->fetchAll() as $r) {
+            $wid = (int)$r['work_id'];
+            if (!isset($byWork[$wid])) {
+                $byWork[$wid] = ['id' => (int)$r['id'], 'name' => $r['name'], 'slug' => $r['slug']];
+            }
+        }
+        foreach ($rows as &$row) {
+            $row['lead_actress'] = $byWork[(int)$row['id']] ?? null;
+        }
+        unset($row);
+        return $rows;
+    }
+
     public static function findByActress(int $actressId): array
     {
         $cacheKey = 'works_actress_' . $actressId;

@@ -5,7 +5,7 @@
             <a href="<?= h(url($actress['slug'] . '/' . $og['slug'] . '/')) ?>" class="other-genres-inline__card">
                 <div class="other-genres-inline__image">
                     <?php if (!empty($og['cover_image'])): ?>
-                        <img src="<?= h($og['cover_image']) ?>" alt="<?= h($og['name']) ?>" loading="lazy">
+                        <img src="<?= h(fanzaImg($og['cover_image'], 'ps')) ?>" alt="<?= h($og['name']) ?>" width="200" height="200" loading="lazy" decoding="async">
                     <?php else: ?>
                         <div class="other-genres-inline__placeholder"></div>
                     <?php endif; ?>

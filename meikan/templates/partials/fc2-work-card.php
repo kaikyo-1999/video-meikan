@@ -6,7 +6,7 @@
         <?php $fc2Link = !empty($work['affiliate_url']) ? $work['affiliate_url'] : 'https://adult.contents.fc2.com/article/' . h($work['cid']) . '/'; ?>
         <a href="<?= h($fc2Link) ?>" target="_blank" rel="nofollow noopener">
             <?php if (!empty($work['thumbnail_url'])): ?>
-                <img src="<?= h($work['thumbnail_url']) ?>" alt="FC2-PPV-<?= h($work['cid']) ?>" loading="lazy">
+                <img src="<?= h($work['thumbnail_url']) ?>" alt="FC2-PPV-<?= h($work['cid']) ?>" width="320" height="180" loading="lazy" decoding="async">
             <?php else: ?>
                 <div class="fc2-work-card__no-image">NO IMAGE</div>
             <?php endif; ?>

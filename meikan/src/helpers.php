@@ -36,6 +36,20 @@ function render(string $template, array $data = []): void
 }
 
 /**
+ * FANZA画像URL の末尾サイズ指定子を変換
+ * 例: .../118abf00177pl.jpg → .../118abf00177ps.jpg
+ *
+ * 対応サイズ: pl(大) / ps(中) / pt(小)
+ * パターンに一致しないURL（女優プロフィール画像など）はそのまま返す。
+ */
+function fanzaImg(?string $url, string $size = 'ps'): string
+{
+    if (empty($url)) return '';
+    if (!in_array($size, ['pl', 'ps', 'pt'], true)) $size = 'ps';
+    return preg_replace('#([a-z0-9_]+)pl\.jpg(\?.*)?$#i', '${1}' . $size . '.jpg${2}', $url) ?? $url;
+}
+
+/**
  * アセットURL生成
  */
 function asset(string $path): string

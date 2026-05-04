@@ -44,6 +44,19 @@
         });
       });
     </script>
+    <script type="module">
+      import {onLCP, onCLS, onINP, onFCP, onTTFB} from 'https://unpkg.com/web-vitals@4?module';
+      var send = function(metric) {
+        if (typeof gtag === 'undefined') return;
+        gtag('event', metric.name, {
+          value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+          metric_id: metric.id,
+          metric_rating: metric.rating,
+          page_path: location.pathname
+        });
+      };
+      onLCP(send); onCLS(send); onINP(send); onFCP(send); onTTFB(send);
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= h($pageTitle ?? SITE_TITLE . ' | ' . SITE_NAME) ?></title>
@@ -65,6 +78,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://pics.dmm.co.jp" crossorigin>
     <link rel="dns-prefetch" href="https://pics.dmm.co.jp">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <!-- HTMX (partial swap) + Alpine.js (UI state) — Phase 0.5 -->
+    <script defer src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.14.3/dist/cdn.min.js"></script>
+    <style>[x-cloak]{display:none !important}</style>
     <link rel="stylesheet" href="<?= asset('css/style.css') ?>">
     <?php if (!empty($jsonLd)): ?>
     <?= jsonLd($jsonLd) ?>

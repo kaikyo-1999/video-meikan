@@ -12,12 +12,8 @@ if (preg_match('#^/articles/(.*)$#', $uri, $m)) {
     exit;
 }
 
-// /fc2/ → / にリダイレクト
-if (preg_match('#^/fc2/$#', $uri)) {
-    $qs = $_SERVER['QUERY_STRING'] ?? '';
-    header('Location: /' . ($qs !== '' ? '?' . $qs : ''), true, 301);
-    exit;
-}
+// (旧: /fc2/ → / の 301 を 2026-05-04 に撤去。
+//  Filmarks 風 TOP リニューアルで / は HomeController に戻し、FC2 ランキングは /fc2/ に移設。)
 
 // スラグ変更リダイレクト: 旧女優slug → 新slug
 $slugRedirectFile = __DIR__ . '/config/slug_redirects.php';
@@ -69,7 +65,7 @@ $router->add('cross-link/', 'CrossLinkController@show');
 
 // DB系ルート（DB接続可能な場合のみ）
 if ($dbAvailable) {
-    $router->add('', 'Fc2RankingController@index');
+    $router->add('', 'HomeController@index');
     $router->add('meikan/', 'TopController@index');
     $router->add('api/works/', 'ApiController@works');
     $router->add('sitemap.xml', 'SitemapController@index');
@@ -77,6 +73,7 @@ if ($dbAvailable) {
     $router->add('sitemap-articles.xml', 'SitemapController@articles');
     $router->add('sitemap-actresses.xml', 'SitemapController@actresses');
     $router->add('sitemap-genres.xml', 'SitemapController@genres');
+    $router->add('fc2/', 'Fc2RankingController@index');
     $router->add('fc2/submit/', 'Fc2RankingController@submit');
     $router->add('fc2/vote/', 'Fc2RankingController@vote');
     $router->add('{actress_slug}/', 'ActressController@show');

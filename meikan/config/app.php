@@ -19,3 +19,22 @@ define('GENRE_MIN_WORKS', 3); // この数未満のジャンル該当作品数�
 define('CACHE_TTL', 3600); // 1時間
 
 define('SLUG_PATTERN', '/^[a-z0-9][a-z0-9-]*$/');
+
+/**
+ * TOPページ「ジャンルから探す」タイル枠の固定スラッグ (12件)
+ * DB に存在するもののみ表示される。順序はそのまま表示順に使う。
+ */
+define('FEATURED_GENRE_SLUGS', [
+    'kyonyu',     // 巨乳
+    'chijo',      // 痴女
+    'shiroto',    // 素人
+    'bakunyu',    // 爆乳
+    'fera',       // フェラ・イラマチオ
+    'paizuri',    // パイズリ
+    'shiofuki',   // 潮吹き
+    'mens-esthe', // メンズエステ
+    'soap',       // ソープ
+    'ahegao',     // アヘ顔
+    'shukanpov',  // 主観POV
+    'gansha',     // 顔射・ぶっかけ
+]);
