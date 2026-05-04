@@ -935,6 +935,9 @@ ul, ol { list-style: none; }
 }
 .footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
 .footer__nav {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
     margin-bottom: 10px;
 }
 .footer__nav-link {
@@ -1071,6 +1074,97 @@ ul, ol { list-style: none; }
 .author-profile__list li {
     margin-bottom: 6px;
     font-size: 14px;
+}
+
+/* --- Cross Link --- */
+.cross-link {
+    margin-bottom: 40px;
+    line-height: 1.8;
+    font-size: 15px;
+}
+.cross-link__intro {
+    margin-bottom: 24px;
+}
+.cross-link__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    display: grid;
+    gap: 16px;
+}
+.cross-link__item {
+    padding: 16px 20px;
+    background: var(--color-card);
+    border-radius: var(--radius);
+}
+.cross-link__name {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-decoration: none;
+    margin-bottom: 4px;
+}
+.cross-link__name:hover {
+    text-decoration: underline;
+}
+.cross-link__desc {
+    font-size: 14px;
+    color: var(--color-text-sub);
+    margin: 0;
+}
+.cross-link__section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 32px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--color-accent);
+}
+.cross-link__contact-list {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 16px;
+}
+.cross-link__contact-list a {
+    color: var(--color-accent);
+}
+.cross-link__note {
+    font-size: 13px;
+    color: var(--color-text-sub);
+    background: var(--color-card);
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+}
+.cross-link__info {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 8px 16px;
+    padding: 16px 20px;
+    background: var(--color-card);
+    border-radius: var(--radius);
+    margin: 0;
+    font-size: 14px;
+}
+.cross-link__info dt {
+    font-weight: 700;
+    color: var(--color-text-sub);
+}
+.cross-link__info dd {
+    margin: 0;
+    word-break: break-all;
+}
+.cross-link__info a {
+    color: var(--color-accent);
+}
+@media (max-width: 600px) {
+    .cross-link__info {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+    .cross-link__info dd {
+        margin-bottom: 8px;
+    }
 }
 
 /* --- 404 --- */

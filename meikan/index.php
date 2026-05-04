@@ -38,6 +38,7 @@ if (file_exists($slugRedirectFile)) {
 require_once __DIR__ . '/src/controllers/ArticleController.php';
 require_once __DIR__ . '/src/controllers/AuthorController.php';
 require_once __DIR__ . '/src/controllers/FavoritesController.php';
+require_once __DIR__ . '/src/controllers/CrossLinkController.php';
 
 // DB系（ファイルが存在する場合のみ読み込み）
 $dbAvailable = file_exists(__DIR__ . '/config/database.php') && file_exists(__DIR__ . '/.env');
@@ -64,6 +65,7 @@ $router->add('article/', 'ArticleController@index');
 $router->add('article/{article_slug}/', 'ArticleController@show');
 $router->add('author/', 'AuthorController@show');
 $router->add('favorites/', 'FavoritesController@show');
+$router->add('cross-link/', 'CrossLinkController@show');
 
 // DB系ルート（DB接続可能な場合のみ）
 if ($dbAvailable) {
