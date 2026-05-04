@@ -15,6 +15,7 @@ define('LOG_DIR', ROOT_DIR . '/logs');
 
 define('ITEMS_PER_PAGE', 20);
 define('ACTRESS_WORK_THRESHOLD', 10); // この数以下の作品数ならジャンルページを作らない
+define('GENRE_MIN_WORKS', 3); // この数未満のジャンル該当作品数なら noindex かつ sitemap 除外
 define('CACHE_TTL', 3600); // 1時間
 
 define('SLUG_PATTERN', '/^[a-z0-9][a-z0-9-]*$/');

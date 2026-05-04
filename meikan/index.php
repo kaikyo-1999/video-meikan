@@ -73,6 +73,10 @@ if ($dbAvailable) {
     $router->add('meikan/', 'TopController@index');
     $router->add('api/works/', 'ApiController@works');
     $router->add('sitemap.xml', 'SitemapController@index');
+    $router->add('sitemap-core.xml', 'SitemapController@core');
+    $router->add('sitemap-articles.xml', 'SitemapController@articles');
+    $router->add('sitemap-actresses.xml', 'SitemapController@actresses');
+    $router->add('sitemap-genres.xml', 'SitemapController@genres');
     $router->add('fc2/submit/', 'Fc2RankingController@submit');
     $router->add('fc2/vote/', 'Fc2RankingController@vote');
     $router->add('{actress_slug}/', 'ActressController@show');

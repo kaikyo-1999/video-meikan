@@ -93,6 +93,7 @@ class GenreController
         render('genre', [
             'pageTitle' => $pageTitle,
             'metaDescription' => $metaDescription,
+            'noindex' => $totalWorksAll < GENRE_MIN_WORKS,
             'breadcrumbs' => [
                 ['label' => 'TOP', 'url' => ''],
                 ['label' => $actress['name'], 'url' => $actress['slug'] . '/'],
