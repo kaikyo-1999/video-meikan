@@ -15,6 +15,7 @@ class Work
         if ($cached !== null) return $cached;
 
         $db = Database::getInstance();
+        // 1段目: GA4 集計済シグナルがあれば velocity 順
         $stmt = $db->prepare('
             SELECT w.id, w.title, w.thumbnail_url, w.affiliate_url, w.source_id,
                    s.click_7d, s.velocity_score
@@ -27,6 +28,7 @@ class Work
         $stmt->execute([$minClicks, $limit]);
         $rows = $stmt->fetchAll();
 
+        // 2段目: シグナルはあるが click 閾値未満 → click_7d 単純降順
         if (count($rows) < $limit) {
             $stmt2 = $db->prepare('
                 SELECT w.id, w.title, w.thumbnail_url, w.affiliate_url, w.source_id,
@@ -38,6 +40,21 @@ class Work
             ');
             $stmt2->execute([$limit]);
             $rows = $stmt2->fetchAll();
+        }
+
+        // 3段目: work_signals 自体が空 (新規環境 / GA4 未集計) → 直近 90 日 + レビュー多い順
+        if (empty($rows)) {
+            $stmt3 = $db->prepare('
+                SELECT id, title, thumbnail_url, affiliate_url, source_id,
+                       0 AS click_7d, 0 AS velocity_score
+                FROM works
+                WHERE thumbnail_url IS NOT NULL AND thumbnail_url != ""
+                  AND release_date >= DATE_SUB(CURDATE(), INTERVAL 90 DAY)
+                ORDER BY review_count DESC, release_date DESC
+                LIMIT ?
+            ');
+            $stmt3->execute([$limit]);
+            $rows = $stmt3->fetchAll();
         }
 
         $rows = self::attachLeadActress($rows);

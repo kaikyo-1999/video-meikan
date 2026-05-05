@@ -298,6 +298,27 @@ class Actress
             $rows = $stmt2->fetchAll();
         }
 
+        // 3段目: actress_signals 自体が空 (新規環境 / GA4 未集計) → 作品数多い順 (人気プロキシ)
+        if (empty($rows)) {
+            $stmt3 = $db->prepare('
+                SELECT a.id, a.slug, a.name, a.thumbnail_url,
+                       0 AS sessions_7d, 0 AS pv_velocity_score,
+                       COUNT(DISTINCT aw.work_id) AS work_count
+                FROM actresses a
+                LEFT JOIN actress_work aw ON aw.actress_id = a.id
+                WHERE a.thumbnail_url IS NOT NULL
+                  AND a.thumbnail_url != ""
+                  AND a.thumbnail_url NOT LIKE "%/digital/video/%"
+                  AND a.thumbnail_url NOT LIKE "%now_printing%"
+                GROUP BY a.id
+                HAVING work_count >= 30
+                ORDER BY work_count DESC, a.id DESC
+                LIMIT ?
+            ');
+            $stmt3->execute([$limit]);
+            $rows = $stmt3->fetchAll();
+        }
+
         Cache::set($cacheKey, $rows, 1800);
         return $rows;
     }
