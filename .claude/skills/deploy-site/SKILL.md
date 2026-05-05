@@ -148,24 +148,78 @@ rsync -avz --delete \
 
 ---
 
-## Step 4: PageSpeed Insights 計測（必須）
+## Step 3.5: 本番DBスキーマ同期（必須・新規 migration ファイルがある場合）
 
-デプロイ後、変更が影響するページに対し PageSpeed Insights API を実行し、Lighthouse スコアの劣化がないか確認する。
+`meikan/sql/` 配下の **新規 migration_*.sql** がローカルで実行済みでも、本番 DB には自動反映されない。**未適用 migration があるとそれを参照するモデルメソッドが本番で 500 エラーになる**（過去事例: `migration_signals.sql` 未反映で TOP の Work::findHotByVelocity が `work_signals` テーブル不在で fatal）。
+
+### 検出と適用
 
 ```bash
-# 変更内容に応じて対象URLを決める例
-# - テンプレ/CSS/モデル変更: 影響する代表的な女優ページ・ジャンルページ + トップ
-# - 記事変更: 該当記事ページ
-./scripts/pagespeed.sh "https://av-hakase.com/" mobile
-./scripts/pagespeed.sh "https://av-hakase.com/hatano-yui/" mobile
-./scripts/pagespeed.sh "https://av-hakase.com/hatano-yui/kyonyu/" mobile
+# 1. ローカルで存在する migration を一覧
+ls meikan/sql/migration_*.sql
+
+# 2. 本番に存在するテーブルを照会して未反映の migration を特定
+ssh -i ~/.ssh/shinserver_rsa -p 10022 wp2026@sv6810.wpx.ne.jp 'cd ~/av-hakase.com/public_html && php -r "
+define(\"ROOT_DIR\", __DIR__);
+require_once \"config/database.php\";
+\$pdo = new PDO(\"mysql:host=\" . DB_HOST . \";dbname=\" . DB_NAME . \";charset=utf8mb4\", DB_USER, DB_PASS);
+foreach ([\"work_signals\", \"actress_signals\", \"work_sample_images\", /* 必要に応じて追加 */] as \$t) {
+    \$exists = \$pdo->query(\"SHOW TABLES LIKE \\\"\$t\\\"\")->fetchColumn();
+    echo \$t . \": \" . (\$exists ? \"OK\" : \"MISSING\") . PHP_EOL;
+}"'
+
+# 3. MISSING のテーブルがあれば該当 migration を本番で実行
+ssh -i ~/.ssh/shinserver_rsa -p 10022 wp2026@sv6810.wpx.ne.jp 'cd ~/av-hakase.com/public_html && cat << "PHPEOF" | php
+<?php
+define("ROOT_DIR", __DIR__);
+require_once "config/database.php";
+$pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+
+$file = "sql/migration_signals.sql"; // 適用したい migration を指定
+$raw = file_get_contents($file);
+// コメント行 (-- ...) を除去してから ; で分割
+$lines = array_filter(explode("\n", $raw), fn($l) => !preg_match("/^\s*--/", $l));
+$statements = array_filter(array_map("trim", explode(";", implode("\n", $lines))), fn($s) => $s !== "");
+foreach ($statements as $stmt) {
+    try { $pdo->exec($stmt); echo "OK: " . substr(preg_replace("/\s+/", " ", $stmt), 0, 70) . "...\n"; }
+    catch (Exception $e) { echo "ERR: " . $e->getMessage() . "\n"; }
+}
+PHPEOF
+'
 ```
 
+**注意:**
+- migration ファイルは `CREATE TABLE IF NOT EXISTS` / `ALTER TABLE ... IF NOT EXISTS COLUMN ...` のように冪等な書き方を心がける（再実行で壊れない）
+- `--` で始まるコメント行は exec 前に必ず除去する（PDO::exec が複数文 + コメントを受けると失敗する）
+- 適用後は **必ず `php batch/clear_cache.php`** を本番で叩いてキャッシュ済みエラー応答を消す
+
+---
+
+## Step 4: PageSpeed Insights 計測（必須・mobile + desktop 両方）
+
+デプロイ後、変更が影響するページに対し PageSpeed Insights API を **mobile と desktop の両方** で実行し、Lighthouse スコアの劣化がないか確認する。**片方だけでは不十分** — モバイル特有のスコア劣化（CPU 制限・3G スロットリングで顕在化）を見逃すため、必ず両方測る。
+
+```bash
+# 推奨: both で 1 コマンドで mobile + desktop を一度に測る
+./scripts/pagespeed.sh "https://av-hakase.com/" both
+./scripts/pagespeed.sh "https://av-hakase.com/hatano-yui/" both
+./scripts/pagespeed.sh "https://av-hakase.com/hatano-yui/kyonyu/" both
+
+# 個別に走らせたい場合 (両方必須)
+./scripts/pagespeed.sh "https://av-hakase.com/" mobile
+./scripts/pagespeed.sh "https://av-hakase.com/" desktop
+```
+
+対象 URL の選び方:
+- テンプレ/CSS/モデル変更 → 影響する代表的な女優ページ・ジャンルページ + トップ
+- 記事変更 → 該当記事ページ
+- 新規ページ追加 → そのページを必ず両 form factor で測る
+
 サブコマンド:
-- `mobile` / `desktop` / `both`
+- `mobile` / `desktop` / `both`（**both または mobile + desktop の両実行が必須**）
 - `--detail` で LCP要素・全Opportunities・Diagnostics・大きいリソースまで展開
 
-**判定基準（Performance スコア）:**
+**判定基準（Performance スコア — mobile/desktop それぞれ個別に判定する）:**
 
 | スコア | 判定 | 対応 |
 |---|---|---|
@@ -173,8 +227,10 @@ rsync -avz --delete \
 | 50-89 | 🟡 要改善 | Top Opportunities をユーザー報告。改善するか確認 |
 | 50未満 | 🔴 ブロッキング | 即報告。`./scripts/pagespeed.sh URL mobile --detail` で詳細調査 |
 
+mobile が 🟡/🔴 で desktop が 🟢 のケースは多い（モバイル CPU 制限が原因）。**desktop だけ見て OK にしない**。逆に desktop だけ劣化するケース（ビューポート由来の大きい hero 画像など）もあるので、両方を見て総合判断する。
+
 **注意:**
-- PageSpeed API は 1リクエスト 30〜60秒かかる。変更ページが多い場合は重要ページに絞る
+- PageSpeed API は 1リクエスト 30〜60秒かかる。`both` を使うと内部で 2 回呼ぶため 1〜2分。変更ページが多い場合は重要ページに絞る
 - 速度劣化は新規追加要素（FANZA等の3rd party script・大きい画像・blocking JS）が主因
 - スクリプトは `.env` の `PAGESPEED_API_KEY` を読む（`.gitignore`済み、precam.jp と同じキーを流用可）
 
