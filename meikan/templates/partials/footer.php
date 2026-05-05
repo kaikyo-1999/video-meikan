@@ -1,6 +1,8 @@
 <footer class="footer">
     <div class="footer__inner container">
         <nav class="footer__nav">
+            <a class="footer__nav-link" href="<?= h(url('sale/')) ?>">FANZAセール中</a>
+            <a class="footer__nav-link" href="<?= h(url('article/')) ?>">記事一覧</a>
             <a class="footer__nav-link" href="<?= h(url('author/')) ?>">著者について</a>
             <a class="footer__nav-link" href="<?= h(url('cross-link/')) ?>">相互リンク</a>
         </nav>

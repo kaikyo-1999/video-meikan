@@ -41,6 +41,7 @@ class Work
         }
 
         $rows = self::attachLeadActress($rows);
+        $rows = self::attachSecondarySample($rows);
         Cache::set($cacheKey, $rows, 1800); // 30分キャッシュ
         return $rows;
     }
@@ -73,9 +74,108 @@ class Work
         $stmt->execute([$limit]);
         $rows = $stmt->fetchAll();
         $rows = self::attachLeadActress($rows);
+        $rows = self::attachSecondarySample($rows);
 
         Cache::set($cacheKey, $rows, 1800);
         return $rows;
+    }
+
+    /**
+     * /sale ページ用: セール中の作品を検索 + ソート + ページネーション。
+     * sort: '' (おすすめ=割引率高+終了近い) / 'ending_soon' / 'discount' / 'price_low' / 'price_high' / 'newest'
+     */
+    public static function searchSale(string $sort = '', string $query = '', int $limit = ITEMS_PER_PAGE, int $offset = 0): array
+    {
+        $db = Database::getInstance();
+
+        $orderBy = match ($sort) {
+            'ending_soon' => 'sale_end_at ASC',
+            'discount'    => 'discount_pct DESC, sale_end_at ASC',
+            'price_low'   => 'price ASC, discount_pct DESC',
+            'price_high'  => 'price DESC, discount_pct DESC',
+            'newest'      => 'release_date DESC',
+            default       => 'discount_pct DESC, sale_end_at ASC',
+        };
+
+        $where = "sale_end_at IS NOT NULL
+              AND sale_end_at > NOW()
+              AND price IS NOT NULL AND list_price IS NOT NULL
+              AND list_price > price
+              AND thumbnail_url IS NOT NULL AND thumbnail_url != ''";
+        $params = [];
+        if ($query !== '') {
+            $where .= ' AND title LIKE ?';
+            $params[] = '%' . $query . '%';
+        }
+        $params[] = $limit;
+        $params[] = $offset;
+
+        $stmt = $db->prepare("
+            SELECT id, title, thumbnail_url, affiliate_url, source_id,
+                   price, list_price, sale_end_at, campaign_title, release_date, label,
+                   ROUND((1 - price / list_price) * 100) AS discount_pct
+            FROM works
+            WHERE {$where}
+            ORDER BY {$orderBy}
+            LIMIT ? OFFSET ?
+        ");
+        $stmt->execute($params);
+        $rows = $stmt->fetchAll();
+        $rows = self::attachLeadActress($rows);
+        $rows = self::attachSecondarySample($rows);
+        return $rows;
+    }
+
+    public static function countSale(string $query = ''): int
+    {
+        $db = Database::getInstance();
+        $where = "sale_end_at IS NOT NULL
+              AND sale_end_at > NOW()
+              AND price IS NOT NULL AND list_price IS NOT NULL
+              AND list_price > price
+              AND thumbnail_url IS NOT NULL AND thumbnail_url != ''";
+        $params = [];
+        if ($query !== '') {
+            $where .= ' AND title LIKE ?';
+            $params[] = '%' . $query . '%';
+        }
+        $stmt = $db->prepare("SELECT COUNT(*) FROM works WHERE {$where}");
+        $stmt->execute($params);
+        return (int)$stmt->fetchColumn();
+    }
+
+    /**
+     * 各 row に secondary_image (sort_order=1 のサンプル画像URL) を付与。
+     * TOP の「ホット作品」「セール作品」サムネをパッケージ画像 → 2枚目のサンプルへ差し替えるための前処理。
+     * 該当が無ければ secondary_image=null。partial 側で fallback する。
+     */
+    private static function attachSecondarySample(array $rows): array
+    {
+        if (empty($rows)) return $rows;
+        $ids = array_column($rows, 'id');
+        $samples = self::getSampleImagesBulk($ids);
+        foreach ($rows as &$row) {
+            $list = $samples[(int)$row['id']] ?? [];
+            $row['secondary_image'] = $list[1] ?? null; // 2枚目（インデックス1）
+        }
+        unset($row);
+        return $rows;
+    }
+
+    /**
+     * work_signals テーブルの最新 updated_at を返す。
+     * TOP「今週ホットな作品」セクションの「いつ更新したか」表示用。
+     */
+    public static function lastSignalUpdate(): ?string
+    {
+        $cacheKey = 'work_signals_last_update';
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return $cached !== '' ? $cached : null;
+
+        $db = Database::getInstance();
+        $result = $db->query('SELECT MAX(updated_at) FROM work_signals')->fetchColumn();
+        Cache::set($cacheKey, $result ?: '', 600); // 10分キャッシュ
+        return $result ?: null;
     }
 
     /**
@@ -128,6 +228,18 @@ class Work
         $result = $stmt->fetchAll();
 
         Cache::set($cacheKey, $result);
+        return $result;
+    }
+
+    public static function countAll(): int
+    {
+        $cacheKey = 'works_count_all';
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return (int)$cached;
+
+        $db = Database::getInstance();
+        $result = (int)$db->query('SELECT COUNT(*) FROM works')->fetchColumn();
+        Cache::set($cacheKey, $result, 86400);
         return $result;
     }
 

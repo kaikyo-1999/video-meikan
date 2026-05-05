@@ -6,7 +6,10 @@
  */
 $cid = $work['source_id'] ?? '';
 $href = !empty($work['affiliate_url']) ? $work['affiliate_url'] : '#';
-$thumb = fanzaImg($work['thumbnail_url'] ?? '', 'pl');
+// 2 枚目のサンプル画像優先・無ければパッケージ画像にフォールバック
+$thumb = !empty($work['secondary_image'])
+    ? $work['secondary_image']
+    : fanzaImg($work['thumbnail_url'] ?? '', 'pl');
 ?>
 <a class="work-rail-card" href="<?= h($href) ?>" target="_blank" rel="nofollow noopener"
    data-fanza-cid="<?= h($cid) ?>" data-fanza-link-type="hot_rail">

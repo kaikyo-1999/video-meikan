@@ -60,12 +60,22 @@ class HomeController
         ];
 
         $actressCount = Actress::count();
+        $workCount = Work::countAll();
+        $articleCount = count($articles);
+
+        // ③ ホット作品 / ⑤ PV急上昇女優 の最終集計時刻
+        $hotWorksUpdatedAt = Work::lastSignalUpdate();
+        $hotActressesUpdatedAt = Actress::lastSignalUpdate();
 
         render('home', [
             'pageTitle' => SITE_NAME . ' | ' . SITE_DESCRIPTION,
             'metaDescription' => '人気AV女優' . $actressCount . '人以上のジャンル別作品データベース。新人デビュー情報・ホット作品・FANZAセール作品・最新コラムを毎日更新中。',
             'jsonLd' => $jsonLd,
             'actressCount' => $actressCount,
+            'workCount' => $workCount,
+            'articleCount' => $articleCount,
+            'hotWorksUpdatedAt' => $hotWorksUpdatedAt,
+            'hotActressesUpdatedAt' => $hotActressesUpdatedAt,
             'debutActresses' => $debutActresses,
             'debutMonthLabel' => $debutMonthLabel,
             'debutArticleSlug' => $debutArticleSlug,

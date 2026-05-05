@@ -135,3 +135,20 @@ function latestReleaseMonth(?string $releaseDate): string
     $dt = new DateTime($releaseDate);
     return sprintf('%s年%d月', $dt->format('Y'), (int)$dt->format('m'));
 }
+
+/**
+ * 任意の日時文字列を「X分前 / X時間前 / X日前 / YYYY/M/D」に整形する。
+ * シグナル系セクションの「いつ更新したか」表示用。
+ */
+function formatRelativeTime(?string $dt): string
+{
+    if (!$dt) return '';
+    $ts = strtotime($dt);
+    if (!$ts) return '';
+    $diff = time() - $ts;
+    if ($diff < 60) return 'たった今';
+    if ($diff < 3600) return floor($diff / 60) . '分前';
+    if ($diff < 86400) return floor($diff / 3600) . '時間前';
+    if ($diff < 7 * 86400) return floor($diff / 86400) . '日前';
+    return date('Y/n/j', $ts);
+}

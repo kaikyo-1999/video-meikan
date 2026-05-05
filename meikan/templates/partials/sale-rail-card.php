@@ -5,7 +5,10 @@
  */
 $cid = $work['source_id'] ?? '';
 $href = !empty($work['affiliate_url']) ? $work['affiliate_url'] : '#';
-$thumb = fanzaImg($work['thumbnail_url'] ?? '', 'pl');
+// 2 枚目のサンプル画像優先・無ければパッケージ画像にフォールバック
+$thumb = !empty($work['secondary_image'])
+    ? $work['secondary_image']
+    : fanzaImg($work['thumbnail_url'] ?? '', 'pl');
 
 // 残り時間を「あとX日」または「あとX時間」で表示
 $daysLeft = null; $hoursLeft = null;

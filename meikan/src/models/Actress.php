@@ -87,6 +87,22 @@ class Actress
         return $result;
     }
 
+    /**
+     * actress_signals テーブルの最新 updated_at を返す。
+     * TOP「PV急上昇女優」セクションの「いつ更新したか」表示用。
+     */
+    public static function lastSignalUpdate(): ?string
+    {
+        $cacheKey = 'actress_signals_last_update';
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return $cached !== '' ? $cached : null;
+
+        $db = Database::getInstance();
+        $result = $db->query('SELECT MAX(updated_at) FROM actress_signals')->fetchColumn();
+        Cache::set($cacheKey, $result ?: '', 600); // 10分キャッシュ
+        return $result ?: null;
+    }
+
     public static function count(): int
     {
         $cacheKey = 'actresses_count';
