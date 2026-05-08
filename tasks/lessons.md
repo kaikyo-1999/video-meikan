@@ -54,3 +54,24 @@
 - `register_actresses.php`: 漢字を含む名前は読みなしでスラグ生成不可に変更、スラグ重複時に警告ログ出力
 - `fix_actress_slugs.php`: 新規作成（スラグ修正+未登録女優の登録バッチ）
 - `create-debut-article`スキル: Step 2.5に本番スラグ検証ステップを追加
+
+## 2026-05-08: 重い画像への preload / fetchpriority="high" は逆効果
+
+**問題**: TOP モバイル LCP 改善のため、FC2 ランキング 1 位サムネに `<link rel="preload" as="image" fetchpriority="high">` を追加し、rank 1-3 の `<img>` を `loading="eager" + fetchpriority="high"` にした。結果、Performance スコアは **71 → 57** に悪化、LCP は **4.2s → 11.1s** に悪化（2回測定で再現）。即 revert。
+
+**根本原因**:
+- preload 対象の FC2 PNG が **約 580KB** と巨大だった
+- `fetchpriority="high"` は限られたモバイル帯域でこの巨大 PNG にダウンロード優先権を与えてしまい、CSS / JS / その他 critical resource が後回しになった
+- 結果として FCP も伸び、LCP 候補画像自体のダウンロード完了も遅くなった
+- 「LCP 候補をブラウザに早く知らせる」最適化は、**画像が軽いことが大前提**
+
+**ルール**:
+- preload / fetchpriority="high" は **軽い critical resource** にだけ使う（〜100KB 目安）
+- 重い画像（>200KB）への先読みヒントは LCP を悪化させる可能性が高い
+- パフォーマンス改善は **「画像本体を軽くする → 先読みヒントを付ける」の順序が必須**
+- HTML 属性レベルの変更でも必ず PSI で前後比較してからコミット（UX劣化なし＝スコア改善とは限らない）
+
+**対策**:
+- 画像最適化（リサイズ + WebP化 + CDN中継）を **先に** Issue 化して対応
+- 軽量化が完了してから fetchpriority / preload を再検討
+- PSI で 2 回計測して variance ではないことを確認するルールを徹底
