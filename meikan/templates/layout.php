@@ -79,9 +79,6 @@
     <link rel="preconnect" href="https://pics.dmm.co.jp" crossorigin>
     <link rel="dns-prefetch" href="https://pics.dmm.co.jp">
     <link rel="dns-prefetch" href="https://unpkg.com">
-    <?php if (!empty($lcpImageUrl)): ?>
-    <link rel="preload" as="image" href="<?= h($lcpImageUrl) ?>" fetchpriority="high">
-    <?php endif; ?>
     <!-- HTMX (partial swap) + Alpine.js (UI state) — Phase 0.5 -->
     <script defer src="https://unpkg.com/htmx.org@2.0.4"></script>
     <script defer src="https://unpkg.com/alpinejs@3.14.3/dist/cdn.min.js"></script>

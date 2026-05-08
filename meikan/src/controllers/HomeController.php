@@ -63,11 +63,7 @@ class HomeController
         $hotWorksUpdatedAt = Work::lastSignalUpdate();
         $hotActressesUpdatedAt = Actress::lastSignalUpdate();
 
-        // LCP 候補: TOP 最初に出る FC2 ランキング 1 位サムネ
-        $lcpImageUrl = $fc2Ranking[0]['thumbnail_url'] ?? null;
-
         render('home', [
-            'lcpImageUrl' => $lcpImageUrl,
             'pageTitle' => SITE_NAME . ' | ' . SITE_DESCRIPTION,
             'metaDescription' => '人気AV女優' . $actressCount . '人以上のジャンル別作品データベース。新人デビュー情報・ホット作品・FANZAセール作品・最新コラムを毎日更新中。',
             'jsonLd' => $jsonLd,
