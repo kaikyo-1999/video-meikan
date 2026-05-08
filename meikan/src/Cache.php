@@ -73,6 +73,19 @@ class Cache
         @file_put_contents(self::path($key), serialize($data), LOCK_EX);
     }
 
+    /**
+     * get → set のお決まりパターンを 1 行に集約。
+     * 既存呼び出しはそのままに、新規・置換時の boilerplate を減らす目的。
+     */
+    public static function remember(string $key, callable $loader, int $ttl = CACHE_TTL): mixed
+    {
+        $cached = self::get($key);
+        if ($cached !== null) return $cached;
+        $value = $loader();
+        self::set($key, $value, $ttl);
+        return $value;
+    }
+
     public static function clear(): void
     {
         // OPcache backend

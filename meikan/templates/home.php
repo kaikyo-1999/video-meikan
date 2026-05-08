@@ -1,5 +1,3 @@
-<?php /* Filmarks 風 TOP — Phase 2 (2026-05-04) — Hero 撤去済み */ ?>
-
 <!-- ② FC2 注目ランキング (週間 TOP10) -->
 <?php if (!empty($fc2Ranking)): ?>
 <section class="top-section" id="fc2-rail" aria-labelledby="fc2-rail-title">

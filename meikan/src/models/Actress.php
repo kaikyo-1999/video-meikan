@@ -2,6 +2,31 @@
 
 class Actress
 {
+    /**
+     * サムネイル妥当性 SQL 述語。
+     * 作品画像 (`/digital/video/`) が誤って女優サムネに混入したケース、および
+     * `now_printing` プレースホルダを除外する。
+     */
+    public static function validThumbPredicate(string $alias = 'a'): string
+    {
+        $col = $alias === '' ? 'thumbnail_url' : $alias . '.thumbnail_url';
+        return "{$col} IS NOT NULL AND {$col} != \"\" "
+            . "AND {$col} NOT LIKE \"%/digital/video/%\" "
+            . "AND {$col} NOT LIKE \"%now_printing%\"";
+    }
+
+    /**
+     * 上記述語の PHP 側等価。配列 1 件に対するフィルタ用。
+     */
+    public static function hasValidThumbnail(array $row): bool
+    {
+        $url = $row['thumbnail_url'] ?? '';
+        if ($url === '' || $url === null) return false;
+        if (strpos($url, '/digital/video/') !== false) return false;
+        if (strpos($url, 'now_printing') !== false) return false;
+        return true;
+    }
+
     public static function all(): array
     {
         $cacheKey = 'actresses_all';
@@ -13,10 +38,7 @@ class Actress
             SELECT a.*, COUNT(aw.work_id) AS work_count
             FROM actresses a
             LEFT JOIN actress_work aw ON a.id = aw.actress_id
-            WHERE a.thumbnail_url IS NOT NULL
-              AND a.thumbnail_url != ""
-              AND a.thumbnail_url NOT LIKE "%/digital/video/%"
-              AND a.thumbnail_url NOT LIKE "%now_printing%"
+            WHERE ' . self::validThumbPredicate('a') . '
             GROUP BY a.id
             ORDER BY work_count DESC, a.name ASC
         ');
@@ -113,10 +135,7 @@ class Actress
         $result = (int)$db->query('
             SELECT COUNT(*)
             FROM actresses
-            WHERE thumbnail_url IS NOT NULL
-              AND thumbnail_url != ""
-              AND thumbnail_url NOT LIKE "%/digital/video/%"
-              AND thumbnail_url NOT LIKE "%now_printing%"
+            WHERE ' . self::validThumbPredicate('') . '
         ')->fetchColumn();
 
         Cache::set($cacheKey, $result, 86400 * 30);
@@ -230,10 +249,7 @@ class Actress
             INNER JOIN works w ON aw.work_id = w.id
             LEFT JOIN work_genre wg ON w.id = wg.work_id
             LEFT JOIN genres g ON wg.genre_id = g.id
-            WHERE a.thumbnail_url IS NOT NULL
-              AND a.thumbnail_url != ""
-              AND a.thumbnail_url NOT LIKE "%/digital/video/%"
-              AND a.thumbnail_url NOT LIKE "%now_printing%"
+            WHERE ' . self::validThumbPredicate('a') . '
             GROUP BY a.id
             HAVING genre_work_count >= 3
             ORDER BY genre_work_count DESC, work_count DESC
@@ -266,10 +282,7 @@ class Actress
             FROM actresses a
             INNER JOIN actress_signals s ON s.actress_id = a.id
             LEFT JOIN actress_work aw ON aw.actress_id = a.id
-            WHERE a.thumbnail_url IS NOT NULL
-              AND a.thumbnail_url != ""
-              AND a.thumbnail_url NOT LIKE "%/digital/video/%"
-              AND a.thumbnail_url NOT LIKE "%now_printing%"
+            WHERE ' . self::validThumbPredicate('a') . '
               AND s.sessions_7d >= ?
             GROUP BY a.id
             ORDER BY s.pv_velocity_score DESC, s.sessions_7d DESC
@@ -286,10 +299,7 @@ class Actress
                 FROM actresses a
                 INNER JOIN actress_signals s ON s.actress_id = a.id
                 LEFT JOIN actress_work aw ON aw.actress_id = a.id
-                WHERE a.thumbnail_url IS NOT NULL
-                  AND a.thumbnail_url != ""
-                  AND a.thumbnail_url NOT LIKE "%/digital/video/%"
-                  AND a.thumbnail_url NOT LIKE "%now_printing%"
+                WHERE ' . self::validThumbPredicate('a') . '
                 GROUP BY a.id
                 ORDER BY s.sessions_7d DESC
                 LIMIT ?
@@ -306,10 +316,7 @@ class Actress
                        COUNT(DISTINCT aw.work_id) AS work_count
                 FROM actresses a
                 LEFT JOIN actress_work aw ON aw.actress_id = a.id
-                WHERE a.thumbnail_url IS NOT NULL
-                  AND a.thumbnail_url != ""
-                  AND a.thumbnail_url NOT LIKE "%/digital/video/%"
-                  AND a.thumbnail_url NOT LIKE "%now_printing%"
+                WHERE ' . self::validThumbPredicate('a') . '
                 GROUP BY a.id
                 HAVING work_count >= 30
                 ORDER BY work_count DESC, a.id DESC

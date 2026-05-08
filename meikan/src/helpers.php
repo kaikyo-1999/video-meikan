@@ -146,7 +146,7 @@ function formatRelativeTime(?string $dt): string
     $ts = strtotime($dt);
     if (!$ts) return '';
     $diff = time() - $ts;
-    if ($diff < 60) return 'たった今';
+    if ($diff < 60) return 'たった今'; // 未来時刻 ($diff < 0) もここでカバー
     if ($diff < 3600) return floor($diff / 60) . '分前';
     if ($diff < 86400) return floor($diff / 3600) . '時間前';
     if ($diff < 7 * 86400) return floor($diff / 86400) . '日前';

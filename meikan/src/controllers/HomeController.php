@@ -18,11 +18,7 @@ class HomeController
                     $debutActresses = Actress::findByDebutMonth($latestMonth);
                 }
             }
-            $debutActresses = array_values(array_filter($debutActresses, function ($a) {
-                return !empty($a['thumbnail_url'])
-                    && strpos($a['thumbnail_url'], '/digital/video/') === false
-                    && strpos($a['thumbnail_url'], 'now_printing') === false;
-            }));
+            $debutActresses = array_values(array_filter($debutActresses, [Actress::class, 'hasValidThumbnail']));
             $debutActresses = array_slice($debutActresses, 0, 6);
             $parts = explode('-', $latestMonth);
             $debutMonthLabel = (int)$parts[0] . '年' . (int)$parts[1] . '月';
