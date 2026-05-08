@@ -208,6 +208,32 @@ jobs:
 
 VPS 常駐方式（前述）の優位性は変わらず。Routines は将来的に CD 補助レイヤーとして検討する価値あり。
 
+## 追記：VPS常駐 vs Routines のリスク比較
+
+### 観点別比較
+
+| 観点 | VPS常駐 | Routines |
+|------|---------|----------|
+| 鍵の保管場所 | 自前VMのディスク（自分の管理責任） | Anthropic環境変数（プロバイダ依存） |
+| OS脆弱性 | 自分でパッチ運用が必要（fail2ban / SSH brute force対策含む） | なし（Anthropic管理） |
+| 権限の暴発 | Claudeに渡したシェル権限はVM内に閉じる | 作成者のフル権限を継承し**実行中の承認プロンプトなし** → プロンプトインジェクションが直ヒット |
+| 監査ログ | 自分でロギング設定が必要 | Anthropic側UIで履歴が残る |
+| ネットワーク経路 | VPS → 本番（IP直結、ファイアウォール自前） | Anthropic IP → 本番（許可リスト要、送信元IP固定不可な場合あり） |
+| 可用性 | VPSベンダ障害 + 自前tmuxプロセス管理 | Anthropic障害 + Research Preview仕様変更 |
+| コスト | 月500〜1000円固定 | プラン込み + API課金、日次上限 |
+| インシデント時の遮断 | `iptables` / 鍵削除で即遮断可能 | Anthropic UI経由のみ |
+
+### 性質の違い
+
+- **VPS常駐**：「自分で全部やる」型。リスクが**自分の運用品質に比例**する。手を抜くと脆弱、ちゃんとやれば堅牢
+- **Routines**：「Anthropicに乗っかる」型。OSパッチから解放される代わりに、**プロンプトインジェクション耐性とプロバイダ依存リスク**を肩代わり。承認プロンプトなしでフル権限実行のため、Claudeが外部入力（PR本文・issueコメント・MCP応答）に騙されたときの被害が大きい
+
+### 実務推奨順
+
+1. **最低リスク**：GitHub Actions に SSH鍵を置き、tag push 等の明示トリガーでデプロイ。Claudeはその外側
+2. **中**：VPS常駐 + deploy key のみ（書き込み権限を最小化）+ コマンド実行ログを別ホストに転送
+3. **高**：Routines で本番直叩き（推奨されていない）
+
 ## 参考資料
 
 - [Claude Code on the web - code.claude.com](https://code.claude.com/docs/en/claude-code-on-the-web.md)
