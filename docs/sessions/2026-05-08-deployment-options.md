@@ -171,10 +171,55 @@ jobs:
 
 **最優先：VPS（小型インスタンス月500円程度）上に Claude CLI を常駐化し、SSH 鍵を VM 内管理する方式が最もシンプルで堅牢。** GitHub Actions はリポジトリ・PR ベースの自動デプロイ（例：main マージ後の自動本番反映）に適している。
 
+## 追記：Claude Code Routines 機能
+
+2026-05-08 に追加調査。
+
+### Routines とは
+
+- 2026年4月公開の新機能（Research Preview）。Anthropic 管理クラウドで動く自動化レイヤー
+- プロンプト + リポジトリ + MCP 接続をパッケージ化し、**スケジュール / API / GitHubイベント**でトリガー可能
+- 物理 PC 完全非依存。シークレットは環境変数で保管
+
+### デプロイ用途で実際に使われているか（実例調査）
+
+**結論：本番 SSH デプロイの実例は事実上ゼロ。"周辺自動化"の事例のみ。**
+
+- 公式・解説記事は「CD パイプラインがデプロイ完了後に Routines API を叩き、スモークテスト・ヘルスチェック・Slack 通知」というレシピを推奨
+- 実例として確認できたのはすべて **デプロイ後の検証層** または **PR レビュー / issue トリアージ / 週次ドキュメント検査**
+- 「Routines から SSH してデプロイ」構成は設計上向かない（クラウドサンドボックス + 権限継承リスク）
+
+### 落とし穴
+
+| 項目 | 内容 |
+|------|------|
+| 権限継承 | Routines は作成者のフル権限を継承し、実行中に承認プロンプトなし。SSH 秘密鍵を渡すのはハイリスク → deploy key / 短命証明書（Vault / Teleport）推奨 |
+| 日次実行上限 | Pro 5/日, Max 15/日, Team/Enterprise 25/日 |
+| ブランチ制約 | 初期設定で `claude/` プレフィックスへの push 限定 |
+| プロンプト肥大 | Skill 化していないと運用後デバッグ困難。Skill → Routines の順 |
+| 増えすぎ問題 | 作成は容易、廃止は手動。週次レビュー運用が推奨されている |
+
+### 現実解（再評価）
+
+本プロジェクト（hpkenkyu → av-hakase.com SSH デプロイ）の用途では、Routines 単体での本番デプロイは推奨されない。以下の分業が定型：
+
+- **(a) GitHub Actions + SSH アクション**：実デプロイ本体
+- **(b) Routines**：デプロイ後のスモークテスト・ヘルスチェック・Slack 通知
+
+VPS 常駐方式（前述）の優位性は変わらず。Routines は将来的に CD 補助レイヤーとして検討する価値あり。
+
 ## 参考資料
 
 - [Claude Code on the web - code.claude.com](https://code.claude.com/docs/en/claude-code-on-the-web.md)
 - [GitHub Actions - code.claude.com](https://code.claude.com/docs/en/github-actions.md)
 - [Hooks reference - code.claude.com](https://code.claude.com/docs/en/hooks.md)
 - [Claude Code SessionStart Hook Guide](https://claudefa.st/blog/tools/hooks/session-lifecycle-hooks)
+- [Introducing routines in Claude Code (公式)](https://claude.com/blog/introducing-routines-in-claude-code)
+- [Claude Code Routines Docs (JA)](https://code.claude.com/docs/ja/routines)
+- [Claude Code Routines: 5 Production Workflows + MCP Setup (Arcade.dev)](https://www.arcade.dev/blog/claude-code-routines-mcp-setup/)
+- [Claude Code Routines: 8 Production Prompts (linas.substack)](https://linas.substack.com/p/claude-code-routines-guide)
+- [【実録】Claude Code Routines を3日間運用してみた (Qiita @nogataka)](https://qiita.com/nogataka/items/3ff7b14684306ef413e0)
+- [How Allowing Claude to Access My Server via SSH (Zenn @kitepon)](https://zenn.dev/kitepon/articles/claude-code-ssh-deploy?locale=en)
+- [A better way to limit Claude Code access to Secrets (patrickmccanna.net)](https://patrickmccanna.net/a-better-way-to-limit-claude-code-and-other-coding-agents-access-to-secrets/)
+- [Claude Code Security Best Practices (Backslash)](https://www.backslash.security/blog/claude-code-security-best-practices)
 
