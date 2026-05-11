@@ -837,6 +837,15 @@ class ArticleController
         return 'https://al.dmm.co.jp/?lurl=' . urlencode($directUrl) . '&af_id=' . $affiliateId . '&ch=toolbar&ch_id=text';
     }
 
+    private static function isInternalUrl(string $url): bool
+    {
+        if ($url === '') return false;
+        if ($url[0] === '#' || $url[0] === '/') return true;
+        $host = parse_url($url, PHP_URL_HOST);
+        if (!$host) return false;
+        return $host === 'av-hakase.com' || str_ends_with($host, '.av-hakase.com');
+    }
+
     private static function inlineFormat(string $text): string
     {
         // !img[url] → インライン画像を先に抽出して保護
@@ -850,14 +859,18 @@ class ArticleController
         // [btn text](url) → ボタンリンク（先に処理）
         $text = preg_replace_callback('/\[btn ([^\]]+)\]\(([^)]+)\)/', function ($m) use (&$links) {
             $key = '%%LINK' . count($links) . '%%';
-            $links[$key] = '<a href="' . h($m[2]) . '" class="article-btn" target="_blank" rel="nofollow noopener">' . h($m[1]) . '</a>';
+            $url = $m[2];
+            $attrs = self::isInternalUrl($url) ? '' : ' target="_blank" rel="nofollow noopener"';
+            $links[$key] = '<a href="' . h($url) . '" class="article-btn"' . $attrs . '>' . h($m[1]) . '</a>';
             return $key;
         }, $text);
 
         // [text](url) → リンクを先に抽出して保護
         $text = preg_replace_callback('/\[(.+?)\]\((.+?)\)/', function ($m) use (&$links) {
             $key = '%%LINK' . count($links) . '%%';
-            $links[$key] = '<a href="' . h($m[2]) . '" target="_blank" rel="nofollow noopener">' . h($m[1]) . '</a>';
+            $url = $m[2];
+            $attrs = self::isInternalUrl($url) ? '' : ' target="_blank" rel="nofollow noopener"';
+            $links[$key] = '<a href="' . h($url) . '"' . $attrs . '>' . h($m[1]) . '</a>';
             return $key;
         }, $text);
 
