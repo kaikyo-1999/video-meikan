@@ -137,12 +137,12 @@ class ActressController
         $latestSentence = $latestMonth ? "{$latestMonth}発売の最新作まで収録。" : '';
 
         if ($isFewWorks) {
-            $pageTitle = "{$metaName}のAV作品一覧（{$metaWorkCount}本）{$latestTagSuffix} | " . SITE_NAME;
+            $pageTitle = "{$metaName}のAV作品一覧（{$metaWorkCount}本）｜無料画像・動画付き{$latestTagSuffix} | " . SITE_NAME;
             $metaDescription = "{$metaName}{$profilePart}のAV作品{$metaWorkCount}本をまとめて一覧化。無料で見れる画像・動画を掲載。{$latestSentence}FANZAで配信中。";
         } else {
             $topGenresText = implode('、', array_slice(array_column($genres, 'name'), 0, 3));
             $genresClause = $topGenresText ? "{$topGenresText}など人気ジャンル別に整理し、" : '';
-            $pageTitle = "{$metaName}の作品一覧｜全{$metaWorkCount}本を網羅・人気作から最新作まで{$latestTagSuffix} | " . SITE_NAME;
+            $pageTitle = "{$metaName}の作品一覧 全{$metaWorkCount}本網羅｜無料画像・動画付き{$latestTagSuffix} | " . SITE_NAME;
             $metaDescription = "{$metaName}{$profilePart}の全作品{$metaWorkCount}本を一覧化。{$genresClause}無料で見れる画像・動画を掲載。{$latestSentence}FANZAで配信中。";
         }
 

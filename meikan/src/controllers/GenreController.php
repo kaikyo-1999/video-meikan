@@ -90,7 +90,7 @@ class GenreController
         $latestTagSuffix = $latestTag ? " {$latestTag}" : '';
         $latestSentence = $latestMonth ? "{$latestMonth}発売の最新{$genre['name']}作品も収録。" : '';
 
-        $pageTitle = "{$actress['name']}の{$genre['name']}作品 全{$totalWorksAll}本｜無料サンプル動画・画像つき{$latestTagSuffix} | " . SITE_NAME;
+        $pageTitle = "{$actress['name']}の{$genre['name']}作品 全{$totalWorksAll}本｜無料画像・動画付き{$latestTagSuffix} | " . SITE_NAME;
         $metaDescription = "{$actress['name']}の{$genre['name']}作品全{$totalWorksAll}本を発売日順に一覧化。無料で見れる画像・動画つき。{$latestSentence}FANZAで配信中の{$actress['name']}×{$genre['name']}を網羅。";
 
         render('genre', [
