@@ -4,29 +4,11 @@ class HomeController
 {
     public function index(array $params): void
     {
-        // 新人女優セクション: 「先月」を基本としつつ、データが無ければ DB 最新月にフォールバック
-        $lastMonth = date('Y-m', strtotime('first day of last month'));
-        $latestMonth = $lastMonth;
-        $debutActresses = [];
-        $debutMonthLabel = '';
-        if ($latestMonth) {
-            $debutActresses = Actress::findByDebutMonth($latestMonth);
-            if (empty($debutActresses)) {
-                $fallback = Actress::getLatestDebutMonth();
-                if ($fallback && $fallback !== $latestMonth) {
-                    $latestMonth = $fallback;
-                    $debutActresses = Actress::findByDebutMonth($latestMonth);
-                }
-            }
-            $debutActresses = array_values(array_filter($debutActresses, [Actress::class, 'hasValidThumbnail']));
-            $debutActresses = array_slice($debutActresses, 0, 6);
-            $parts = explode('-', $latestMonth);
-            $debutMonthLabel = (int)$parts[0] . '年' . (int)$parts[1] . '月';
-        }
-
-        $debutArticleSlug = $latestMonth
-            ? 'shinjin-av-' . $latestMonth
-            : null;
+        // 新人女優セクション（Actress::findRecentDebut で共通化）
+        $debut = Actress::findRecentDebut(6);
+        $debutActresses = $debut['actresses'];
+        $debutMonthLabel = $debut['monthLabel'];
+        $debutArticleSlug = $debut['articleSlug'];
 
         // 最新記事5件
         $articles = ArticleController::allArticles();

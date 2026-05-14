@@ -331,6 +331,143 @@ class Actress
     }
 
     /**
+     * 指定ジャンルで活動している人気女優を取得（PV急上昇ベース）。
+     * findHotByPv() と同じ3段階フォールバック。指定 actress は除外。
+     */
+    public static function findHotByPvAndGenre(
+        int $genreId,
+        int $excludeActressId = 0,
+        int $limit = 6,
+        int $minSessions = 10
+    ): array {
+        $cacheKey = "hot_actresses_pv_genre_{$genreId}_{$excludeActressId}_{$limit}_{$minSessions}";
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return $cached;
+
+        $db = Database::getInstance();
+        $excludeClause = $excludeActressId > 0 ? ' AND a.id != ?' : '';
+
+        // 第1段: pv_velocity_score 降順 + sessions_7d しきい値
+        $stmt = $db->prepare('
+            SELECT a.id, a.slug, a.name, a.thumbnail_url,
+                   s.sessions_7d, s.pv_velocity_score,
+                   (SELECT COUNT(DISTINCT aw2.work_id) FROM actress_work aw2 WHERE aw2.actress_id = a.id) AS work_count
+            FROM actresses a
+            INNER JOIN actress_signals s ON s.actress_id = a.id
+            INNER JOIN actress_work aw ON aw.actress_id = a.id
+            INNER JOIN work_genre wg ON wg.work_id = aw.work_id
+            WHERE ' . self::validThumbPredicate('a') . '
+              AND wg.genre_id = ?
+              AND s.sessions_7d >= ?' . $excludeClause . '
+            GROUP BY a.id
+            ORDER BY s.pv_velocity_score DESC, s.sessions_7d DESC
+            LIMIT ?
+        ');
+        $params = [$genreId, $minSessions];
+        if ($excludeActressId > 0) $params[] = $excludeActressId;
+        $params[] = $limit;
+        $stmt->execute($params);
+        $rows = $stmt->fetchAll();
+
+        // 第2段: sessions_7d 単純降順
+        if (count($rows) < $limit) {
+            $stmt2 = $db->prepare('
+                SELECT a.id, a.slug, a.name, a.thumbnail_url,
+                       s.sessions_7d, s.pv_velocity_score,
+                       (SELECT COUNT(DISTINCT aw2.work_id) FROM actress_work aw2 WHERE aw2.actress_id = a.id) AS work_count
+                FROM actresses a
+                INNER JOIN actress_signals s ON s.actress_id = a.id
+                INNER JOIN actress_work aw ON aw.actress_id = a.id
+                INNER JOIN work_genre wg ON wg.work_id = aw.work_id
+                WHERE ' . self::validThumbPredicate('a') . '
+                  AND wg.genre_id = ?' . $excludeClause . '
+                GROUP BY a.id
+                ORDER BY s.sessions_7d DESC
+                LIMIT ?
+            ');
+            $params2 = [$genreId];
+            if ($excludeActressId > 0) $params2[] = $excludeActressId;
+            $params2[] = $limit;
+            $stmt2->execute($params2);
+            $rows = $stmt2->fetchAll();
+        }
+
+        // 第3段: signals 不在 → ジャンル内作品数多い順
+        if (empty($rows)) {
+            $stmt3 = $db->prepare('
+                SELECT a.id, a.slug, a.name, a.thumbnail_url,
+                       0 AS sessions_7d, 0 AS pv_velocity_score,
+                       COUNT(DISTINCT aw.work_id) AS work_count
+                FROM actresses a
+                INNER JOIN actress_work aw ON aw.actress_id = a.id
+                INNER JOIN work_genre wg ON wg.work_id = aw.work_id
+                WHERE ' . self::validThumbPredicate('a') . '
+                  AND wg.genre_id = ?' . $excludeClause . '
+                GROUP BY a.id
+                HAVING work_count >= 5
+                ORDER BY work_count DESC, a.id DESC
+                LIMIT ?
+            ');
+            $params3 = [$genreId];
+            if ($excludeActressId > 0) $params3[] = $excludeActressId;
+            $params3[] = $limit;
+            $stmt3->execute($params3);
+            $rows = $stmt3->fetchAll();
+        }
+
+        Cache::set($cacheKey, $rows, 1800);
+        return $rows;
+    }
+
+    /**
+     * 指定女優の Top1 ジャンル（作品数最多）で人気な他女優を取得。
+     * 女優ページの「人気女優」セクション用。
+     */
+    public static function findHotByPvFilteredByTopGenre(
+        int $actressId,
+        int $limit = 6,
+        int $minSessions = 10
+    ): array {
+        $genres = self::getGenres($actressId);
+        if (empty($genres)) return [];
+        $topGenreId = (int)$genres[0]['id'];
+        return self::findHotByPvAndGenre($topGenreId, $actressId, $limit, $minSessions);
+    }
+
+    /**
+     * 新人女優セクション用（TOP・女優ページ・ジャンルページ共通）。
+     * 「先月」を基本とし、データが無ければ DB 最新月にフォールバック。有効サムネのみ。
+     * @return array{actresses: array, month: string, monthLabel: string, articleSlug: ?string}
+     */
+    public static function findRecentDebut(int $limit = 6): array
+    {
+        $latestMonth = date('Y-m', strtotime('first day of last month'));
+        $actresses = self::findByDebutMonth($latestMonth);
+        if (empty($actresses)) {
+            $fallback = self::getLatestDebutMonth();
+            if ($fallback && $fallback !== $latestMonth) {
+                $latestMonth = $fallback;
+                $actresses = self::findByDebutMonth($latestMonth);
+            }
+        }
+        $actresses = array_values(array_filter($actresses, [self::class, 'hasValidThumbnail']));
+        $actresses = array_slice($actresses, 0, $limit);
+        $monthLabel = '';
+        if ($latestMonth) {
+            $parts = explode('-', $latestMonth);
+            if (isset($parts[0], $parts[1])) {
+                $monthLabel = (int)$parts[0] . '年' . (int)$parts[1] . '月';
+            }
+        }
+        return [
+            'actresses' => $actresses,
+            'month' => $latestMonth,
+            'monthLabel' => $monthLabel,
+            'articleSlug' => $latestMonth ? ('shinjin-av-' . $latestMonth) : null,
+        ];
+    }
+
+    /**
      * DBに存在する最新のデビュー月（YYYY-MM形式）を取得
      */
     public static function getLatestDebutMonth(): ?string

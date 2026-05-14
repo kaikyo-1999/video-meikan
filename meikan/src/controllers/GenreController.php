@@ -45,6 +45,31 @@ class GenreController
         $allGenres = Actress::getGenres($actress['id']);
         $similarActresses = Actress::getSimilarActresses($actress['id']);
 
+        // similar が空なら related/逆引きにフォールバック（ローテーション候補に使う）
+        $relatedActresses = [];
+        if (empty($similarActresses)) {
+            $relatedActresses = Actress::getRelatedActresses($actress['id']);
+            if (empty($relatedActresses)) {
+                $relatedActresses = Actress::getReverseLookupActresses($actress['id']);
+            }
+        }
+
+        // 新人女優 / 人気女優セクション（最下部 or index=5 ローテ用）
+        $debut = Actress::findRecentDebut(6);
+        $debutActresses = $debut['actresses'];
+        $debutMonthLabel = $debut['monthLabel'];
+        $debutArticleSlug = $debut['articleSlug'];
+        $hotActresses = Actress::findHotByPvAndGenre((int)$genre['id'], (int)$actress['id'], 6);
+        if (empty($hotActresses)) {
+            // ジャンル内で該当無し → 全体の人気女優で代替（該当女優除外）
+            $hotActresses = array_values(array_filter(
+                Actress::findHotByPv(7),
+                fn($a) => (int)$a['id'] !== (int)$actress['id']
+            ));
+            $hotActresses = array_slice($hotActresses, 0, 6);
+        }
+        $isFewWorks = $totalWorksAll <= ACTRESS_WORK_THRESHOLD;
+
         $jsonLd = [
             '@context' => 'https://schema.org',
             '@type' => 'ItemList',
@@ -111,6 +136,12 @@ class GenreController
             'pagination' => $pagination,
             'allGenres' => $allGenres,
             'similarActresses' => $similarActresses,
+            'relatedActresses' => $relatedActresses,
+            'debutActresses' => $debutActresses,
+            'debutMonthLabel' => $debutMonthLabel,
+            'debutArticleSlug' => $debutArticleSlug,
+            'hotActresses' => $hotActresses,
+            'isFewWorks' => $isFewWorks,
             'jsonLd' => $jsonLd,
         ]);
     }

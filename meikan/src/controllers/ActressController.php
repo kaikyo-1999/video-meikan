@@ -32,6 +32,22 @@ class ActressController
             }
         }
 
+        // 新人女優 / 人気女優セクション（最下部 or index=5 ローテ用）
+        $debut = Actress::findRecentDebut(6);
+        $debutActresses = $debut['actresses'];
+        $debutMonthLabel = $debut['monthLabel'];
+        $debutArticleSlug = $debut['articleSlug'];
+        $hotActresses = Actress::findHotByPvFilteredByTopGenre($actress['id'], 6);
+        if (empty($hotActresses)) {
+            // Top1ジャンルでヒットしない（作品数少 or ジャンル不明）→ 全体の人気女優で代替
+            $hotActresses = array_values(array_filter(
+                Actress::findHotByPv(7),
+                fn($a) => (int)$a['id'] !== (int)$actress['id']
+            ));
+            $hotActresses = array_slice($hotActresses, 0, 6);
+        }
+        $topGenreName = !empty($genres) ? $genres[0]['name'] : '';
+
         // 作品一覧を表示（デフォルト: 単体作品のみ・人気順）
         $worksPage = currentPage();
         $totalWorks = Work::countSingleByActress($actress['id']);
@@ -162,6 +178,11 @@ class ActressController
             'isFewWorks' => $isFewWorks,
             'similarActresses' => $similarActresses,
             'relatedActresses' => $relatedActresses,
+            'debutActresses' => $debutActresses,
+            'debutMonthLabel' => $debutMonthLabel,
+            'debutArticleSlug' => $debutArticleSlug,
+            'hotActresses' => $hotActresses,
+            'topGenreName' => $topGenreName,
             'jsonLd' => $jsonLd,
         ]);
     }

@@ -128,6 +128,10 @@ $worksOffset = 0;
 
         <p id="workNoResults" class="work-controls__no-results" style="display:none;">該当する作品が見つかりませんでした。</p>
 
+        <?php if (!empty($isFewWorks)): ?>
+            <?php require TEMPLATE_DIR . '/partials/recommend-bottom-section.php'; ?>
+        <?php endif; ?>
+
         <div id="infiniteLoader" class="infinite-loader" <?php if ($pagination['total_pages'] <= 1): ?>style="display:none;"<?php endif; ?>>
             <div class="infinite-loader__spinner"></div>
             <p class="infinite-loader__text">読み込み中...</p>

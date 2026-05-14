@@ -2009,6 +2009,23 @@ p > .article-inline-img {
     font-weight: 700;
     color: var(--color-text-sub);
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+}
+.similar-inline__cta {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-accent, #d4644a);
+    text-decoration: none;
+    white-space: nowrap;
+}
+.similar-inline__cta:hover {
+    text-decoration: underline;
+}
+.similar-inline + .similar-inline {
+    margin-top: 14px;
 }
 .similar-inline__scroll {
     display: flex;
