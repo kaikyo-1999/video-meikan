@@ -4,19 +4,81 @@ class SitemapController
 {
     /**
      * サイトマップindex（sitemapindex形式・/sitemap.xml）
-     * 子サイトマップ4本を束ねる
+     * 子サイトマップ4本を束ねる。
+     *
+     * lastmod は各子サイトマップ内 URL の最大更新日時から算出する。
+     * 生成時刻ではなく実コンテンツの更新時刻を使うのは Google ガイダンス遵守:
+     * https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
      */
     public function index(array $params): void
     {
         header('Content-Type: application/xml; charset=UTF-8');
-        $today = date('Y-m-d');
+
+        $articlesLastmod = self::articlesMaxLastmod();
+        $actressesLastmod = self::actressesMaxLastmod();
+        $worksLastmod = self::worksMaxLastmod();
+
+        // core: TOP/meikan が女優・作品データを動的表示するため、両者の MAX を使う
+        $coreLastmod = self::pickMax($actressesLastmod, $worksLastmod);
+        // genres: 作品データが変わるとジャンルページの内容も変わる
+        $genresLastmod = $worksLastmod;
+
         $sitemaps = [
-            ['loc' => fullUrl('sitemap-core.xml'), 'lastmod' => $today],
-            ['loc' => fullUrl('sitemap-articles.xml'), 'lastmod' => $today],
-            ['loc' => fullUrl('sitemap-actresses.xml'), 'lastmod' => $today],
-            ['loc' => fullUrl('sitemap-genres.xml'), 'lastmod' => $today],
+            ['loc' => fullUrl('sitemap-core.xml'),      'lastmod' => $coreLastmod],
+            ['loc' => fullUrl('sitemap-articles.xml'),  'lastmod' => $articlesLastmod],
+            ['loc' => fullUrl('sitemap-actresses.xml'), 'lastmod' => $actressesLastmod],
+            ['loc' => fullUrl('sitemap-genres.xml'),    'lastmod' => $genresLastmod],
         ];
         render('sitemap-index', ['noLayout' => true, 'sitemaps' => $sitemaps]);
+    }
+
+    private static function articlesMaxLastmod(): ?string
+    {
+        $cacheKey = 'sitemap_articles_lastmod';
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return $cached !== '' ? $cached : null;
+
+        $articles = ArticleController::allArticles();
+        $max = null;
+        foreach ($articles as $article) {
+            if (!empty($article['noindex'])) continue;
+            $date = !empty($article['updated_at']) ? $article['updated_at']
+                  : (!empty($article['published_at']) ? $article['published_at'] : null);
+            if (!$date) continue;
+            if ($max === null || $date > $max) $max = $date;
+        }
+
+        Cache::set($cacheKey, $max ?? '', 3600);
+        return $max;
+    }
+
+    private static function actressesMaxLastmod(): ?string
+    {
+        return self::dbMaxDate('sitemap_actresses_lastmod', 'SELECT MAX(updated_at) AS max_dt FROM actresses');
+    }
+
+    private static function worksMaxLastmod(): ?string
+    {
+        return self::dbMaxDate('sitemap_works_lastmod', 'SELECT MAX(updated_at) AS max_dt FROM works');
+    }
+
+    private static function dbMaxDate(string $cacheKey, string $sql): ?string
+    {
+        $cached = Cache::get($cacheKey);
+        if ($cached !== null) return $cached !== '' ? $cached : null;
+
+        $db = Database::getInstance();
+        $row = $db->query($sql)->fetch();
+        $max = ($row && !empty($row['max_dt'])) ? date('Y-m-d', strtotime($row['max_dt'])) : null;
+
+        Cache::set($cacheKey, $max ?? '', 3600);
+        return $max;
+    }
+
+    private static function pickMax(?string ...$dates): ?string
+    {
+        $valid = array_filter($dates, fn($d) => $d !== null && $d !== '');
+        return empty($valid) ? null : max($valid);
     }
 
     /**
