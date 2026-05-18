@@ -27,3 +27,7 @@ gsc/daily_report.log
 
 # OS
 .DS_Store
+
+# Python
+__pycache__/
+*.pyc
